@@ -1,0 +1,10 @@
+package pantallaInicio;
+	//fondo
+	//imagenes de personajes
+	//selector con raton
+	//un selector para cada personaje uno despues de otro
+public class SeleccionCaracteres {
+	
+    public static void main(String[] args) {
+    }
+}
