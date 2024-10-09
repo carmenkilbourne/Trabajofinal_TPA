@@ -1,0 +1,24 @@
+package pantallaInicio;
+
+import java.awt.Color;
+
+import javax.swing.JFrame;
+
+public class PantallaPelea {
+
+	public static void main(String[] args) {
+		JFrame frame = new JFrame("Pantalla de Inicio");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(1000, 1000); // Tamaño de ventana
+        frame.setLocationRelativeTo(null);	//Poner en medio de la pantalla
+	
+		/*
+		 * frame.setBackground(Color.BLUE); Partida partida = new Partida();
+		 * frame.add(partida); partida.empezarPartida();
+		 */
+        frame.pack();
+        frame.setVisible(true);
+
+	}
+
+}

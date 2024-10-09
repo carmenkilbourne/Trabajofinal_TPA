@@ -1,0 +1,14 @@
+package partida;
+
+import javax.swing.JPanel;
+
+public class GamePanel extends JPanel {
+	final int tamanoOriginalBaldosa = 16;	//tamano de cuadricula de jugador
+	final int escala = 3;
+	
+	final int tamanoBaldosa = tamanoOriginalBaldosa * escala;	//tamano final de cuadricula de jugador(48x48)
+	final int numero_filas = 20;
+	final int numero_columnas = 20;
+
+
+}

@@ -1,0 +1,31 @@
+package pantallaInicio;
+
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+public class MovimientoJugador implements KeyListener{
+
+	@Override
+	public void keyTyped(KeyEvent e) {		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		int codigo = e.getKeyCode();
+		if(codigo == KeyEvent.VK_A) {	//movimiento izqd
+			
+		}
+		if(codigo == KeyEvent.VK_D) {	//mov derecha
+			
+		}
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+}
