@@ -5,8 +5,7 @@ import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
-
-public class FondoPantalla extends JPanel{
+public class FondoPantalla extends JPanel {
 	private Image image;
 	// Constructor que carga la imagen usando un path al recurso
 	public FondoPantalla(String imagePath) {
@@ -27,5 +26,4 @@ protected void paintComponent(Graphics g) {
 	}
 
 }
-
 }
