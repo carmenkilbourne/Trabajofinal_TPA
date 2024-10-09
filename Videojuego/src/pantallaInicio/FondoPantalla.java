@@ -1,7 +1,6 @@
 package pantallaInicio;
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
@@ -25,7 +24,5 @@ protected void paintComponent(Graphics g) {
 	if (image != null) {
 		g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), this);
 	}
-
 }
-
 }

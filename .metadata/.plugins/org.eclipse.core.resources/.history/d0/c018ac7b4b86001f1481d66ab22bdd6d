@@ -1,0 +1,30 @@
+package pantallaInicio;
+import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
+
+public class PantallaInicio {
+	public static void main(String[] args) {
+		// Crear el marco de la ventana
+				JFrame frame = new JFrame("Pantalla de Inicio");
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame.setSize(1000, 1000);	//tamano de frame
+				JLayeredPane layeredPane = new JLayeredPane();
+		        layeredPane.setPreferredSize(new Dimension(1000, 1000));
+				// Crear una instancia de ImagePanel con el path a la imagen path
+				FondoPantalla pantallaInicio = new FondoPantalla("/Imagenes/PantallaInicio.png");
+		        pantallaInicio.setBounds(0, 0, 1000, 1000); // Asegúrate de ajustar el tamaño del fondo
+
+				// Añadir el panel al marco
+				//frame.add(pantallaInicio);
+				CuadroTexto cuadrotexto = new CuadroTexto("To start press enter");
+				cuadrotexto.setBounds(300, 400, 400, 200); // Ajusta la posición y el tamaño del cuadro
+				frame.add(cuadrotexto);
+				layeredPane.add(pantallaInicio, Integer.valueOf(0)); // Fondo en la capa 0
+		        layeredPane.add(cuadrotexto, Integer.valueOf(1)); 
+				// Hacer visible la ventana
+				frame.setVisible(true);
+				
+
+	}
+
+}
