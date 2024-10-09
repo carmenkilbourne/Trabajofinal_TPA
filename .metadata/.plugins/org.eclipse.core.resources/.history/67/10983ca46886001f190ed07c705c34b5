@@ -25,11 +25,9 @@ public class SeleccionCaracteres {
         layeredPane.setPreferredSize(new java.awt.Dimension(1000, 1000));
         // Agregar los componentes al layeredPane
         layeredPane.add(seleccionPersonajes, Integer.valueOf(0)); // Poner fondo de pantalla en la capa 0
-        //layeredPane.add(cuadroTexto, Integer.valueOf(1)); // boton para seleccionar caracter 
-        //boton condicional para que se active cuando el otro este presionado para aceptar
-        frame.add(layeredPane);
+        //layeredPane.add(cuadroTexto, Integer.valueOf(1)); // Poner boton de start  en la capa 1
+
         // Añadir el layeredPane al frame
         frame.setVisible(true);
     }
 }
- 
