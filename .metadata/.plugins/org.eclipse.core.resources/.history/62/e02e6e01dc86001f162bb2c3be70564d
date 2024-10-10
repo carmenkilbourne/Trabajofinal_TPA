@@ -6,14 +6,14 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
-//cambiar nombre a bucle de particula
+
 public class Partida extends JPanel implements Runnable {
 	MovimientoJugador movimientojugador = new MovimientoJugador();
 	Thread hiloPartida; // empieza el hilo para el loop
 	// posicion inicial judaor(rectangulo)
-	int posX = 0;
-	int posY = 900;
-	int desplazamiento = 20;
+	int posX = 100;
+	int posY = 100;
+	int desplazamiento = 500;
 
 	int FPS = 60; // 60 FRAMES PER SECOND
 
@@ -42,18 +42,16 @@ public class Partida extends JPanel implements Runnable {
 			long tiempo = System.nanoTime();
 			update();
 			repaint();
-
 			try {
-				double tiempoSleep = (intervalosiguiente - System.nanoTime()) / 1000000;
-				if (tiempoSleep < 0)
+				double tiempoSleep = (intervalosiguiente-System.nanoTime())/1000000);
+				if(tiempoSleep<0)
 					tiempoSleep = 0;
-				Thread.sleep((long) (tiempoSleep));// t de sleep en milisegundos
-				intervalosiguiente += intervalo;
+				Thread.sleep((long) (tiempoSleep);// t de sleep en milisegundos
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
+			
 		}
 
 	}

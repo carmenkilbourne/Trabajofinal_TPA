@@ -11,8 +11,8 @@ public class Partida extends JPanel implements Runnable {
 	MovimientoJugador movimientojugador = new MovimientoJugador();
 	Thread hiloPartida; // empieza el hilo para el loop
 	// posicion inicial judaor(rectangulo)
-	int posX = 0;
-	int posY = 900;
+	int posX = 100;
+	int posY = 100;
 	int desplazamiento = 20;
 
 	int FPS = 60; // 60 FRAMES PER SECOND

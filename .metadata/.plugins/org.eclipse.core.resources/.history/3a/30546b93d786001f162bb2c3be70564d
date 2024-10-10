@@ -12,7 +12,11 @@ public class PantallaPelea {
         frame.setResizable(false);
         Partida partida = new Partida();
         frame.add(partida);
-        partida.empezarPartida();
+	
+		/*
+		 * frame.setBackground(Color.BLUE); Partida partida = new Partida();
+		 * frame.add(partida); partida.empezarPartida();
+		 */
         frame.pack();
         frame.setVisible(true);
 
