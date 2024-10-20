@@ -1,0 +1,42 @@
+package pantallaInicio;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
+import javax.swing.JPanel;
+
+public class Partida extends JPanel implements Runnable{
+	Thread hiloPartida;	//empieza el hilo para el loop
+	
+	
+	
+	public void empezarPartida() {
+		hiloPartida = new Thread(this);
+		hiloPartida.start();
+	}
+	
+	@Override
+	public void run() {
+		//Aqui va ha ir nuestro bucle de juego
+		//actualizar parametros del personaje con input de usuario
+		//actualizar graficos
+		while(hiloPartida != null) {
+			//System.out.println("Bucle de juego activo");
+			update();
+			repaint();
+		}
+		
+	}
+	public void update() {
+		//parametros actualizados
+	}
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);	//coge de la clase JPanel
+		Graphics2D g1 = (Graphics2D)g; 
+		g1.setColor(Color.black);
+		g1.fillRect(500,500,50,50);
+		g1.dispose();
+	}
+
+}

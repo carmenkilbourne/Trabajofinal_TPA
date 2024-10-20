@@ -1,0 +1,22 @@
+package pantallaInicio;
+
+import javax.swing.JPanel;
+
+public class Partida extends JPanel implements Runnable{
+	Thread hiloPartida;	//empieza el hilo para el loop
+	
+	
+	
+	public void empezarPartida() {
+		hiloPartida = new Thread(this);
+		hiloPartida.start();
+	}
+	
+	@Override
+	public void run() {//Aqui va ha ir nuestro bucle de juego
+		while(hiloPartida != null) {
+			System.out.println("Bucle de juego activo");
+		}
+	}
+
+}
