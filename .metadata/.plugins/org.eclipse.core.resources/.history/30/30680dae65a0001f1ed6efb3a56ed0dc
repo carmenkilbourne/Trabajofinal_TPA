@@ -1,8 +1,11 @@
 package entidad;
+
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
+
 import pantallaInicio.MovimientoJugador;
 import pantallaInicio.Partida;
 
@@ -20,7 +23,7 @@ public class Jugador extends Entity {
 		x=100;
 		y=100;
 		desplazamiento = 10;
-		direccion = "arriba";
+		direccion = "abajo";
 	}
 	public void getImagenJugador() {
 		try {

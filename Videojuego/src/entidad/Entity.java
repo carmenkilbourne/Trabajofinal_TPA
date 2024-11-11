@@ -1,5 +1,4 @@
 package entidad;
-
 import java.awt.image.BufferedImage;
 
 public class Entity {
