@@ -4,7 +4,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class MovimientoJugador implements KeyListener {
-	public boolean derecha, izquierda,arriba,abajo;
+	public boolean derecha, izquierda;
+
 	@Override
 	public void keyTyped(KeyEvent e) {
 	}
@@ -19,13 +20,6 @@ public class MovimientoJugador implements KeyListener {
 		if (codigo == KeyEvent.VK_D) { // mov derecha
 			derecha = true;
 		}
-		if (codigo == KeyEvent.VK_W) { // mov arriba
-			arriba = true;
-		}
-		if (codigo == KeyEvent.VK_S) { // mov abajo
-			abajo = true;
-		}
-
 
 	}
 
@@ -39,12 +33,5 @@ public class MovimientoJugador implements KeyListener {
 		if (codigo == KeyEvent.VK_D) { // mov derecha
 			derecha = false;
 		}
-		if (codigo == KeyEvent.VK_W) {  // mov arriba
-			arriba = false;
-		}
-		if (codigo == KeyEvent.VK_S) { // mov abajo
-			abajo = false;
-		}
-		
 	}
 }

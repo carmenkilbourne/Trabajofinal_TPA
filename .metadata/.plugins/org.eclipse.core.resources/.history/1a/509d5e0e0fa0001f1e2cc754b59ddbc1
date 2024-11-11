@@ -8,12 +8,11 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 //cambiar nombre a bucle de particula
 public class Partida extends JPanel implements Runnable {
-	private static final long serialVersionUID = 1L;
 	MovimientoJugador movimientojugador = new MovimientoJugador();
 	Thread hiloPartida; // empieza el hilo para el loop
 	// posicion inicial judaor(rectangulo)
 	int posX = 0;
-	int posY = 0;
+	int posY = 900;
 	int desplazamiento = 20;
 
 	int FPS = 60; // 60 FRAMES PER SECOND
@@ -65,12 +64,6 @@ public class Partida extends JPanel implements Runnable {
 		}
 		if (movimientojugador.izquierda == true) {
 			posX = posX - desplazamiento;
-		}
-		if (movimientojugador.arriba == true) {
-			posY = posY - desplazamiento;
-		}
-		if (movimientojugador.abajo == true) {
-			posY = posY + desplazamiento;
 		}
 	}
 

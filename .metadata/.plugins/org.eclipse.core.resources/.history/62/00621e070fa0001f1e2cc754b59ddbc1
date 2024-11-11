@@ -6,7 +6,6 @@ import java.awt.Image;
 import java.io.IOException;
 
 public class FondoPantalla extends JPanel{
-	private static final long serialVersionUID = 1L;
 	private Image image;
 	// Constructor que carga la imagen usando un path al recurso
 	public FondoPantalla(String imagePath) {
