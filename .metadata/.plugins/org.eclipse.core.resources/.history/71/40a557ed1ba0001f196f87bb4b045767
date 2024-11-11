@@ -1,0 +1,18 @@
+package entidad;
+
+import pantallaInicio.MovimientoJugador;
+import pantallaInicio.Partida;
+
+public class Jugador extends Entity {
+	Partida p;
+	MovimientoJugador movimientojugador;
+	public Jugador(Partida p,MovimientoJugador movimientojugador) 	{
+		this.p = p;
+		this.movimientojugador = movimientojugador;
+		
+		
+		
+		
+		
+	}
+}

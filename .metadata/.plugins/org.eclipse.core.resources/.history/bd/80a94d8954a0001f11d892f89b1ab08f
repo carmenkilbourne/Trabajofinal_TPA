@@ -1,0 +1,78 @@
+package entidad;
+
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+import pantallaInicio.MovimientoJugador;
+import pantallaInicio.Partida;
+
+public class Jugador extends Entity {
+	Partida p;
+	MovimientoJugador movimientojugador;
+	public Jugador(Partida p,MovimientoJugador movimientojugador) 	{
+		this.p = p;
+		this.movimientojugador = movimientojugador;
+		setVariables();
+		getImagenJugador();
+	}
+	public void setVariables() {
+		x=100;
+		y=100;
+		desplazamiento = 10;
+		direccion = "abajo";
+	}
+	public void getImagenJugador() {
+		try {
+			salto1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/frente.png"));
+			derecha1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/derecha.png"));
+			izquierda1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/izquierda.png"));
+			abajo1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/abajo.png"));
+
+			//completar con mas lados
+		}catch(IOException e) {
+			e.printStackTrace();			
+		}
+	}
+	public void update() {
+		if (movimientojugador.derecha == true) {
+			direccion = "derecha";
+			x = x + desplazamiento;
+		}
+		if (movimientojugador.izquierda == true) {
+			direccion = "izquierda";
+			x = x - desplazamiento;
+		}
+		if (movimientojugador.arriba == true) {
+			direccion = "arriba";
+			y = y - desplazamiento;
+		}
+		if (movimientojugador.abajo == true) {
+			direccion = "abajo";
+			y = y + desplazamiento;
+		}
+	}
+	public void draw(Graphics2D g1) {
+		//g1.setColor(Color.black);
+		//g1.fillRect(x, y, 100, 100);
+		BufferedImage image = null;
+		switch(direccion) {
+		case "arriba":
+			image = salto1;
+			break;
+		case "abajo":
+			image = salto1;
+			break;
+		case "derecha":
+			image = derecha1;
+			break;
+		case "izquierda":
+			image = izquierda1;
+			break;
+		}
+		g1.drawImage(image, x, y,200,200,null);
+	}
+}

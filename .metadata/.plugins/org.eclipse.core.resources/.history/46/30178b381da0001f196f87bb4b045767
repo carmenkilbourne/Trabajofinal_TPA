@@ -1,0 +1,39 @@
+package entidad;
+
+import java.awt.Color;
+import java.awt.Graphics2D;
+
+import pantallaInicio.MovimientoJugador;
+import pantallaInicio.Partida;
+
+public class Jugador extends Entity {
+	Partida p;
+	MovimientoJugador movimientojugador;
+	public Jugador(Partida p,MovimientoJugador movimientojugador) 	{
+		this.p = p;
+		this.movimientojugador = movimientojugador;
+	}
+	public void setVariables() {
+		x=100;
+		y=100;
+		desplazamiento = 20;
+	}
+	public void update() {
+		if (movimientojugador.derecha == true) {
+			x = x + desplazamiento;
+		}
+		if (movimientojugador.izquierda == true) {
+			x = x - desplazamiento;
+		}
+		if (movimientojugador.arriba == true) {
+			y = y - desplazamiento;
+		}
+		if (movimientojugador.abajo == true) {
+			y = y + desplazamiento;
+		}
+	}
+	public void draw(Graphics2D g1) {
+		g1.setColor(Color.black);
+		g1.fillRect(x, y, 100, 100);
+	}
+}

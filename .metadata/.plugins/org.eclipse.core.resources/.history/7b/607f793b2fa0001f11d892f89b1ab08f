@@ -1,0 +1,11 @@
+package entidad;
+
+import java.awt.image.BufferedImage;
+
+public class Entity {
+	public int x,y;
+	public int desplazamiento;
+	public BufferedImage enfrente;
+	public String direccion;
+
+}

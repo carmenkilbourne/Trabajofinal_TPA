@@ -10,7 +10,7 @@ public class PantallaPelea {
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        frame.setSize(500, 500); // Tamaño del frame
+        frame.setSize(1280, 720); // Tamaño del frame
         frame.setLocationRelativeTo(null);//centro de pantalla
         //frame.setResizable(false);
         Partida partida = new Partida();

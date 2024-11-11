@@ -1,0 +1,6 @@
+package entidad;
+
+public class Jugador extends Entity {
+	GamePanel gp;
+	KeyHandler k;
+}
