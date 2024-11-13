@@ -8,8 +8,6 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import entidad.Jugador;
-import entidad.Jugador2;
-
 //cambiar nombre a bucle de particula
 public class Partida extends JPanel implements Runnable {
 	private static final long serialVersionUID = 1L;
@@ -19,7 +17,7 @@ public class Partida extends JPanel implements Runnable {
 	Thread hiloPartida; // empieza el hilo para el loop
 	// posicion inicial judaor
 	Jugador jugador = new Jugador(this,movimientojugador);
-    Jugador2 jugador2 = new Jugador2(this, movimientoJugador2);
+    Jugador jugador2 = new Jugador(this, movimientoJugador2);
 
 	int FPS = 60; // 60 FRAMES PER SECOND
 	

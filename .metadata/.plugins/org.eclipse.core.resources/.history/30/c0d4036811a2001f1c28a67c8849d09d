@@ -19,7 +19,7 @@ public class Partida extends JPanel implements Runnable {
 	Thread hiloPartida; // empieza el hilo para el loop
 	// posicion inicial judaor
 	Jugador jugador = new Jugador(this,movimientojugador);
-    Jugador2 jugador2 = new Jugador2(this, movimientoJugador2);
+    Jugador jugador2 = new Jugador2(this, movimientoJugador2);
 
 	int FPS = 60; // 60 FRAMES PER SECOND
 	

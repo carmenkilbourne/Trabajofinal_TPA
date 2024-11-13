@@ -3,19 +3,17 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import pantallaInicio.MovimientoJugador;
+import pantallaInicio.MovimientoJugador2;
 import pantallaInicio.Partida;
 
-public class Jugador extends Entity {
+public class Jugador2 extends Entity {
 	Partida p;
-	MovimientoJugador movimientojugador;
-	private int vida = 100;
-	private int ataque = 5;
-	public Jugador(Partida p,MovimientoJugador movimientojugador) 	{
+	MovimientoJugador2 movimientojugador2;
+	public Jugador2(Partida p, MovimientoJugador2 movimientojugador2) 	{
 		this.p = p;
-		this.movimientojugador = movimientojugador;
+		this.movimientojugador2 = movimientojugador2;
 		setVariables();
-		getImagenJugador();
+		getImagenJugador2();
 	}
 	public void setVariables() {
 		x=100;
@@ -23,7 +21,7 @@ public class Jugador extends Entity {
 		desplazamiento = 10;
 		direccion = "arriba";
 	}
-	public void getImagenJugador() {
+	public void getImagenJugador2() {
 		try {
 			salto1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/frente.png"));
 			derecha1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/derecha.png"));
@@ -37,26 +35,24 @@ public class Jugador extends Entity {
 		}
 	}
 	public void update() {
-		if (movimientojugador.derecha == true) {
+		if (movimientojugador2.derecha == true) {
 			direccion = "derecha";
 			x = x + desplazamiento;
 		}
-		if (movimientojugador.izquierda == true) {
+		if (movimientojugador2.izquierda == true) {
 			direccion = "izquierda";
 			x = x - desplazamiento;
 		}
-		if (movimientojugador.arriba == true) {
+		if (movimientojugador2.arriba == true) {
 			direccion = "arriba";
 			y = y - desplazamiento;
 		}
-		if (movimientojugador.abajo == true) {
+		if (movimientojugador2.abajo == true) {
 			direccion = "abajo";
 			y = y + desplazamiento;
 		}
 	}
 	public void draw(Graphics2D g1) {
-		//g1.setColor(Color.black);
-		//g1.fillRect(x, y, 100, 100);
 		BufferedImage image = null;
 		switch(direccion) {
 		case "arriba":

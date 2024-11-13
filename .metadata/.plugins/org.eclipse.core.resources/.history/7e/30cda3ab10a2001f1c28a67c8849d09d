@@ -9,8 +9,6 @@ import pantallaInicio.Partida;
 public class Jugador extends Entity {
 	Partida p;
 	MovimientoJugador movimientojugador;
-	private int vida = 100;
-	private int ataque = 5;
 	public Jugador(Partida p,MovimientoJugador movimientojugador) 	{
 		this.p = p;
 		this.movimientojugador = movimientojugador;
@@ -55,8 +53,6 @@ public class Jugador extends Entity {
 		}
 	}
 	public void draw(Graphics2D g1) {
-		//g1.setColor(Color.black);
-		//g1.fillRect(x, y, 100, 100);
 		BufferedImage image = null;
 		switch(direccion) {
 		case "arriba":
@@ -72,6 +68,6 @@ public class Jugador extends Entity {
 			image = izquierda1;
 			break;
 		}
-		g1.drawImage(image, x, y,200,200,null);
+		g1.drawImage(image, x, y,200,200,null);//posicion inicial deberia ser esquina inferior izquierda
 	}
 }

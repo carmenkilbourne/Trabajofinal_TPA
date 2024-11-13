@@ -8,18 +8,16 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import entidad.Jugador;
-import entidad.Jugador2;
-
 //cambiar nombre a bucle de particula
 public class Partida extends JPanel implements Runnable {
 	private static final long serialVersionUID = 1L;
 	MovimientoJugador movimientojugador = new MovimientoJugador();
-    MovimientoJugador2 movimientoJugador2 = new MovimientoJugador2();
-
 	Thread hiloPartida; // empieza el hilo para el loop
-	// posicion inicial judaor
+	// posicion inicial judaor(rectangulo)
 	Jugador jugador = new Jugador(this,movimientojugador);
-    Jugador2 jugador2 = new Jugador2(this, movimientoJugador2);
+	int posX = 0;
+	int posY = 620;	//720-100
+	int desplazamiento = 20;
 
 	int FPS = 60; // 60 FRAMES PER SECOND
 	
@@ -27,7 +25,6 @@ public class Partida extends JPanel implements Runnable {
 		this.setPreferredSize(new Dimension(1280, 720));
 		this.setBackground(Color.white);
 		this.addKeyListener(movimientojugador);
-        this.addKeyListener(movimientoJugador2); 
 		this.setFocusable(true);
 		// this.setDoubleBuffered(true);
 	}
@@ -67,14 +64,12 @@ public class Partida extends JPanel implements Runnable {
 
 	public void update() {
 		jugador.update();
-		jugador2.update();
 	}
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g); // coge de la clase JPanel
 		Graphics2D g1 = (Graphics2D) g;
 		jugador.draw(g1);
-		jugador2.draw(g1);
 		g1.dispose();
 	}
 
