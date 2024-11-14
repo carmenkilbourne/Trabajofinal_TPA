@@ -68,16 +68,6 @@ public class Partida extends JPanel implements Runnable {
 	public void update() {
 		jugador.update();
 		jugador2.update();
-		 if (movimientojugador.atacar) {
-		        jugador.atacar(jugador2);
-		        movimientojugador.atacar = false; // reiniciar el ataque para evitar múltiples ataques continuos
-		    }
-
-		    // Condición para que el jugador 2 ataque al jugador 1
-		    if (movimientoJugador2.atacar) {
-		        jugador2.atacar(jugador);
-		        movimientoJugador2.atacar = false;
-		    }
 	}
 
 	public void paintComponent(Graphics g) {
@@ -87,4 +77,8 @@ public class Partida extends JPanel implements Runnable {
 		jugador2.draw(g1);
 		g1.dispose();
 	}
+	public void atacar(Jugador atacante, Jugador defensor) {
+	    defensor.recibirDanio(atacante.getAtaque());
+	}
+
 }

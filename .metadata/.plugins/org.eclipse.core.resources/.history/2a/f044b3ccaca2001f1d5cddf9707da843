@@ -11,12 +11,13 @@ public class Entity {
 	public int getAtaque() {
         return ataque;
     }
+
     public void recibirDanio(int danio) {
         vida -= danio;
         if (vida < 0) vida = 0;
         System.out.println("Vida restante: " + vida);
     }
-	 public void atacar(Entity defensor) {
+	 public void atacar(JugadorBase defensor) {
 	        defensor.recibirDanio(this.getAtaque());
 	    }
 
