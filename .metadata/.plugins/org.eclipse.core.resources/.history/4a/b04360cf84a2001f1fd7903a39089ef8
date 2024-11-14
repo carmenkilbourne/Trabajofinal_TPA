@@ -1,23 +1,22 @@
 package entidad;
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import pantallaInicio.MovimientoJugador;
+import pantallaInicio.MovimientoJugador2;
 import pantallaInicio.Partida;
 
-public class Jugador extends Entity {
+public class Jugador2 extends Entity {
 	Partida p;
-	MovimientoJugador movimientojugador;
+	MovimientoJugador2 movimientojugador2;
 	private int saludMax = 100;
 	private int saludActual = saludMax;
 	private int ataque = 10; // Valor de ataque del jugador
-	public Jugador(Partida p,MovimientoJugador movimientojugador) 	{
+	public Jugador2(Partida p, MovimientoJugador2 movimientojugador2) 	{
 		this.p = p;
-		this.movimientojugador = movimientojugador;
+		this.movimientojugador2 = movimientojugador2;
 		setVariables();
-		getImagenJugador();
+		getImagenJugador2();
 	}
 	public void setVariables() {
 		x=100;
@@ -25,11 +24,11 @@ public class Jugador extends Entity {
 		desplazamiento = 10;
 		direccion = "arriba";
 	}
-	public void getImagenJugador() {
+	public void getImagenJugador2() {
 		try {
 			salto1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/frente.png"));
 			derecha1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/derecha.png"));
-			izquierda1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/izquierda.png"));
+			izquierda1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/derecha.png"));
 		    abajo1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/abajo.png"));
 
 
@@ -39,19 +38,19 @@ public class Jugador extends Entity {
 		}
 	}
 	public void update() {
-		if (movimientojugador.derecha == true) {
+		if (movimientojugador2.derecha == true) {
 			direccion = "derecha";
 			x = x + desplazamiento;
 		}
-		if (movimientojugador.izquierda == true) {
+		if (movimientojugador2.izquierda == true) {
 			direccion = "izquierda";
 			x = x - desplazamiento;
 		}
-		if (movimientojugador.arriba == true) {
+		if (movimientojugador2.arriba == true) {
 			direccion = "arriba";
 			y = y - desplazamiento;
 		}
-		if (movimientojugador.abajo == true) {
+		if (movimientojugador2.abajo == true) {
 			direccion = "abajo";
 			y = y + desplazamiento;
 		}
@@ -74,14 +73,14 @@ public class Jugador extends Entity {
 		}
 		g1.drawImage(image, x, y,200,200,null);
 		// Dibuja la barra de salud encima del jugador
-		int anchoBarra = 100;
-	    int alturaBarra = 10;
-	    int barraSalud = (int) ((double) saludActual / saludMax * anchoBarra);
+	    int barWidth = 100;
+	    int barHeight = 10;
+	    int healthBarWidth = (int) ((double) saludActual / saludMax * barWidth);
 
 	    g1.setColor(Color.RED);
-	    g1.fillRect(x, y - 15, anchoBarra, alturaBarra); // Fondo rojo para la barra
+	    g1.fillRect(x, y - 15, barWidth, barHeight); // Fondo rojo para la barra
 	    g1.setColor(Color.GREEN);
-	    g1.fillRect(x, y - 15, barraSalud, alturaBarra); // Barra verde proporcional a la salud actual
+	    g1.fillRect(x, y - 15, healthBarWidth, barHeight); // Barra verde proporcional a la salud actual
 	}
     public void recibirDanio(int cantidad) {
         saludActual -= cantidad;

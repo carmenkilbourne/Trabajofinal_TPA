@@ -1,5 +1,4 @@
 package entidad;
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -29,7 +28,7 @@ public class Jugador extends Entity {
 		try {
 			salto1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/frente.png"));
 			derecha1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/derecha.png"));
-			izquierda1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/izquierda.png"));
+			izquierda1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/derecha.png"));
 		    abajo1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/abajo.png"));
 
 
@@ -73,15 +72,6 @@ public class Jugador extends Entity {
 			break;
 		}
 		g1.drawImage(image, x, y,200,200,null);
-		// Dibuja la barra de salud encima del jugador
-		int anchoBarra = 100;
-	    int alturaBarra = 10;
-	    int barraSalud = (int) ((double) saludActual / saludMax * anchoBarra);
-
-	    g1.setColor(Color.RED);
-	    g1.fillRect(x, y - 15, anchoBarra, alturaBarra); // Fondo rojo para la barra
-	    g1.setColor(Color.GREEN);
-	    g1.fillRect(x, y - 15, barraSalud, alturaBarra); // Barra verde proporcional a la salud actual
 	}
     public void recibirDanio(int cantidad) {
         saludActual -= cantidad;

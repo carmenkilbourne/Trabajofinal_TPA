@@ -74,14 +74,14 @@ public class Jugador extends Entity {
 		}
 		g1.drawImage(image, x, y,200,200,null);
 		// Dibuja la barra de salud encima del jugador
-		int anchoBarra = 100;
-	    int alturaBarra = 10;
-	    int barraSalud = (int) ((double) saludActual / saludMax * anchoBarra);
+	    int barWidth = 100;
+	    int barHeight = 10;
+	    int healthBarWidth = (int) ((double) saludActual / saludMax * barWidth);
 
 	    g1.setColor(Color.RED);
-	    g1.fillRect(x, y - 15, anchoBarra, alturaBarra); // Fondo rojo para la barra
+	    g1.fillRect(x, y - 15, barWidth, barHeight); // Fondo rojo para la barra
 	    g1.setColor(Color.GREEN);
-	    g1.fillRect(x, y - 15, barraSalud, alturaBarra); // Barra verde proporcional a la salud actual
+	    g1.fillRect(x, y - 15, healthBarWidth, barHeight); // Barra verde proporcional a la salud actual
 	}
     public void recibirDanio(int cantidad) {
         saludActual -= cantidad;

@@ -6,6 +6,5 @@ public class Entity {
 	public int desplazamiento;
 	public BufferedImage salto1,derecha1,izquierda1,abajo1;
 	public String direccion;
-	
 
 }

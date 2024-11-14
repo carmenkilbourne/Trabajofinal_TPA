@@ -77,8 +77,5 @@ public class Partida extends JPanel implements Runnable {
 		jugador2.draw(g1);
 		g1.dispose();
 	}
-	public void atacar(Jugador atacante, Jugador defensor) {
-	    defensor.recibirDanio(atacante.getAtaque());
-	}
 
 }

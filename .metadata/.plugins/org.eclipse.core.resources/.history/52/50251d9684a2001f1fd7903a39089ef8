@@ -1,5 +1,4 @@
 package entidad;
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -10,9 +9,8 @@ import pantallaInicio.Partida;
 public class Jugador extends Entity {
 	Partida p;
 	MovimientoJugador movimientojugador;
-	private int saludMax = 100;
-	private int saludActual = saludMax;
-	private int ataque = 10; // Valor de ataque del jugador
+	private int vida = 100;
+	private int ataque = 5;
 	public Jugador(Partida p,MovimientoJugador movimientojugador) 	{
 		this.p = p;
 		this.movimientojugador = movimientojugador;
@@ -29,7 +27,7 @@ public class Jugador extends Entity {
 		try {
 			salto1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/frente.png"));
 			derecha1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/derecha.png"));
-			izquierda1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/izquierda.png"));
+			izquierda1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/derecha.png"));
 		    abajo1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/abajo.png"));
 
 
@@ -57,6 +55,8 @@ public class Jugador extends Entity {
 		}
 	}
 	public void draw(Graphics2D g1) {
+		//g1.setColor(Color.black);
+		//g1.fillRect(x, y, 100, 100);
 		BufferedImage image = null;
 		switch(direccion) {
 		case "arriba":
@@ -73,29 +73,5 @@ public class Jugador extends Entity {
 			break;
 		}
 		g1.drawImage(image, x, y,200,200,null);
-		// Dibuja la barra de salud encima del jugador
-		int anchoBarra = 100;
-	    int alturaBarra = 10;
-	    int barraSalud = (int) ((double) saludActual / saludMax * anchoBarra);
-
-	    g1.setColor(Color.RED);
-	    g1.fillRect(x, y - 15, anchoBarra, alturaBarra); // Fondo rojo para la barra
-	    g1.setColor(Color.GREEN);
-	    g1.fillRect(x, y - 15, barraSalud, alturaBarra); // Barra verde proporcional a la salud actual
 	}
-    public void recibirDanio(int cantidad) {
-        saludActual -= cantidad;
-        if (saludActual < 0) {
-            saludActual = 0; // Evitar salud negativa
-        }
-    }
-
-    public int getAtaque() {
-        return ataque;
-    }
-
-    public int getSaludActual() {
-        return saludActual;
-    }
-
 }
