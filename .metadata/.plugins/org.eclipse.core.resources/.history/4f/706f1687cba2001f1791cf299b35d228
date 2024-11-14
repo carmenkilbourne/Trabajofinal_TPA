@@ -78,8 +78,8 @@ public class Partida extends JPanel implements Runnable {
 		        jugador2.atacar(jugador);
 		        movimientoJugador2.atacar = false;
 		    }
-		    jugador.setDefendiendo(movimientojugador.defensa);
-		    //jugador2.setDefendiendo(movimientoJugador2.defensa);
+		    jugador.setDefendiendo(movimientojugador.defendiendo);
+		    jugador2.setDefendiendo(movimientoJugador2.defendiendo);
 	}
 
 	public void paintComponent(Graphics g) {

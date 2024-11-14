@@ -86,7 +86,7 @@ public class Jugador extends Entity {
 	}
     public void recibirDanio(int cantidad) {
     	if (defendiendo) {
-            cantidad = 0; // reduce el daño a la mitad si está defendiendo
+            cantidad /= 2; // reduce el daño a la mitad si está defendiendo
         }
     	saludActual -= cantidad;
         if (saludActual < 0) vida = 0;

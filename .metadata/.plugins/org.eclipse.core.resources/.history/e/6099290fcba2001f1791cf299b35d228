@@ -86,7 +86,7 @@ public class Jugador extends Entity {
 	}
     public void recibirDanio(int cantidad) {
     	if (defendiendo) {
-            cantidad = 0; // reduce el daño a la mitad si está defendiendo
+            cantidad /= 2; // reduce el daño a la mitad si está defendiendo
         }
     	saludActual -= cantidad;
         if (saludActual < 0) vida = 0;
@@ -108,14 +108,6 @@ public class Jugador extends Entity {
         int distanciaY = Math.abs(this.y - defensor.y);
         double distancia = Math.sqrt(distanciaX * distanciaX + distanciaY * distanciaY);
         return distancia <= rango;
-    }
-    public void atacar(Jugador defensor) {
-        if (estaEnRango(defensor, 50)) { // Usa 50 como distancia de ejemplo
-            defensor.recibirDanio(this.ataque);
-            System.out.println("Ataque realizado! Vida del defensor: " + defensor.getSaludActual());
-        } else {
-            System.out.println("El defensor está fuera de rango.");
-        }
     }
 
 }

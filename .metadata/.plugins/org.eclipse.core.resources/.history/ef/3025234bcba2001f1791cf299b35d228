@@ -4,7 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class MovimientoJugador implements KeyListener {
-	public boolean derecha, izquierda,arriba,abajo,atacar,defensa;
+	public boolean derecha, izquierda,arriba,abajo,atacar;
 	@Override
 	public void keyTyped(KeyEvent e) {
 	}
@@ -27,9 +27,6 @@ public class MovimientoJugador implements KeyListener {
 		}
 		if (codigo == KeyEvent.VK_Q) { // atacar
             atacar = true;
-        }
-		if (codigo == KeyEvent.VK_E) { // atacar
-			defensa = true;
         }
 
 
@@ -54,10 +51,6 @@ public class MovimientoJugador implements KeyListener {
 		if (codigo == KeyEvent.VK_Q) {
             atacar = false;
         }
-		if (codigo == KeyEvent.VK_E) { // atacar
-			defensa = false;
-        }
-
 		
 	}
 }
