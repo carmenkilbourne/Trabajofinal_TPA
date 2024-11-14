@@ -6,10 +6,12 @@ import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+
 public class Controlador implements KeyListener {
     private JFrame frame;
     private CardLayout cardLayout;
     private JPanel mainPanel;
+    private FondoPantalla fondoPantalla;
 
     public Controlador() {
         frame = new JFrame("Juego");
@@ -22,21 +24,44 @@ public class Controlador implements KeyListener {
         mainPanel = new JPanel(cardLayout);
 
         // Inicializar pantallas
+        PantallaInicio pantallaInicio = new PantallaInicio();
         SeleccionCaracteres seleccionCaracteres = new SeleccionCaracteres();
-        // Agregar más pantallas aquí
 
         // Añadir pantallas al panel principal
+        mainPanel.add(pantallaInicio.getPanel(), "PantallaInicio");
         mainPanel.add(seleccionCaracteres.getPanel(), "SeleccionCaracteres");
-        // Añadir más pantallas aquí
 
         frame.add(mainPanel);
         frame.addKeyListener(this);
         frame.setVisible(true);
+
+        // Mostrar la pantalla de inicio al iniciar
+        cambiarPantalla("PantallaInicio");
     }
 
     // Método para cambiar entre pantallas
     public void cambiarPantalla(String nombrePantalla) {
         cardLayout.show(mainPanel, nombrePantalla);
+        actualizarFondo(nombrePantalla);
+    }
+
+    // Método para actualizar la imagen de fondo
+    private void actualizarFondo(String nombrePantalla) {
+        String path = "";
+        switch (nombrePantalla) {
+            case "PantallaInicio":
+                path = "/Imagenes/PantallaInicio.png";
+                break;
+            case "SeleccionCaracteres":
+                path = "/Imagenes/seleccion_personajes.png";
+                break;
+            // Agregar más casos según sea necesario
+        }
+        fondoPantalla = new FondoPantalla(path);
+        frame.setContentPane(fondoPantalla);
+        frame.revalidate();
+        frame.setResizable(true);
+
     }
 
     // Manejar eventos de teclado
@@ -52,12 +77,12 @@ public class Controlador implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        // No implementado
+        // Implementar si es necesario
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        // No implementado
+        // Implementar si es necesario
     }
 
     public static void main(String[] args) {
