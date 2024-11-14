@@ -26,10 +26,12 @@ public class Controlador implements KeyListener {
         // Inicializar pantallas
         PantallaInicio pantallaInicio = new PantallaInicio();
         SeleccionCaracteres seleccionCaracteres = new SeleccionCaracteres();
+        SeleccionMapa seleccionMapa = new SeleccionMapa(this);
 
         // Añadir pantallas al panel principal
         mainPanel.add(pantallaInicio.getPanel(), "PantallaInicio");
         mainPanel.add(seleccionCaracteres.getPanel(), "SeleccionCaracteres");
+        mainPanel.add(seleccionMapa.getPanel(), "SeleccionMapa");
 
         frame.add(mainPanel);
         frame.addKeyListener(this);
@@ -55,6 +57,9 @@ public class Controlador implements KeyListener {
             case "SeleccionCaracteres":
                 path = "/Imagenes/seleccion_personajes.png";
                 break;
+            case "SeleccionMapa":
+                path = "/Imagenes/seleccion_mapa.png";
+                break;
             // Agregar más casos según sea necesario
         }
         fondoPantalla = new FondoPantalla(path);
@@ -71,6 +76,9 @@ public class Controlador implements KeyListener {
         // Lógica para manejar eventos de teclado
         if (keyCode == KeyEvent.VK_ENTER) {
             cambiarPantalla("SeleccionCaracteres");
+        }
+        if (keyCode == KeyEvent.VK_ESCAPE) {
+            cambiarPantalla("SeleccionMapa");
         }
         // Agregar más lógica aquí
     }
