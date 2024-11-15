@@ -28,7 +28,7 @@ public class MovimientoJugador implements KeyListener {
 		if (codigo == KeyEvent.VK_Q) { // atacar
             atacar = true;
         }
-		if (codigo == KeyEvent.VK_E) { // atacar
+		if (codigo == KeyEvent.VK_E) { // defensa
 			defensa = true;
         }
 
@@ -51,10 +51,10 @@ public class MovimientoJugador implements KeyListener {
 		if (codigo == KeyEvent.VK_S) { // mov abajo
 			abajo = false;
 		}
-		if (codigo == KeyEvent.VK_Q) {
+		if (codigo == KeyEvent.VK_Q) {	//atacar
             atacar = false;
         }
-		if (codigo == KeyEvent.VK_E) { // atacar
+		if (codigo == KeyEvent.VK_E) { // defensa
 			defensa = false;
         }
 

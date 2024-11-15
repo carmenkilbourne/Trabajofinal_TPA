@@ -13,6 +13,8 @@ public class Jugador2 extends Entity {
 	private int saludMax = 100;
 	private int saludActual = saludMax;
 	private int ataque = 10; // Valor de ataque del jugador
+	private boolean defendiendo = false;
+
 	public Jugador2(Partida p, MovimientoJugador2 movimientojugador2) 	{
 		this.p = p;
 		this.movimientojugador2 = movimientojugador2;
@@ -84,10 +86,12 @@ public class Jugador2 extends Entity {
 	    g1.fillRect(x, y - 15, barraSalud, alturaBarra); // Barra verde proporcional a la salud actual
 	}
     public void recibirDanio(int cantidad) {
-        saludActual -= cantidad;
-        if (saludActual < 0) {
-            saludActual = 0; // Evitar salud negativa
+    	if (defendiendo) {
+            cantidad = 0; // reduce el daño a la mitad si está defendiendo
         }
+    	saludActual -= cantidad;
+        if (saludActual < 0) saludActual = 0;
+        System.out.println("Jugador2 ha recibido daño, vida restante: " + saludActual);
     }
 
     public int getAtaque() {

@@ -89,8 +89,8 @@ public class Jugador extends Entity {
             cantidad = 0; // reduce el daño a la mitad si está defendiendo
         }
     	saludActual -= cantidad;
-        if (saludActual < 0) vida = 0;
-        System.out.println("Jugador ha recibido daño, vida restante: " + vida);
+        if (saludActual < 0) saludActual = 0;
+        System.out.println("Jugador1  ha recibido daño, vida restante: " + saludActual);
     }
 
     public int getAtaque() {
