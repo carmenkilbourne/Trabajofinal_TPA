@@ -44,16 +44,10 @@ public class Jugador2 extends Entity {
 		if (movimientojugador2.derecha == true) {
 			direccion = "derecha";
 			x = x + desplazamiento;
-			if(x>1280-200) {	//limite de fram 1280-200
-				x=1280-200;
-			}
 		}
 		if (movimientojugador2.izquierda == true) {
 			direccion = "izquierda";
 			x = x - desplazamiento;
-			if(x<0) {
-				x=0;
-			}
 		}
 		if (movimientojugador2.arriba == true) {
 			direccion = "arriba";
@@ -98,9 +92,6 @@ public class Jugador2 extends Entity {
     	saludActual -= cantidad;
         if (saludActual < 0) saludActual = 0;
         System.out.println("Jugador2 ha recibido daño, vida restante: " + saludActual);
-    }
-    public void setDefendiendo(boolean defendiendo) {
-        this.defendiendo = defendiendo;
     }
 
     public int getAtaque() {

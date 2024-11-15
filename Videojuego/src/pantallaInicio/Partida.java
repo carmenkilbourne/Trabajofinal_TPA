@@ -37,9 +37,7 @@ public class Partida extends JPanel implements Runnable {
 	}
 
 	@Override
-	public void run() {
-		// Aqui va ha ir nuestro bucle de juego
-		// actualizar parametros del personaje con input de usuario
+	public void run() {// Aqui va ha ir nuestro bucle de juego, actualizar parametros del personaje con input de usuario
 		// actualizar graficos
 		double intervalo = 1000000000 / FPS; // 0.016s pintamos la pantalla
 		double intervalosiguiente = System.nanoTime() + intervalo;
@@ -79,7 +77,10 @@ public class Partida extends JPanel implements Runnable {
 		    }
 		 	}
 		    jugador.setDefendiendo(movimientojugador.defensa);
-		    //jugador2.setDefendiendo(movimientoJugador2.defensa);
+		    jugador2.setDefendiendo(movimientoJugador2.defensa);
+		    if(jugador.getSaludActual() == 0 || jugador2.getSaludActual() == 0 ) {
+		    	System.out.println("Partida terminada, tengo que pasar frame a un frame donde ponga Congratulations al ganador y luego volver al inicio");
+		    }
 	}
 
 	public void paintComponent(Graphics g) {
@@ -90,7 +91,7 @@ public class Partida extends JPanel implements Runnable {
 		g1.dispose();
 	}
 	 public boolean esEfectivo() {
-		 areaefectividad = Math.abs(jugador.x-jugador2.x);
+		 areaefectividad = Math.abs(jugador.getX()-jugador2.getX());
 		 if (areaefectividad <= 160) {
 			 return true;
 		 }

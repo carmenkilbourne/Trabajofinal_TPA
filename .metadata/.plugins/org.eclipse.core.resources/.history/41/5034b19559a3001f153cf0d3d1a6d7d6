@@ -4,22 +4,22 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import pantallaInicio.MovimientoJugador2;
+import pantallaInicio.MovimientoJugador;
 import pantallaInicio.Partida;
 
-public class Jugador2 extends Entity {
+public class Jugador extends Entity {
 	Partida p;
-	MovimientoJugador2 movimientojugador2;
+	MovimientoJugador movimientojugador;
 	private int saludMax = 100;
 	private int saludActual = saludMax;
 	private int ataque = 10; // Valor de ataque del jugador
 	private boolean defendiendo = false;
 
-	public Jugador2(Partida p, MovimientoJugador2 movimientojugador2) 	{
+	public Jugador(Partida p,MovimientoJugador movimientojugador) 	{
 		this.p = p;
-		this.movimientojugador2 = movimientojugador2;
+		this.movimientojugador = movimientojugador;
 		setVariables();
-		getImagenJugador2();
+		getImagenJugador();
 	}
 	public void setVariables() {
 		x=100;
@@ -27,7 +27,7 @@ public class Jugador2 extends Entity {
 		desplazamiento = 10;
 		direccion = "arriba";
 	}
-	public void getImagenJugador2() {
+	public void getImagenJugador() {
 		try {
 			salto1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/frente.png"));
 			derecha1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/derecha.png"));
@@ -41,25 +41,19 @@ public class Jugador2 extends Entity {
 		}
 	}
 	public void update() {
-		if (movimientojugador2.derecha == true) {
+		if (movimientojugador.derecha == true) {
 			direccion = "derecha";
 			x = x + desplazamiento;
-			if(x>1280-200) {	//limite de fram 1280-200
-				x=1280-200;
-			}
 		}
-		if (movimientojugador2.izquierda == true) {
+		if (movimientojugador.izquierda == true) {
 			direccion = "izquierda";
 			x = x - desplazamiento;
-			if(x<0) {
-				x=0;
-			}
 		}
-		if (movimientojugador2.arriba == true) {
+		if (movimientojugador.arriba == true) {
 			direccion = "arriba";
 			y = y - desplazamiento;
 		}
-		if (movimientojugador2.abajo == true) {
+		if (movimientojugador.abajo == true) {
 			direccion = "abajo";
 			y = y + desplazamiento;
 		}
@@ -82,7 +76,7 @@ public class Jugador2 extends Entity {
 		}
 		g1.drawImage(image, x, y,200,200,null);
 		// Dibuja la barra de salud encima del jugador
-	    int anchoBarra = 100;
+		int anchoBarra = 100;
 	    int alturaBarra = 10;
 	    int barraSalud = (int) ((double) saludActual / saludMax * anchoBarra);
 
@@ -97,10 +91,7 @@ public class Jugador2 extends Entity {
         }
     	saludActual -= cantidad;
         if (saludActual < 0) saludActual = 0;
-        System.out.println("Jugador2 ha recibido daño, vida restante: " + saludActual);
-    }
-    public void setDefendiendo(boolean defendiendo) {
-        this.defendiendo = defendiendo;
+        System.out.println("Jugador1  ha recibido daño, vida restante: " + saludActual);
     }
 
     public int getAtaque() {
@@ -109,6 +100,23 @@ public class Jugador2 extends Entity {
 
     public int getSaludActual() {
         return saludActual;
+    }
+    public void setDefendiendo(boolean defendiendo) {
+        this.defendiendo = defendiendo;
+    }
+    public boolean estaEnRango(Jugador defensor, int rango) {
+        int distanciaX = Math.abs(this.x - defensor.x);
+        int distanciaY = Math.abs(this.y - defensor.y);
+        double distancia = Math.sqrt(distanciaX * distanciaX + distanciaY * distanciaY);
+        return distancia <= rango;
+    }
+    public void atacar(Jugador defensor) {
+        if (estaEnRango(defensor, 50)) { // Usa 50 como distancia de ejemplo
+            defensor.recibirDanio(this.ataque);
+            System.out.println("Ataque realizado! Vida del defensor: " + defensor.getSaludActual());
+        } else {
+            System.out.println("El defensor está fuera de rango.");
+        }
     }
 
 }

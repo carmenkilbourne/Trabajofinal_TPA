@@ -44,10 +44,16 @@ public class Jugador extends Entity {
 		if (movimientojugador.derecha == true) {
 			direccion = "derecha";
 			x = x + desplazamiento;
+			if(x>1280-200) {	//limite de fram 1280-200
+				x=1280-200;
+			}
 		}
 		if (movimientojugador.izquierda == true) {
 			direccion = "izquierda";
 			x = x - desplazamiento;
+			if(x<0) {
+				x=0;
+			}
 		}
 		if (movimientojugador.arriba == true) {
 			direccion = "arriba";

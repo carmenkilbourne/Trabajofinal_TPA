@@ -20,7 +20,4 @@ public class Entity {
 	 public void atacar(Entity defensor) {
 	        defensor.recibirDanio(this.getAtaque());
 	    }
-	 public int getX() {
-		 return x;
-	 }
 }

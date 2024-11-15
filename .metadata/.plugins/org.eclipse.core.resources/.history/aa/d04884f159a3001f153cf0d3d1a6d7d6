@@ -51,9 +51,6 @@ public class Jugador2 extends Entity {
 		if (movimientojugador2.izquierda == true) {
 			direccion = "izquierda";
 			x = x - desplazamiento;
-			if(x<0) {
-				x=0;
-			}
 		}
 		if (movimientojugador2.arriba == true) {
 			direccion = "arriba";
