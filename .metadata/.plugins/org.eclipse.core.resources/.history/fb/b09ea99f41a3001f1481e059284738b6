@@ -14,7 +14,6 @@ public class Jugador extends Entity {
 	private int saludActual = saludMax;
 	private int ataque = 10; // Valor de ataque del jugador
 	private boolean defendiendo = false;
-
 	public Jugador(Partida p,MovimientoJugador movimientojugador) 	{
 		this.p = p;
 		this.movimientojugador = movimientojugador;

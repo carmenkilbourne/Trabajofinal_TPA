@@ -8,7 +8,7 @@ public class Entity {
 	public String direccion;
 	protected int saludActual;
     protected int ataque;
-
+    protected int areaefectividad = 160; //distancia entre jugadores para que el daño sea efectivo
 	public int getAtaque() {
         return ataque;
     }
@@ -20,4 +20,5 @@ public class Entity {
 	 public void atacar(Entity defensor) {
 	        defensor.recibirDanio(this.getAtaque());
 	    }
+
 }

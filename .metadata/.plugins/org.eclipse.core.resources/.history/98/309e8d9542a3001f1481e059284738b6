@@ -17,6 +17,7 @@ public class Partida extends JPanel implements Runnable {
     MovimientoJugador2 movimientoJugador2 = new MovimientoJugador2();
     public int areaefectividad = 160; //distancia entre jugadores para que el daño sea efectivo
 	Thread hiloPartida; // empieza el hilo para el loop
+	// posicion inicial judaor
 	Jugador jugador = new Jugador(this,movimientojugador);
     Jugador2 jugador2 = new Jugador2(this, movimientoJugador2);
 
@@ -67,17 +68,16 @@ public class Partida extends JPanel implements Runnable {
 	public void update() {
 		jugador.update();
 		jugador2.update();
-		if(esEfectivo()) {
 		 if (movimientojugador.atacar) {
 		        jugador.atacar(jugador2);
 		        movimientojugador.atacar = false; // reiniciar el ataque para evitar múltiples ataques continuos
 		    }
+
 		    // Condición para que el jugador 2 ataque al jugador 1
 		    if (movimientoJugador2.atacar) {
 		        jugador2.atacar(jugador);
 		        movimientoJugador2.atacar = false;
 		    }
-		 	}
 		    jugador.setDefendiendo(movimientojugador.defensa);
 		    //jugador2.setDefendiendo(movimientoJugador2.defensa);
 	}
@@ -90,7 +90,7 @@ public class Partida extends JPanel implements Runnable {
 		g1.dispose();
 	}
 	 public boolean esEfectivo() {
-		 areaefectividad = Math.abs(jugador.x-jugador2.x);
+		 areaefectividad = jugador.x-jugador2.x;
 		 if (areaefectividad <= 160) {
 			 return true;
 		 }

@@ -67,11 +67,11 @@ public class Partida extends JPanel implements Runnable {
 	public void update() {
 		jugador.update();
 		jugador2.update();
-		if(esEfectivo()) {
 		 if (movimientojugador.atacar) {
 		        jugador.atacar(jugador2);
 		        movimientojugador.atacar = false; // reiniciar el ataque para evitar múltiples ataques continuos
 		    }
+		 	if(esEfectivo()) {
 		    // Condición para que el jugador 2 ataque al jugador 1
 		    if (movimientoJugador2.atacar) {
 		        jugador2.atacar(jugador);
@@ -90,7 +90,7 @@ public class Partida extends JPanel implements Runnable {
 		g1.dispose();
 	}
 	 public boolean esEfectivo() {
-		 areaefectividad = Math.abs(jugador.x-jugador2.x);
+		 areaefectividad = jugador.x-jugador2.x;
 		 if (areaefectividad <= 160) {
 			 return true;
 		 }
