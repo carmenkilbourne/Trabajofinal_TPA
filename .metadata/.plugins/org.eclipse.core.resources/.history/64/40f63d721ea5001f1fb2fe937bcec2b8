@@ -4,15 +4,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
-import java.io.IOException;
-import java.nio.file.Paths;
 
-import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import entidad.Jugador;
 import entidad.Jugador2;
+
 //cambiar nombre a bucle de particula
 public class Partida extends JPanel implements Runnable {
 	private static final long serialVersionUID = 1L;
@@ -22,7 +19,7 @@ public class Partida extends JPanel implements Runnable {
 	Thread hiloPartida; // empieza el hilo para el loop
 	Jugador jugador = new Jugador(this,movimientojugador);
     Jugador2 jugador2 = new Jugador2(this, movimientoJugador2);
-    private Image fondoPartida;
+
 	int FPS = 60; // 60 FRAMES PER SECOND
 	
 	public Partida() {
@@ -32,11 +29,6 @@ public class Partida extends JPanel implements Runnable {
         this.addKeyListener(movimientoJugador2); 
 		this.setFocusable(true);
 		// this.setDoubleBuffered(true);\
-		 try {
-			 fondoPartida = ImageIO.read(getClass().getResourceAsStream("/Imagenes/fondo2.jpg"));
-	        } catch (IOException e) {
-	            System.err.println("No se pudo cargar el fondo: " + e.getMessage());
-	        }
 	}
 
 	public void empezarPartida() {
@@ -94,10 +86,6 @@ public class Partida extends JPanel implements Runnable {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g); // coge de la clase JPanel
 		Graphics2D g1 = (Graphics2D) g;
-		 // Dibujar el fondo
-        if (fondoPartida != null) {
-            g1.drawImage(fondoPartida, 0, 0, 1280, 720, null);
-        }
 		jugador.draw(g1);
 		jugador2.draw(g1);
 		g1.dispose();

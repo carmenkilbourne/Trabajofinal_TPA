@@ -33,7 +33,7 @@ public class Partida extends JPanel implements Runnable {
 		this.setFocusable(true);
 		// this.setDoubleBuffered(true);\
 		 try {
-			 fondoPartida = ImageIO.read(getClass().getResourceAsStream("/Imagenes/fondo2.jpg"));
+			 fondoPartida = ImageIO.read(getClass().getResourceAsStream("/Imagenes/fondo1.jpg"));
 	        } catch (IOException e) {
 	            System.err.println("No se pudo cargar el fondo: " + e.getMessage());
 	        }
