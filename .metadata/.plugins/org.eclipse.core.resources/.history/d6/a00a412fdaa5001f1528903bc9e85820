@@ -2,11 +2,11 @@ package pantallaInicio;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.io.IOException;
+import java.nio.file.Paths;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -24,7 +24,7 @@ public class Partida extends JPanel implements Runnable {
     private Image fondoPartida;
 	int FPS = 60; // 60 FRAMES PER SECOND
     public int areaefectividad = 160; //distancia entre jugadores para que el daño sea efectivo
-    public long tiempo = 0;
+    
 	public Partida() {
 		this.setPreferredSize(new Dimension(1280, 720));
 		this.setBackground(Color.white);
@@ -52,7 +52,7 @@ public class Partida extends JPanel implements Runnable {
 		double intervalosiguiente = System.nanoTime() + intervalo;
 
 		while (hiloPartida != null) {
-			tiempo = System.nanoTime();
+			long tiempo = System.nanoTime();
 			update();
 			repaint();
 
@@ -66,7 +66,6 @@ public class Partida extends JPanel implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			//cada segundo llamar al cronometro para actualizarlo
 
 		}
 
@@ -103,10 +102,6 @@ public class Partida extends JPanel implements Runnable {
         }
 		jugador.draw(g1);
 		jugador2.draw(g1);
-	    g1.setColor(Color.BLACK);
-	    g1.setFont(new Font("Arial", Font.BOLD, 30));
-	    long tiempoRestante = (long) (60 - (tiempo*Math.pow(10,9)));
-	    g1.drawString("Tiempo restante: " + tiempo + "s", (1280 - 200) / 2, 50);
 		g1.dispose();
 	}
 	 public boolean esEfectivo() {
@@ -116,11 +111,5 @@ public class Partida extends JPanel implements Runnable {
 		 }
 		 return false;
 	 }
-	 public boolean estanColisionando(Jugador jugador1, Jugador jugador2) {
-		    return jugador1.getX() < jugador2.getX() + jugador2.getanchuraJugador() &&
-		           jugador1.getX() + jugador1.getanchuraJugador() > jugador2.getX() &&
-		           jugador1.getY() < jugador2.getY() + jugador2.getalturaJugador() &&
-		           jugador1.getY() + jugador1.getalturaJugador() > jugador2.getY();
-		}
 
 }

@@ -4,12 +4,11 @@ import java.awt.image.BufferedImage;
 public class Entity {
 	protected int x,y;
 	public int desplazamiento;
-	public BufferedImage salto1,derecha1,izquierda1,abajo1;
+	//public BufferedImage salto1,derecha1,izquierda1,abajo1;
 	public String direccion;
 	protected int saludActual;
     protected int ataque;
-    protected int alturaJugador = 200;
-	protected int anchuraJugador = 200;
+
 	public int getAtaque() {
         return ataque;
     }
@@ -26,11 +25,5 @@ public class Entity {
 	 }
 	 public int getY() {
 		 return y;
-	 }
-	 public int getalturaJugador() {
-		 return alturaJugador;
-	 }
-	 public int getanchuraJugador() {
-		 return anchuraJugador;
 	 }
 }

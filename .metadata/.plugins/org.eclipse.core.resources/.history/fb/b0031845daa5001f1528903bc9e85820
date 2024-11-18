@@ -14,7 +14,8 @@ public class Jugador extends Entity {
 	private int saludActual = saludMax;
 	private int ataque = 10; // Valor de ataque del jugador
 	private boolean defendiendo = false;
-	
+	private int alturaJugador = 200;
+	private int anchuraJugador = 200;
 
 	
 
@@ -36,6 +37,8 @@ public class Jugador extends Entity {
 			derecha1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/derecha.png"));
 			izquierda1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/izquierda.png"));
 		    abajo1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/abajo.png"));
+
+
 			//completar con mas lados
 		}catch(IOException e) {
 			e.printStackTrace();			

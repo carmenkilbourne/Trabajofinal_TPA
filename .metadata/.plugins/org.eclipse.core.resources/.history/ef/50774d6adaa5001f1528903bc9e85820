@@ -27,10 +27,4 @@ public class Entity {
 	 public int getY() {
 		 return y;
 	 }
-	 public int getalturaJugador() {
-		 return alturaJugador;
-	 }
-	 public int getanchuraJugador() {
-		 return anchuraJugador;
-	 }
 }
