@@ -18,13 +18,13 @@ public class Partida extends JPanel implements Runnable {
 	private static final long serialVersionUID = 1L;
 	MovimientoJugador movimientojugador = new MovimientoJugador();
     MovimientoJugador2 movimientoJugador2 = new MovimientoJugador2();
-    public int areaefectividad = 160; //distancia entre jugadores para que el daño sea efectivo
 	Thread hiloPartida; // empieza el hilo para el loop
 	Jugador jugador = new Jugador(this,movimientojugador);
     Jugador2 jugador2 = new Jugador2(this, movimientoJugador2);
     private Image fondoPartida;
 	int FPS = 60; // 60 FRAMES PER SECOND
-	
+    public int areaefectividad = 160; //distancia entre jugadores para que el daño sea efectivo
+    
 	public Partida() {
 		this.setPreferredSize(new Dimension(1280, 720));
 		this.setBackground(Color.white);
@@ -73,7 +73,7 @@ public class Partida extends JPanel implements Runnable {
 	public void update() {
 		jugador.update();
 		jugador2.update();
-		System.out.println(jugador.getY());
+		//System.out.println(jugador.getY());
 		if(esEfectivo()) {
 		 if (movimientojugador.atacar) {
 		        jugador.atacar(jugador2);

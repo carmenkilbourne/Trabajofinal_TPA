@@ -22,8 +22,8 @@ public class Jugador2 extends Entity {
 		getImagenJugador2();
 	}
 	public void setVariables() {
-		x=100;
-		y=100;
+		x=1080;
+		y=320;
 		desplazamiento = 10;
 		direccion = "arriba";
 	}
@@ -57,9 +57,9 @@ public class Jugador2 extends Entity {
 		}
 		if (movimientojugador2.arriba == true) {
 			direccion = "arriba";
-			y = y - desplazamiento;
-			if (y<0) {
-				y=0;
+			y = y - 100;
+			if (y<120) {
+				y=120;
 			}
 		}
 		if (movimientojugador2.abajo == true) {
@@ -88,14 +88,14 @@ public class Jugador2 extends Entity {
 		}
 		g1.drawImage(image, x, y,200,200,null);
 		// Dibuja la barra de salud encima del jugador
-	    int anchoBarra = 100;
-	    int alturaBarra = 10;
+		int anchoBarra = 500;
+	    int alturaBarra = 30;
 	    int barraSalud = (int) ((double) saludActual / saludMax * anchoBarra);
 
 	    g1.setColor(Color.RED);
-	    g1.fillRect(x, y - 15, anchoBarra, alturaBarra); // Fondo rojo para la barra
+	    g1.fillRect(730, 50, anchoBarra, alturaBarra); // Fondo rojo para la barra
 	    g1.setColor(Color.GREEN);
-	    g1.fillRect(x, y - 15, barraSalud, alturaBarra); // Barra verde proporcional a la salud actual
+	    g1.fillRect(730, 50, barraSalud, alturaBarra); // Barra verde 
 	}
     public void recibirDanio(int cantidad) {
     	if (defendiendo) {

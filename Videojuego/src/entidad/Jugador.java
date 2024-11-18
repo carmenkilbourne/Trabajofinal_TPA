@@ -14,6 +14,10 @@ public class Jugador extends Entity {
 	private int saludActual = saludMax;
 	private int ataque = 10; // Valor de ataque del jugador
 	private boolean defendiendo = false;
+	private int alturaJugador = 200;
+	private int anchuraJugador = 200;
+
+	
 
 	public Jugador(Partida p,MovimientoJugador movimientojugador) 	{
 		this.p = p;
@@ -22,8 +26,8 @@ public class Jugador extends Entity {
 		getImagenJugador();
 	}
 	public void setVariables() {
-		x=100;
-		y=100;
+		x=0;
+		y=320;
 		desplazamiento = 10;
 		direccion = "arriba";
 	}
@@ -57,9 +61,9 @@ public class Jugador extends Entity {
 		}
 		if (movimientojugador.arriba == true) {
 			direccion = "arriba";
-			y = y - 2*desplazamiento;
-			if (y<0) {
-				y=0;
+			y = y - 100;
+			if (y<120) {
+				y=120;
 			}
 		}
 		if (movimientojugador.abajo == true) {
@@ -87,16 +91,16 @@ public class Jugador extends Entity {
 			image = izquierda1;
 			break;
 		}
-		g1.drawImage(image, x, y,200,200,null);	//jugador tiene unas medidas de 200x200 pxl
+		g1.drawImage(image, x, y,alturaJugador,anchuraJugador,null);	//jugador tiene unas medidas de 200x200 pxl
 		// Dibuja la barra de salud encima del jugador
-		int anchoBarra = 100;
-	    int alturaBarra = 10;
+		int anchoBarra = 500;
+	    int alturaBarra = 30;
 	    int barraSalud = (int) ((double) saludActual / saludMax * anchoBarra);
 
 	    g1.setColor(Color.RED);
-	    g1.fillRect(x, y - 15, anchoBarra, alturaBarra); // Fondo rojo para la barra
+	    g1.fillRect(10, 50, anchoBarra, alturaBarra); // Fondo rojo para la barra
 	    g1.setColor(Color.GREEN);
-	    g1.fillRect(x, y - 15, barraSalud, alturaBarra); // Barra verde proporcional a la salud actual
+	    g1.fillRect(10, 50, barraSalud, alturaBarra); // Barra verde 
 	}
     public void recibirDanio(int cantidad) {
     	if (defendiendo) {
@@ -107,7 +111,6 @@ public class Jugador extends Entity {
         System.out.println("Jugador1  ha recibido daño, vida restante: " + saludActual);
         //pasar a un frame con la opcion de si es 1 poner jugador 1 ha ganado 
     }
-
     public int getAtaque() {
         return ataque;
     }
@@ -132,5 +135,4 @@ public class Jugador extends Entity {
             System.out.println("El defensor está fuera de rango.");
         }
     }
-
 }
