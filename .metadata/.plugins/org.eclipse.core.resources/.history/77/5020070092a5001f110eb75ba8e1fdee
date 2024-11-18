@@ -65,11 +65,7 @@ public class Jugador extends Entity {
 		if (movimientojugador.abajo == true) {
 			direccion = "abajo";
 			y = y + desplazamiento;
-			if (y>720-200) {
-				y=720-200;
-			}
 		}
-		
 	}
 	public void draw(Graphics2D g1) {
 		BufferedImage image = null;
@@ -87,7 +83,7 @@ public class Jugador extends Entity {
 			image = izquierda1;
 			break;
 		}
-		g1.drawImage(image, x, y,200,200,null);	//jugador tiene unas medidas de 200x200 pxl
+		g1.drawImage(image, x, y,400,400,null);	//jugador tiene unas medidas de 200x200 pxl
 		// Dibuja la barra de salud encima del jugador
 		int anchoBarra = 100;
 	    int alturaBarra = 10;

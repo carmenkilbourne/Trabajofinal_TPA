@@ -44,7 +44,7 @@ public class Jugador extends Entity {
 		if (movimientojugador.derecha == true) {
 			direccion = "derecha";
 			x = x + desplazamiento;
-			if(x>1280-200) {	//limite de frame 1280-200
+			if(x>1280-200) {	//limite de fram 1280-200
 				x=1280-200;
 			}
 		}
@@ -58,18 +58,11 @@ public class Jugador extends Entity {
 		if (movimientojugador.arriba == true) {
 			direccion = "arriba";
 			y = y - desplazamiento;
-			if (y<0) {
-				y=0;
-			}
 		}
 		if (movimientojugador.abajo == true) {
 			direccion = "abajo";
 			y = y + desplazamiento;
-			if (y>720-200) {
-				y=720-200;
-			}
 		}
-		
 	}
 	public void draw(Graphics2D g1) {
 		BufferedImage image = null;
@@ -87,7 +80,7 @@ public class Jugador extends Entity {
 			image = izquierda1;
 			break;
 		}
-		g1.drawImage(image, x, y,200,200,null);	//jugador tiene unas medidas de 200x200 pxl
+		g1.drawImage(image, x, y,200,200,null);
 		// Dibuja la barra de salud encima del jugador
 		int anchoBarra = 100;
 	    int alturaBarra = 10;
@@ -105,7 +98,6 @@ public class Jugador extends Entity {
     	saludActual -= cantidad;
         if (saludActual < 0) saludActual = 0;
         System.out.println("Jugador1  ha recibido daño, vida restante: " + saludActual);
-        //pasar a un frame con la opcion de si es 1 poner jugador 1 ha ganado 
     }
 
     public int getAtaque() {
@@ -122,7 +114,7 @@ public class Jugador extends Entity {
         int distanciaX = Math.abs(this.x - defensor.x);
         int distanciaY = Math.abs(this.y - defensor.y);
         double distancia = Math.sqrt(distanciaX * distanciaX + distanciaY * distanciaY);
-        return distancia <= rango;	//es un bool????
+        return distancia <= rango;
     }
     public void atacar(Jugador defensor) {
         if (estaEnRango(defensor, 50)) { // Usa 50 como distancia de ejemplo
