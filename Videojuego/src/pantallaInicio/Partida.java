@@ -73,6 +73,7 @@ public class Partida extends JPanel implements Runnable {
 	public void update() {
 		jugador.update();
 		jugador2.update();
+		System.out.println(jugador.getY());
 		if(esEfectivo()) {
 		 if (movimientojugador.atacar) {
 		        jugador.atacar(jugador2);

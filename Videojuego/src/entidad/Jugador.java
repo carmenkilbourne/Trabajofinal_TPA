@@ -57,7 +57,7 @@ public class Jugador extends Entity {
 		}
 		if (movimientojugador.arriba == true) {
 			direccion = "arriba";
-			y = y - desplazamiento;
+			y = y - 2*desplazamiento;
 			if (y<0) {
 				y=0;
 			}
@@ -65,8 +65,8 @@ public class Jugador extends Entity {
 		if (movimientojugador.abajo == true) {
 			direccion = "abajo";
 			y = y + desplazamiento;
-			if (y>720-200) {
-				y=720-200;
+			if (y>320) {
+				y=320;
 			}
 		}
 		

@@ -58,10 +58,16 @@ public class Jugador2 extends Entity {
 		if (movimientojugador2.arriba == true) {
 			direccion = "arriba";
 			y = y - desplazamiento;
+			if (y<0) {
+				y=0;
+			}
 		}
 		if (movimientojugador2.abajo == true) {
 			direccion = "abajo";
 			y = y + desplazamiento;
+			if (y>320) {
+				y=320;
+			}
 		}
 	}
 	public void draw(Graphics2D g1) {
