@@ -22,6 +22,10 @@ public class Partida extends JPanel implements Runnable {
 	Jugador jugador = new Jugador(this,movimientojugador);
     Jugador2 jugador2 = new Jugador2(this, movimientoJugador2);
     private Image fondoPartida;
+    private int contador =0;
+    private int c =0;
+
+    private double tiempoSleep =0;
 	int FPS = 60; // 60 FRAMES PER SECOND
     public int areaefectividad = 160; //distancia entre jugadores para que el daño sea efectivo
     public long tiempo = 0;
@@ -50,18 +54,28 @@ public class Partida extends JPanel implements Runnable {
 		// actualizar graficos
 		double intervalo = 1000000000 / FPS; // 0.016s pintamos la pantalla
 		double intervalosiguiente = System.nanoTime() + intervalo;
-
 		while (hiloPartida != null) {
 			tiempo = System.nanoTime();
 			update();
 			repaint();
+			contador++;
 
 			try {
 				double tiempoSleep = (intervalosiguiente - System.nanoTime()) / 1000000;
 				if (tiempoSleep < 0)
 					tiempoSleep = 0;
+				/*if(tiempoSleep > 0) {
+					contador++;
+				}*/
 				Thread.sleep((long) (tiempoSleep));// t de sleep en milisegundos
+				if (contador >= 62) {	//0.016x62.5 = 1 segundo
+					contador =0;
+					c++;
+				}
+				
 				intervalosiguiente += intervalo;
+				System.out.println(intervalo);
+
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -92,6 +106,7 @@ public class Partida extends JPanel implements Runnable {
 		    if(jugador.getSaludActual() == 0 || jugador2.getSaludActual() == 0 ) {
 		    	System.out.println("Partida terminada, tengo que pasar frame a un frame donde ponga Congratulations al ganador y luego volver al inicio");
 		    }
+		    //if(tiempo)
 	}
 
 	public void paintComponent(Graphics g) {
@@ -105,8 +120,8 @@ public class Partida extends JPanel implements Runnable {
 		jugador2.draw(g1);
 	    g1.setColor(Color.BLACK);
 	    g1.setFont(new Font("Arial", Font.BOLD, 30));
-	    long tiempoRestante = (long) (60 - (tiempo*Math.pow(10,9)));
-	    g1.drawString("Tiempo restante: " + tiempo + "s", (1280 - 200) / 2, 50);
+	    int tiempoRestante = 60-c;
+	    g1.drawString("Tiempo restante: " + tiempoRestante + "s", (1280 - 200) / 2, 50);
 		g1.dispose();
 	}
 	 public boolean esEfectivo() {
