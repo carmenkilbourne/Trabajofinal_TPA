@@ -93,9 +93,9 @@ public class Jugador2 extends Entity {
 	    int barraSalud = (int) ((double) saludActual / saludMax * anchoBarra);
 
 	    g1.setColor(Color.RED);
-	    g1.fillRect(1280-anchoBarra-30, 50, anchoBarra, alturaBarra); // Fondo rojo para la barra
+	    g1.fillRect(1280-anchoBarra-10, 50, anchoBarra, alturaBarra); // Fondo rojo para la barra
 	    g1.setColor(Color.GREEN);
-	    g1.fillRect(1280-anchoBarra-30, 50, barraSalud, alturaBarra); // Barra verde 
+	    g1.fillRect(730, 50, barraSalud, alturaBarra); // Barra verde 
 	}
     public void recibirDanio(int cantidad) {
     	if (defendiendo) {

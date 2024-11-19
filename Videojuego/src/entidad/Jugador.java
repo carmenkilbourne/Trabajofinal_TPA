@@ -118,18 +118,5 @@ public class Jugador extends Entity {
     public void setDefendiendo(boolean defendiendo) {
         this.defendiendo = defendiendo;
     }
-    public boolean estaEnRango(Jugador defensor, int rango) {
-        int distanciaX = Math.abs(this.x - defensor.x);
-        int distanciaY = Math.abs(this.y - defensor.y);
-        double distancia = Math.sqrt(distanciaX * distanciaX + distanciaY * distanciaY);
-        return distancia <= rango;	//es un bool????
-    }
-    public void atacar(Jugador defensor) {
-        if (estaEnRango(defensor, 50)) { // Usa 50 como distancia de ejemplo
-            defensor.recibirDanio(this.ataque);
-            System.out.println("Ataque realizado! Vida del defensor: " + defensor.getSaludActual());
-        } else {
-            System.out.println("El defensor está fuera de rango.");
-        }
-    }
+   
 }
