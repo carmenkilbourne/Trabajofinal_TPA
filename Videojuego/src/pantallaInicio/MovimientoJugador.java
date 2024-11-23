@@ -14,7 +14,6 @@ public class MovimientoJugador implements KeyListener {
 		int codigo = e.getKeyCode();
 		if (codigo == KeyEvent.VK_A) { // movimiento izq
 			izquierda = true;
-
 		}
 		if (codigo == KeyEvent.VK_D) { // mov derecha
 			derecha = true;
@@ -56,8 +55,6 @@ public class MovimientoJugador implements KeyListener {
         }
 		if (codigo == KeyEvent.VK_E) { // defensa
 			defensa = false;
-        }
-
-		
+        }	
 	}
 }

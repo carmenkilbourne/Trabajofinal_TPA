@@ -33,7 +33,9 @@ public class Jugador2 extends Entity {
 			derecha1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/derecha.png"));
 			izquierda1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/izquierda.png"));
 		    abajo1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/abajo.png"));
-
+		    ataque1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/impactoMano1.png"));
+		    ataque12 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/impactoMano2.png"));
+		    
 
 			//completar con mas lados
 		}catch(IOException e) {

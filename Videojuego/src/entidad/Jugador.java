@@ -14,10 +14,11 @@ public class Jugador extends Entity {
 	private int saludActual = saludMax;
 	private int ataque = 10; // Valor de ataque del jugador
 	private boolean defendiendo = false;
+	private boolean atacando = false; // Indica si el jugador está atacando.
+	private int contadorAtaque = 0; // Controla la duración de la animación del ataque.
+	private final int DURACION_ATAQUE = 20; // Duración en frames del ataque.
 	
-
 	
-
 	public Jugador(Partida p,MovimientoJugador movimientojugador) 	{
 		this.p = p;
 		this.movimientojugador = movimientojugador;
@@ -36,6 +37,10 @@ public class Jugador extends Entity {
 			derecha1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/derecha.png"));
 			izquierda1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/izquierda.png"));
 		    abajo1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/abajo.png"));
+		    ataque1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/impactoMano1.png"));
+		    ataque12 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/pow2.png"));
+		    patada1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/patada1.png"));
+		    patada2 =ImageIO.read(getClass().getResourceAsStream("/Imagenes/patadapow.png"));
 			//completar con mas lados
 		}catch(IOException e) {
 			e.printStackTrace();			
@@ -70,7 +75,23 @@ public class Jugador extends Entity {
 				y=320;
 			}
 		}
-		
+		//if (movimientojugador.atacar == true) {
+			//direccion = "atacar";
+		//}
+		 if (movimientojugador.atacar && !atacando) {
+		        atacando = true; // Inicia el ataque.
+		        contadorAtaque = DURACION_ATAQUE; // Resetea el contador de frames.
+		        direccion = "atacar"; // Cambia a la dirección de ataque.
+		    }
+
+		    // Manejar el estado de ataque
+		    if (atacando) {
+		        contadorAtaque--; // Reduce el tiempo del ataque.
+		        if (contadorAtaque <= 0) {
+		            atacando = false; // Termina el ataque.
+		            direccion = "derecha"; // Cambia a una dirección por defecto.
+		        }
+		    }
 	}
 	public void draw(Graphics2D g1) {
 		BufferedImage image = null;
@@ -86,6 +107,13 @@ public class Jugador extends Entity {
 			break;
 		case "izquierda":
 			image = izquierda1;
+			break;
+		case "atacar":
+		    if (contadorAtaque > DURACION_ATAQUE / 2) {
+		        image = ataque1; // Primer frame del ataque.
+		    } else {
+		        image = ataque12; // Segundo frame del ataque (impacto).
+		    }
 			break;
 		}
 		g1.drawImage(image, x, y,alturaJugador,anchuraJugador,null);	//jugador tiene unas medidas de 200x200 pxl
