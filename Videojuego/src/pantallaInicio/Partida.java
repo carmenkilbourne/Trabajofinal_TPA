@@ -98,6 +98,10 @@ public class Partida extends JPanel implements Runnable {
 		        jugador2.atacar(jugador);
 		        movimientoJugador2.atacar = false;
 		    }
+		    if (movimientojugador.patada) {
+		        jugador.atacar(jugador2);
+		        movimientojugador.patada = false; // reiniciar el ataque para evitar múltiples ataques continuos
+		    }
 		 	}
 		    jugador.setDefendiendo(movimientojugador.defensa);
 		    jugador2.setDefendiendo(movimientoJugador2.defensa);

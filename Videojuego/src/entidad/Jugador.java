@@ -92,6 +92,20 @@ public class Jugador extends Entity {
 		            direccion = "derecha"; // Cambia a una dirección por defecto.
 		        }
 		    }
+		    if (movimientojugador.patada && !atacando) {
+		        atacando = true; // Inicia el ataque.
+		        contadorAtaque = DURACION_ATAQUE; // Resetea el contador de frames.
+		        direccion = "patada"; // Cambia a la dirección de ataque.
+		    }
+
+		    // Manejar el estado de ataque
+		    if (atacando) {
+		        contadorAtaque--; // Reduce el tiempo del ataque.
+		        if (contadorAtaque <= 0) {
+		            atacando = false; // Termina el ataque.
+		            direccion = "derecha"; // Cambia a una dirección por defecto.
+		        }
+		    }
 	}
 	public void draw(Graphics2D g1) {
 		BufferedImage image = null;
@@ -113,6 +127,13 @@ public class Jugador extends Entity {
 		        image = ataque1; // Primer frame del ataque.
 		    } else {
 		        image = ataque12; // Segundo frame del ataque (impacto).
+		    }
+			break;
+		case "patada":
+		    if (contadorAtaque > DURACION_ATAQUE / 2) {
+		        image = patada1; // Primer frame del ataque.
+		    } else {
+		        image = patada2; // Segundo frame del ataque (impacto).
 		    }
 			break;
 		}
