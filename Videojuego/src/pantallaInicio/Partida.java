@@ -105,14 +105,9 @@ public class Partida extends JPanel implements Runnable {
 		 	}
 		    jugador.setDefendiendo(movimientojugador.defensa);
 		    jugador2.setDefendiendo(movimientoJugador2.defensa);
-		    if(jugador.getSaludActual() == 0 || jugador2.getSaludActual() == 0 ) {
+		    if(jugador.getSaludActual() == 0 || jugador2.getSaludActual() == 0 ||tiempoRestante <=0 ) {
 		    	System.out.println("Partida terminada, tengo que pasar frame a un frame donde ponga Congratulations al ganador y luego volver al inicio");
 		    }
-			/*
-			 * if(tiempoRestante == 0) { System.out.
-			 * println("Partida terminada, tengo que pasar frame a un frame donde ponga Congratulations al ganador y luego volver al inicio"
-			 * ); }
-			 */
 	}
 
 	public void paintComponent(Graphics g) {

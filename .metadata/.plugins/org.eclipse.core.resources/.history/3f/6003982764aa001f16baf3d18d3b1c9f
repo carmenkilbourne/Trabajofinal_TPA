@@ -22,18 +22,23 @@ public class Jugador2 extends Entity {
 		getImagenJugador2();
 	}
 	public void setVariables() {
-		x=100;
-		y=100;
+		x=1080;
+		y=320;
 		desplazamiento = 10;
 		direccion = "arriba";
 	}
-	public void getImagenJugador2() {
+	public void getImagenJugador2() {	//posibilidad de poner en entity ya que es comun a ambos jugadores
 		try {
-			salto1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/frente.png"));
-			derecha1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/derecha.png"));
-			izquierda1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/izquierda.png"));
+			salto = ImageIO.read(getClass().getResourceAsStream("/Imagenes/frente.png"));
+			derecha = ImageIO.read(getClass().getResourceAsStream("/Imagenes/derecha.png"));
+			izquierda = ImageIO.read(getClass().getResourceAsStream("/Imagenes/izquierda.png"));
 		    abajo1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/abajo.png"));
-
+		    ataque1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/impactoMano1.png"));
+		    ataque12 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/impactoMano2.png"));
+		    patada1i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/patadaIzquierda.png"));
+		    patada2i =ImageIO.read(getClass().getResourceAsStream("/Imagenes/patadapowi.png"));
+		    ataque1i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/impactoMano2.png"));
+		    ataque2i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/pow2i.png"));
 
 			//completar con mas lados
 		}catch(IOException e) {
@@ -57,39 +62,45 @@ public class Jugador2 extends Entity {
 		}
 		if (movimientojugador2.arriba == true) {
 			direccion = "arriba";
-			y = y - desplazamiento;
+			y = y - 100;
+			if (y<120) {
+				y=120;
+			}
 		}
 		if (movimientojugador2.abajo == true) {
 			direccion = "abajo";
 			y = y + desplazamiento;
+			if (y>320) {
+				y=320;
+			}
 		}
 	}
 	public void draw(Graphics2D g1) {
 		BufferedImage image = null;
 		switch(direccion) {
 		case "arriba":
-			image = salto1;
+			image = salto;
 			break;
 		case "abajo":
 			image = abajo1;
 			break;
 		case "derecha":
-			image = derecha1;
+			image = derecha;
 			break;
 		case "izquierda":
-			image = izquierda1;
+			image = izquierda;
 			break;
 		}
 		g1.drawImage(image, x, y,200,200,null);
 		// Dibuja la barra de salud encima del jugador
-	    int anchoBarra = 100;
-	    int alturaBarra = 10;
+		int anchoBarra = 500;
+	    int alturaBarra = 30;
 	    int barraSalud = (int) ((double) saludActual / saludMax * anchoBarra);
 
 	    g1.setColor(Color.RED);
-	    g1.fillRect(x, y - 15, anchoBarra, alturaBarra); // Fondo rojo para la barra
+	    g1.fillRect(1280-anchoBarra-30, 50, anchoBarra, alturaBarra); // Fondo rojo para la barra
 	    g1.setColor(Color.GREEN);
-	    g1.fillRect(x, y - 15, barraSalud, alturaBarra); // Barra verde proporcional a la salud actual
+	    g1.fillRect(1280-anchoBarra-30, 50, barraSalud, alturaBarra); // Barra verde 
 	}
     public void recibirDanio(int cantidad) {
     	if (defendiendo) {

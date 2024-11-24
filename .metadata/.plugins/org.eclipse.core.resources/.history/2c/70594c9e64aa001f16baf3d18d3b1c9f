@@ -39,13 +39,12 @@ public class Jugador2 extends Entity {
 			izquierda = ImageIO.read(getClass().getResourceAsStream("/Imagenes/izquierda.png"));
 		    abajo1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/abajo.png"));
 		    ataque1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/impactoMano1.png"));
-		    ataque12 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/pow2.png"));
-		    patada1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/patada1.png"));
-		    patada2 =ImageIO.read(getClass().getResourceAsStream("/Imagenes/patadapow.png"));
+		    ataque12 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/impactoMano2.png"));
 		    patada1i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/patadaIzquierda.png"));
 		    patada2i =ImageIO.read(getClass().getResourceAsStream("/Imagenes/patadapowi.png"));
 		    ataque1i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/MovMano1i.png"));
 		    ataque2i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/pow2i.png"));
+
 			//completar con mas lados
 		}catch(IOException e) {
 			e.printStackTrace();			
@@ -54,7 +53,6 @@ public class Jugador2 extends Entity {
 	public void update() {
 		if (movimientojugador2.derecha == true) {
 			direccion = "derecha";
-			esDerecha = true;
 			x = x + desplazamiento;
 			if(x>1280-200) {	//limite de fram 1280-200
 				x=1280-200;
@@ -62,7 +60,6 @@ public class Jugador2 extends Entity {
 		}
 		if (movimientojugador2.izquierda == true) {
 			direccion = "izquierda";
-			esDerecha = false;
 			x = x - desplazamiento;
 			if(x<0) {
 				x=0;
@@ -132,38 +129,6 @@ public class Jugador2 extends Entity {
 			break;
 		case "izquierda":
 			image = izquierda;
-			break;
-		case "atacar":
-			if(esDerecha) {
-		    if (contadorAtaque > DURACION_ATAQUE / 2) {
-		        image = ataque1; // Primer frame del ataque.
-		    } else {
-		        image = ataque12; // Segundo frame del ataque (impacto).
-		    }
-			}
-			else {
-				  if (contadorAtaque > DURACION_ATAQUE / 2) {
-				        image = ataque1i; // Primer frame del ataque.
-				    } else {
-				        image = ataque2i; // Segundo frame del ataque (impacto).
-				    }	
-			}
-			break;
-		case "patada":
-			if(esDerecha) {
-		    if (contadorAtaque > DURACION_ATAQUE / 2) {
-		        image = patada1; // Primer frame del ataque.
-		    } else {
-		        image = patada2; // Segundo frame del ataque (impacto).
-		    }
-			}
-			else {
-				 if (contadorAtaque > DURACION_ATAQUE / 2) {
-				        image = patada1i; // Primer frame del ataque.
-				    } else {
-				        image = patada2i; // Segundo frame del ataque (impacto).
-				    }	
-			}
 			break;
 		}
 		g1.drawImage(image, x, y,200,200,null);

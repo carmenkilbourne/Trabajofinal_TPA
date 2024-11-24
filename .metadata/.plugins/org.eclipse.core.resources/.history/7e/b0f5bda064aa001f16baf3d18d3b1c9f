@@ -30,7 +30,7 @@ public class MovimientoJugador implements KeyListener {
 		if (codigo == KeyEvent.VK_E) { // defensa
 			defensa = true;
         }
-		if (codigo == KeyEvent.VK_Z) { // patada
+		if (codigo == KeyEvent.VK_Z) { // defensa
 			patada = true;
         }
 
@@ -59,7 +59,7 @@ public class MovimientoJugador implements KeyListener {
 		if (codigo == KeyEvent.VK_E) { // defensa
 			defensa = false;
         }	
-		if (codigo == KeyEvent.VK_Z) { // patada
+		if (codigo == KeyEvent.VK_Z) { // defensa
 			patada = false;
         }
 	}
