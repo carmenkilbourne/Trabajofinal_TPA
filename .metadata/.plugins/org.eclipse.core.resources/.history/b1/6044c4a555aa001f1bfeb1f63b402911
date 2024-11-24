@@ -10,14 +10,14 @@ import pantallaInicio.Partida;
 public class Jugador extends Entity {
 	Partida p;
 	MovimientoJugador movimientojugador;
-	private int saludMax = 100;//salud inicial del jugador
+	private int saludMax = 100;
 	private int saludActual = saludMax;
 	private int ataque = 10; // Valor de ataque del jugador
-	private boolean defendiendo = false;//para saber si se esta defendiendo
+	private boolean defendiendo = false;
 	private boolean atacando = false; // Indica si el jugador está atacando.
 	private int contadorAtaque = 0; // Controla la duración de la animación del ataque.
-	private  int DURACION_ATAQUE = 20; // Duración en frames del ataque.
-	private boolean esDerecha = false; //si es false es derecha si es true es izquierda
+	private final int DURACION_ATAQUE = 20; // Duración en frames del ataque.
+	
 	
 	public Jugador(Partida p,MovimientoJugador movimientojugador) 	{
 		this.p = p;
@@ -33,9 +33,9 @@ public class Jugador extends Entity {
 	}
 	public void getImagenJugador() {
 		try {
-			salto = ImageIO.read(getClass().getResourceAsStream("/Imagenes/frente.png"));
-			derecha = ImageIO.read(getClass().getResourceAsStream("/Imagenes/derecha.png"));
-			izquierda = ImageIO.read(getClass().getResourceAsStream("/Imagenes/izquierda.png"));
+			salto1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/frente.png"));
+			derecha1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/derecha2.png"));
+			izquierda1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/izquierda.png"));
 		    abajo1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/abajo.png"));
 		    ataque1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/impactoMano1.png"));
 		    ataque12 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/pow2.png"));
@@ -111,16 +111,16 @@ public class Jugador extends Entity {
 		BufferedImage image = null;
 		switch(direccion) {
 		case "arriba":
-			image = salto;
+			image = salto1;
 			break;
 		case "abajo":
 			image = abajo1;
 			break;
 		case "derecha":
-			image = derecha;
+			image = derecha1;
 			break;
 		case "izquierda":
-			image = izquierda;
+			image = izquierda1;
 			break;
 		case "atacar":
 		    if (contadorAtaque > DURACION_ATAQUE / 2) {

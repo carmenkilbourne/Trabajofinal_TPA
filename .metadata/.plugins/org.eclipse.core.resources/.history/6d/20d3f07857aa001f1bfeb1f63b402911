@@ -76,16 +76,16 @@ public class Jugador2 extends Entity {
 		BufferedImage image = null;
 		switch(direccion) {
 		case "arriba":
-			image = salto;
+			image = salto1;
 			break;
 		case "abajo":
 			image = abajo1;
 			break;
 		case "derecha":
-			image = derecha;
+			image = derecha1;
 			break;
 		case "izquierda":
-			image = izquierda;
+			image = izquierda1;
 			break;
 		}
 		g1.drawImage(image, x, y,200,200,null);
