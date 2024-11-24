@@ -43,8 +43,7 @@ public class Jugador extends Entity {
 		    patada2 =ImageIO.read(getClass().getResourceAsStream("/Imagenes/patadapow.png"));
 		    patada1i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/patadaIzquierda.png"));
 		    patada2i =ImageIO.read(getClass().getResourceAsStream("/Imagenes/patadapowi.png"));
-		    ataque1i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/MovMano1i.png"));
-		    ataque2i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/pow2i.png"));
+
 			//completar con mas lados
 		}catch(IOException e) {
 			e.printStackTrace();			
@@ -53,7 +52,6 @@ public class Jugador extends Entity {
 	public void update() {
 		if (movimientojugador.derecha == true) {
 			direccion = "derecha";
-			esDerecha = true;
 			x = x + desplazamiento;
 			if(x>1280-200) {	//limite de frame 1280-200
 				x=1280-200;
@@ -61,8 +59,6 @@ public class Jugador extends Entity {
 		}
 		if (movimientojugador.izquierda == true) {
 			direccion = "izquierda";
-			esDerecha = false;
-
 			x = x - desplazamiento;
 			if(x<0) {
 				x=0;
@@ -82,6 +78,9 @@ public class Jugador extends Entity {
 				y=320;
 			}
 		}
+		//if (movimientojugador.atacar == true) {
+			//direccion = "atacar";
+		//}
 		 if (movimientojugador.atacar && !atacando) {
 		        atacando = true; // Inicia el ataque.
 		        contadorAtaque = DURACION_ATAQUE; // Resetea el contador de frames.
@@ -93,13 +92,7 @@ public class Jugador extends Entity {
 		        contadorAtaque--; // Reduce el tiempo del ataque.
 		        if (contadorAtaque <= 0) {
 		            atacando = false; // Termina el ataque.
-		            if(esDerecha) {
 		            direccion = "derecha"; // Cambia a una dirección por defecto.
-		            }
-		            else {
-		            	direccion = "izquierda";
-		            }
-		            
 		        }
 		    }
 		    if (movimientojugador.patada && !atacando) {
@@ -113,8 +106,7 @@ public class Jugador extends Entity {
 		        contadorAtaque--; // Reduce el tiempo del ataque.
 		        if (contadorAtaque <= 0) {
 		            atacando = false; // Termina el ataque.
-		            if(esDerecha) {direccion = "derecha"; }
-		            else {direccion = "izquierda"; }
+		            direccion = "derecha"; // Cambia a una dirección por defecto.
 		        }
 		    }
 	}
@@ -134,36 +126,18 @@ public class Jugador extends Entity {
 			image = izquierda;
 			break;
 		case "atacar":
-			if(esDerecha) {
 		    if (contadorAtaque > DURACION_ATAQUE / 2) {
 		        image = ataque1; // Primer frame del ataque.
 		    } else {
 		        image = ataque12; // Segundo frame del ataque (impacto).
 		    }
-			}
-			else {
-				  if (contadorAtaque > DURACION_ATAQUE / 2) {
-				        image = ataque1i; // Primer frame del ataque.
-				    } else {
-				        image = ataque2i; // Segundo frame del ataque (impacto).
-				    }	
-			}
 			break;
 		case "patada":
-			if(esDerecha) {
 		    if (contadorAtaque > DURACION_ATAQUE / 2) {
 		        image = patada1; // Primer frame del ataque.
 		    } else {
 		        image = patada2; // Segundo frame del ataque (impacto).
 		    }
-			}
-			else {
-				 if (contadorAtaque > DURACION_ATAQUE / 2) {
-				        image = patada1i; // Primer frame del ataque.
-				    } else {
-				        image = patada2i; // Segundo frame del ataque (impacto).
-				    }	
-			}
 			break;
 		}
 		g1.drawImage(image, x, y,alturaJugador,anchuraJugador,null);	//jugador tiene unas medidas de 200x200 pxl

@@ -27,7 +27,7 @@ public class Jugador2 extends Entity {
 		desplazamiento = 10;
 		direccion = "arriba";
 	}
-	public void getImagenJugador2() {	//posibilidad de poner en entity ya que es comun a ambos jugadores
+	public void getImagenJugador2() {
 		try {
 			salto = ImageIO.read(getClass().getResourceAsStream("/Imagenes/frente.png"));
 			derecha = ImageIO.read(getClass().getResourceAsStream("/Imagenes/derecha.png"));
@@ -35,10 +35,7 @@ public class Jugador2 extends Entity {
 		    abajo1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/abajo.png"));
 		    ataque1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/impactoMano1.png"));
 		    ataque12 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/impactoMano2.png"));
-		    patada1i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/patadaIzquierda.png"));
-		    patada2i =ImageIO.read(getClass().getResourceAsStream("/Imagenes/patadapowi.png"));
-		    ataque1i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/impactoMano2.png"));
-		    ataque2i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/pow2i.png"));
+		    
 
 			//completar con mas lados
 		}catch(IOException e) {
