@@ -19,6 +19,7 @@ public class Jugador extends Entity {
 	private  int DURACION_ATAQUE = 20; // Duración en frames del ataque.
 	private boolean esDerecha = false; //si es false es derecha si es true es izquierda
 	private boolean saltando = false; // Indica si el jugador está saltando.
+    private int alturaSalto = 0; // Altura máxima del salto.
     private int velocidadSalto = 10; // Velocidad de subida.
     private int maxAlturaSalto = 100; // Altura máxima que alcanza el salto.
     private int tiempoSalto = 0; // Tiempo que el jugador lleva saltando.
@@ -48,6 +49,7 @@ public class Jugador extends Entity {
 		    patada2i =ImageIO.read(getClass().getResourceAsStream("/Imagenes/patadapowi.png"));
 		    ataque1i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/MovMano1i.png"));
 		    ataque2i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/pow2i.png"));
+			//completar con mas lados
 		}catch(IOException e) {
 			e.printStackTrace();			
 		}
@@ -70,29 +72,31 @@ public class Jugador extends Entity {
 				x=0;
 			}
 		}
+		// Movimiento hacia arriba (para simular el salto)
         if (movimientojugador.arriba && !saltando) {
-            saltando = true; 
-            tiempoSalto = 0; 
+            saltando = true; // Inicia el salto
+            tiempoSalto = 0; // Reinicia el tiempo del salto
         }
 
+        // Lógica de salto (si está saltando, se va incrementando la altura)
         if (saltando) {
             if (tiempoSalto < maxAlturaSalto) {
-                y -= velocidadSalto; 
-                if (y < 120) {
-                    y = 120; 
-                }
+                y -= velocidadSalto; // Subir gradualmente
                 tiempoSalto += velocidadSalto;
             } else {
-                saltando = false; 
+                saltando = false; // Termina el salto
             }
         }
 
+        // Movimiento hacia abajo (para caer después del salto)
         if (y < 320 && !saltando) {
-            y += velocidadSalto; 
+            y += velocidadSalto; // Caer gradualmente
             if (y > 320) {
-                y = 320; 
+                y = 320; // Asegura que el jugador no caiga por debajo del suelo
             }
-           
+            if (y < 120) {
+                y = 120; // Limita el salto para no salir por encima
+            }
         }
 
 		if (movimientojugador.abajo == true) {

@@ -18,10 +18,7 @@ public class Jugador extends Entity {
 	private int contadorAtaque = 0; // Controla la duración de la animación del ataque.
 	private  int DURACION_ATAQUE = 20; // Duración en frames del ataque.
 	private boolean esDerecha = false; //si es false es derecha si es true es izquierda
-	private boolean saltando = false; // Indica si el jugador está saltando.
-    private int velocidadSalto = 10; // Velocidad de subida.
-    private int maxAlturaSalto = 100; // Altura máxima que alcanza el salto.
-    private int tiempoSalto = 0; // Tiempo que el jugador lleva saltando.
+	
 	public Jugador(Partida p,MovimientoJugador movimientojugador) 	{
 		this.p = p;
 		this.movimientojugador = movimientojugador;
@@ -48,11 +45,24 @@ public class Jugador extends Entity {
 		    patada2i =ImageIO.read(getClass().getResourceAsStream("/Imagenes/patadapowi.png"));
 		    ataque1i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/MovMano1i.png"));
 		    ataque2i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/pow2i.png"));
+			//completar con mas lados
 		}catch(IOException e) {
 			e.printStackTrace();			
 		}
 	}
-	public void update() {
+	public void update() {if (saltando) {
+        // Actualizar la posición Y según la velocidad vertical
+        y += velocidadVertical;
+        // Aumentar la velocidad hacia abajo debido a la gravedad
+        velocidadVertical += gravedad;
+
+        // Verificar si el jugador ha tocado el suelo
+        if (y >= 320) { // Suelo
+            y = 320;
+            saltando = false; // Termina el salto
+            velocidadVertical = 0; // Reiniciar la velocidad vertical
+        }
+    } else {
 		if (movimientojugador.derecha == true) {
 			direccion = "derecha";
 			esDerecha = true;
@@ -70,31 +80,13 @@ public class Jugador extends Entity {
 				x=0;
 			}
 		}
-        if (movimientojugador.arriba && !saltando) {
-            saltando = true; 
-            tiempoSalto = 0; 
-        }
-
-        if (saltando) {
-            if (tiempoSalto < maxAlturaSalto) {
-                y -= velocidadSalto; 
-                if (y < 120) {
-                    y = 120; 
-                }
-                tiempoSalto += velocidadSalto;
-            } else {
-                saltando = false; 
-            }
-        }
-
-        if (y < 320 && !saltando) {
-            y += velocidadSalto; 
-            if (y > 320) {
-                y = 320; 
-            }
-           
-        }
-
+		if (movimientojugador.arriba == true) {
+			direccion = "arriba";
+			y = y - 100;
+			if (y<120) {
+				y=120;
+			}
+		}
 		if (movimientojugador.abajo == true) {
 			direccion = "abajo";
 			y = y + desplazamiento;
@@ -137,6 +129,7 @@ public class Jugador extends Entity {
 		            else {direccion = "izquierda"; }
 		        }
 		    }
+    }
 	}
 	public void draw(Graphics2D g1) {
 		BufferedImage image = null;
