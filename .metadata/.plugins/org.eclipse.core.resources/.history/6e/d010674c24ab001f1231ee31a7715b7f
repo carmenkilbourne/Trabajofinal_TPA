@@ -1,0 +1,58 @@
+package pantallaInicio;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
+/*
+ * poner un enum con los 2 personajes posibles 
+ * */
+public class SeleccionCaracteres {
+    private JPanel panel;
+
+    public SeleccionCaracteres() {
+        panel = new JPanel();
+        panel.setLayout(null); // Usar layout nulo para posicionar componentes manualmente
+        panel.setPreferredSize(new java.awt.Dimension(1000, 1000));
+
+        // Crear una instancia de FondoPantalla con el path a la imagen
+        FondoPantalla seleccionPersonajes = new FondoPantalla("/Imagenes/seleccion_personajes.png");
+        seleccionPersonajes.setBounds(0, 0, 1000, 1000); // Ajustar tamaño del fondo
+
+        // Usar un JLayeredPane para superponer el fondo y los elementos
+        JLayeredPane layeredPane = new JLayeredPane();
+        layeredPane.setPreferredSize(new java.awt.Dimension(1000, 1000));
+        JButton botonPersonaje1 = new JButton("Seleccionar P1");
+        botonPersonaje1.setBounds(200, 700, 150, 50); // Ajusta la posición y tamaño
+        botonPersonaje1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Personaje 1 seleccionado");
+                // Aquí puedes actualizar el estado del juego
+            }
+        });
+
+        // Botón para seleccionar el segundo personaje
+        JButton botonPersonaje2 = new JButton("Seleccionar P2");
+        botonPersonaje2.setBounds(650, 700, 150, 50); // Ajusta la posición y tamaño
+        botonPersonaje2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Personaje 2 seleccionado");
+                // Aquí puedes actualizar el estado del juego
+            }
+        });
+        // Agregar los componentes al layeredPane
+        layeredPane.add(seleccionPersonajes, Integer.valueOf(0)); // Poner fondo de pantalla en la capa 0
+        layeredPane.add(botonPersonaje1, Integer.valueOf(1)); // boton para seleccionar caracter 
+        //boton condicional para que se active cuando el otro este presionado para aceptar
+
+        panel.add(seleccionPersonajes);
+    }
+
+    public JPanel getPanel() {
+        return panel;
+    }
+}

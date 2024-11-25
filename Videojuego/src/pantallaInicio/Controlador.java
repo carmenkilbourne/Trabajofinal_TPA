@@ -32,7 +32,6 @@ public class Controlador implements KeyListener {
         mainPanel.add(cuadroTexto);
         
         mainPanel.add(seleccionCaracteres.getPanel(), "SeleccionCaracteres");
-
         frame.add(mainPanel);
         frame.addKeyListener(this);
         frame.setVisible(true);

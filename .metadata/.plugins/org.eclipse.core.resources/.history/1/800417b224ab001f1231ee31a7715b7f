@@ -1,0 +1,47 @@
+package pantallaInicio;
+
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
+/*
+ * poner un enum con los 2 personajes posibles 
+ * */
+public class SeleccionCaracteres {
+    private JPanel panel;
+
+    public SeleccionCaracteres() {
+        panel = new JPanel();
+        panel.setLayout(null); // Posicionamiento manual
+        panel.setPreferredSize(new Dimension(1000, 1000));
+
+        // Fondo de pantalla
+        FondoPantalla pantallaInicio = new FondoPantalla("/Imagenes/SeleccionCaracteres.png");
+        pantallaInicio.setBounds(0, 0, 1000, 1000);
+
+        // Botón para iniciar
+        JButton botonInicio = new JButton("Start Game");
+        botonInicio.setBounds(450, 520, 100, 30);
+
+        // Agregar ActionListener al botón (Ejemplo: Cambiar de pantalla)
+        botonInicio.addActionListener(e -> {
+            System.out.println("Botón presionado: Cambiar de pantalla"); // Aquí puedes conectar con el controlador
+        });
+
+        // Agregar elementos al panel usando un JLayeredPane
+        JLayeredPane layeredPane = new JLayeredPane();
+        layeredPane.setBounds(0, 0, 1000, 1000);
+        layeredPane.add(pantallaInicio, Integer.valueOf(0)); // Fondo en la capa 0
+        layeredPane.add(botonInicio, Integer.valueOf(1));    // Botón en la capa 2
+
+        panel.add(layeredPane);
+    }
+
+    public JPanel getPanel() {
+        return panel;
+    }
+}
