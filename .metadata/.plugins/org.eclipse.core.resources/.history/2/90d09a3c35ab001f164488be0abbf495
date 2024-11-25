@@ -9,8 +9,6 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 /*
  * poner un enum con los 2 personajes posibles 
- * coger la variable de un tipo de caracter y seria 
- * hacer una implementacion de jugador 1 si es el ogro y si es el hada hacer lo mismo pero para jugasdor 2
  * */
 public class SeleccionCaracteres {
     private JPanel panel;
