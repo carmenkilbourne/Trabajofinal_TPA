@@ -1,0 +1,37 @@
+package pantallaInicio;
+
+import java.awt.Dimension;
+
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
+
+public class PantallaInicio {
+    private JPanel panel;
+
+    public PantallaInicio() {
+        panel = new JPanel();
+        panel.setLayout(null);
+        panel.setPreferredSize(new Dimension(1000, 1000));
+
+        // Fondo de pantalla
+        FondoPantalla pantallaInicio = new FondoPantalla("/Imagenes/PantallaInicio.png");
+        pantallaInicio.setBounds(0, 0, 1000, 1000);
+
+        // Texto de inicio
+        CuadroTexto cuadroTexto = new CuadroTexto("Press Enter to Start");
+        cuadroTexto.setBounds(50, 50, 500, 50); // Ajusta el tamaño
+        cuadroTexto.setOpaque(false);
+
+        // Agregar elementos al panel
+        JLayeredPane layeredPane = new JLayeredPane();
+        layeredPane.setPreferredSize(new Dimension(1000, 1000));
+        layeredPane.add(pantallaInicio, Integer.valueOf(0)); // Fondo en capa 0
+        layeredPane.add(cuadroTexto, Integer.valueOf(1));    // Texto en capa 1
+
+        panel.add(layeredPane);
+    }
+
+    public JPanel getPanel() {
+        return panel;
+    }
+}

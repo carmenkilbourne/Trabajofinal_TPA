@@ -24,7 +24,7 @@ public class SeleccionCaracteres {
         //layeredPane.add(cuadroTexto, Integer.valueOf(1)); // boton para seleccionar caracter 
         //boton condicional para que se active cuando el otro este presionado para aceptar
 
-        panel.add(layeredPane);
+        panel.add(seleccionPersonajes);
     }
 
     public JPanel getPanel() {

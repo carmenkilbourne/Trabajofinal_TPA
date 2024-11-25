@@ -1,29 +1,42 @@
 package pantallaInicio;
 
-import javax.swing.JFrame;
+import java.awt.Dimension;
+
 import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
+
+import java.awt.Dimension;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
 
 public class PantallaInicio {
-    public static void main(String[] args) {
-        // Crear el marco de la ventana
-        JFrame frame = new JFrame("Pantalla de Inicio");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1000, 1000); // Tamaño del frame
-        frame.setLocationRelativeTo(null);	//Poner en medio de la pantalla
-        
+    private JPanel panel;
+
+    public PantallaInicio() {
+        panel = new JPanel();
+        panel.setLayout(null); // Posicionamiento manual
+        panel.setPreferredSize(new Dimension(1000, 1000));
+
+        // Fondo de pantalla
         FondoPantalla pantallaInicio = new FondoPantalla("/Imagenes/PantallaInicio.png");
-        pantallaInicio.setBounds(0, 0, 1000, 1000); // Ajustar tamaño del fondo
+        pantallaInicio.setBounds(0, 0, 1000, 1000);
 
-        CuadroTexto cuadroTexto = new CuadroTexto("To start click");
-        cuadroTexto.setBounds(350, 350, 800, 800); // Ajustar tamaño y posición del cuadro de texto
-        cuadroTexto.setOpaque(false); // Hacer transparente el fondo del CuadroTexto
+        // Texto de inicio
+        JLabel textoInicio = new JLabel("Press Enter to Start");
+        textoInicio.setBounds(400, 450, 200, 50); // Centrado en la pantalla
 
+        // Agregar elementos al panel usando un JLayeredPane
         JLayeredPane layeredPane = new JLayeredPane();
-        layeredPane.setPreferredSize(new java.awt.Dimension(1000, 1000));
-        layeredPane.add(pantallaInicio, Integer.valueOf(0)); // Poner fondo de pantalla en la capa 0
-        layeredPane.add(cuadroTexto, Integer.valueOf(1)); // Poner boton de start  en la capa 1
-      
-        frame.add(layeredPane);
-        frame.setVisible(true);
+        layeredPane.setBounds(0, 0, 1000, 1000);
+        layeredPane.add(pantallaInicio, Integer.valueOf(0)); // Fondo en la capa 0
+        layeredPane.add(textoInicio, Integer.valueOf(1));    // Texto en la capa 1
+
+        panel.add(layeredPane);
+    }
+
+    public JPanel getPanel() {
+        return panel;
     }
 }

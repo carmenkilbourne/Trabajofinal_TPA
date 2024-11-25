@@ -10,7 +10,7 @@ public class CuadroTexto extends JPanel {
 	private JLabel etiqueta;
     private JButton boton;
 
-    public CuadroTexto(String texto) {
+    public CuadroTexto(String texto) {	//solo en el medio, puedo ampliar poniendo las coordenadas como datos de entrada
         // Usar layout nulo para definir posiciones manualmente
         setLayout(null);
 
@@ -25,11 +25,6 @@ public class CuadroTexto extends JPanel {
         add(boton);
 
         // Añadir un ActionListener al botón
-        boton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            	etiqueta.setText("Pasar al siguiente frame");
-            }
-        });
+       
     }
 }

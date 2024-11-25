@@ -21,13 +21,17 @@ public class Controlador implements KeyListener {
         cardLayout = new CardLayout();
         mainPanel = new JPanel(cardLayout);
 
-        // Inicializar pantallas
-        SeleccionCaracteres seleccionCaracteres = new SeleccionCaracteres();
-        // Agregar más pantallas aquí
+        CuadroTexto cuadroTexto = new CuadroTexto("Press Enter to Start");
+        cuadroTexto.setBounds(50, 50, 500, 50); // Ajusta el tamaño
+        cuadroTexto.setOpaque(false);
 
-        // Añadir pantallas al panel principal
+        PantallaInicio pantallaInicial = new PantallaInicio();
+        SeleccionCaracteres seleccionCaracteres = new SeleccionCaracteres();
+
+        mainPanel.add(pantallaInicial.getPanel(), "PantallaInicio");
+        mainPanel.add(cuadroTexto);
+        
         mainPanel.add(seleccionCaracteres.getPanel(), "SeleccionCaracteres");
-        // Añadir más pantallas aquí
 
         frame.add(mainPanel);
         frame.addKeyListener(this);

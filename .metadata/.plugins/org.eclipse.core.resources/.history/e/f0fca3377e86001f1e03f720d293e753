@@ -1,9 +1,0 @@
-package partida;
-
-import java.awt.Dimension;
-
-import javax.swing.JPanel;
-
-public class GamePanel extends JPanel {
-	
-}
