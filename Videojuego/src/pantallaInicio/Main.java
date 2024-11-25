@@ -8,7 +8,7 @@ public class Main {
 		 JFrame frame = new JFrame("Test Partida");
 	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        frame.setSize(1280, 720);
-	        frame.setResizable(false);
+	        frame.setResizable(true);
 	        frame.setLocationRelativeTo(null);
 
 	        // Create an instance of Partida

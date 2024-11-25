@@ -30,6 +30,8 @@ public class Partida extends JPanel implements Runnable {
     private double tiempoSleep =0;
 	int FPS = 60; // 60 FRAMES PER SECOND
     public int areaefectividad = 160; //distancia entre jugadores para que el daño sea efectivo
+    public int areaefectividady = 160; //distancia entre jugadores para que el daño sea efectivo
+
     public long tiempo = 0;
 	public Partida() {
 		this.setPreferredSize(new Dimension(1280, 720));
@@ -106,7 +108,7 @@ public class Partida extends JPanel implements Runnable {
 		    jugador.setDefendiendo(movimientojugador.defensa);
 		    jugador2.setDefendiendo(movimientoJugador2.defensa);
 		    if(jugador.getSaludActual() == 0 || jugador2.getSaludActual() == 0 ||tiempoRestante <=0 ) {
-		    	System.out.println("Partida terminada, tengo que pasar frame a un frame donde ponga Congratulations al ganador y luego volver al inicio");
+		    	//System.out.println("Partida terminada, tengo que pasar frame a un frame donde ponga Congratulations al ganador y luego volver al inicio");
 		    }
 	}
 
@@ -127,7 +129,8 @@ public class Partida extends JPanel implements Runnable {
 	}
 	 public boolean esEfectivo() {
 		 areaefectividad = Math.abs(jugador.getX()-jugador2.getX());
-		 if (areaefectividad <= 160) {
+		 areaefectividady = Math.abs(jugador.getY()-jugador2.getY());
+		 if (areaefectividad <= 160 && areaefectividady == 0) {
 			 return true;
 		 }
 		 return false;
