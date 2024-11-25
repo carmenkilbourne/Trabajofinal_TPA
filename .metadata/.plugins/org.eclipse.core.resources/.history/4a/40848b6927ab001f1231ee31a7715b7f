@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 /*
@@ -21,11 +22,11 @@ public class SeleccionCaracteres {
     public SeleccionCaracteres() {
         panel = new JPanel();
         panel.setLayout(null); // Posicionamiento manual
-        panel.setPreferredSize(new Dimension(1280, 720));
+        panel.setPreferredSize(new Dimension(1000, 1000));
 
         // Fondo de pantalla
-        FondoPantalla pantallaInicio = new FondoPantalla("/Imagenes/SeleccionPersonajes.png");
-        pantallaInicio.setBounds(0, 0, 1280, 720);
+        FondoPantalla pantallaInicio = new FondoPantalla("/Imagenes/seleccion_personajes.png");
+        pantallaInicio.setBounds(0, 0, 1000, 1000);
 
         // Botón para iniciar
         JButton boton1 = new JButton("Ogro");
@@ -46,7 +47,7 @@ public class SeleccionCaracteres {
         });
         // Agregar elementos al panel usando un JLayeredPane
         JLayeredPane layeredPane = new JLayeredPane();
-        layeredPane.setBounds(0, 0, 1280, 720);
+        layeredPane.setBounds(0, 0, 1000, 1000);
         layeredPane.add(pantallaInicio, Integer.valueOf(0)); // Fondo en la capa 0
         layeredPane.add(boton1, Integer.valueOf(1));    
         layeredPane.add(boton2, Integer.valueOf(1));    

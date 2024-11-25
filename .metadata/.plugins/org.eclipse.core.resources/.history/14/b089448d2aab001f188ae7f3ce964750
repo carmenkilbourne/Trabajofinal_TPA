@@ -22,7 +22,7 @@ public class PantallaInicio {
         panel.setPreferredSize(new Dimension(1280, 720));
 
         // Fondo de pantalla
-        FondoPantalla pantallaInicio = new FondoPantalla("/Imagenes/pi.png");
+        FondoPantalla pantallaInicio = new FondoPantalla("/Imagenes/PantallaInicio.png");
         pantallaInicio.setBounds(0, 0, 1280, 720);
 
         // Texto de inicio

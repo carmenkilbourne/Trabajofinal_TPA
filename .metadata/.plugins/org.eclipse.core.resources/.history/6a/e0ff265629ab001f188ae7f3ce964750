@@ -16,7 +16,7 @@ public class FondoPantalla extends JPanel {
     public FondoPantalla(String path) {
     	try {
 			imagen = ImageIO.read(getClass().getResourceAsStream(path));
-			setBounds(0, 0, 1280, 720);
+			setBounds(0, 0, 1000, 1000);
 		}catch(IOException e) {
 			e.printStackTrace();			
 		}catch (NullPointerException e) {

@@ -14,7 +14,7 @@ public class Controlador implements KeyListener {
     public Controlador() {
         frame = new JFrame("Juego");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1280, 720);
+        frame.setSize(1000, 1000);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
 

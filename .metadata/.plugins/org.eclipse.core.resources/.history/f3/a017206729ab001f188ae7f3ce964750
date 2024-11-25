@@ -19,11 +19,11 @@ public class PantallaInicio {
     public PantallaInicio() {
         panel = new JPanel();
         panel.setLayout(null); 
-        panel.setPreferredSize(new Dimension(1280, 720));
+        panel.setPreferredSize(new Dimension(1000, 1000));
 
         // Fondo de pantalla
-        FondoPantalla pantallaInicio = new FondoPantalla("/Imagenes/pi.png");
-        pantallaInicio.setBounds(0, 0, 1280, 720);
+        FondoPantalla pantallaInicio = new FondoPantalla("/Imagenes/PantallaInicio.png");
+        pantallaInicio.setBounds(0, 0, 1000, 1000);
 
         // Texto de inicio
         JLabel textoInicio = new JLabel("Press Enter to Start",JLabel.CENTER);
@@ -37,7 +37,7 @@ public class PantallaInicio {
 
         // Agregar elementos al panel usando un JLayeredPane
         JLayeredPane layeredPane = new JLayeredPane();
-        layeredPane.setBounds(0, 0, 1280, 720);
+        layeredPane.setBounds(0, 0, 1000, 1000);
         layeredPane.add(pantallaInicio, Integer.valueOf(0)); // Fondo en la capa 0
         layeredPane.add(textoInicio, Integer.valueOf(1));    // Texto en la capa 1
 

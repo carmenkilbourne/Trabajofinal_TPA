@@ -24,7 +24,7 @@ public class SeleccionCaracteres {
         panel.setPreferredSize(new Dimension(1280, 720));
 
         // Fondo de pantalla
-        FondoPantalla pantallaInicio = new FondoPantalla("/Imagenes/SeleccionPersonajes.png");
+        FondoPantalla pantallaInicio = new FondoPantalla("/Imagenes/seleccion_personajes.png");
         pantallaInicio.setBounds(0, 0, 1280, 720);
 
         // Botón para iniciar
