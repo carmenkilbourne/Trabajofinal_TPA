@@ -7,7 +7,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
-
+/*
+ * Clase creada con el proposito de cargar una imagen*/
 public class FondoPantalla extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -16,7 +17,6 @@ public class FondoPantalla extends JPanel {
     public FondoPantalla(String path) {
     	try {
 			imagen = ImageIO.read(getClass().getResourceAsStream(path));
-			setBounds(0, 0, 1280, 720);
 		}catch(IOException e) {
 			e.printStackTrace();			
 		}catch (NullPointerException e) {

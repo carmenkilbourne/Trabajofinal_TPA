@@ -1,0 +1,9 @@
+package pantallaInicio;
+
+public class ParametrosFijos {
+	
+	public ParametrosFijos(){
+		
+	}
+
+}

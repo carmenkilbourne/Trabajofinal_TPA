@@ -21,13 +21,14 @@ public class SeleccionCaracteres {
     Personaje personajeElegido;
 
     public SeleccionCaracteres() {
+    	ParametrosFijos parametros = new ParametrosFijos();
         panel = new JPanel();
         panel.setLayout(null); // Posicionamiento manual
-        panel.setPreferredSize(new Dimension(1280, 720));
+        panel.setPreferredSize(new Dimension(parametros.getAnchoPantalla(), parametros.getAlturaPantalla()));
 
         // Fondo de pantalla
         FondoPantalla pantallaInicio = new FondoPantalla("/Imagenes/SeleccionPersonajes.png");
-        pantallaInicio.setBounds(0, 0, 1280, 720);
+        pantallaInicio.setBounds(0, 0,parametros.getAnchoPantalla(), parametros.getAlturaPantalla());
 
         // Botón para iniciar
         JButton boton1 = new JButton("Ogro");
@@ -48,7 +49,7 @@ public class SeleccionCaracteres {
         });
         // Agregar elementos al panel usando un JLayeredPane
         JLayeredPane layeredPane = new JLayeredPane();
-        layeredPane.setBounds(0, 0, 1280, 720);
+        layeredPane.setBounds(0, 0, parametros.getAnchoPantalla(), parametros.getAlturaPantalla());
         layeredPane.add(pantallaInicio, Integer.valueOf(0)); // Fondo en la capa 0
         layeredPane.add(boton1, Integer.valueOf(1));    
         layeredPane.add(boton2, Integer.valueOf(1));    

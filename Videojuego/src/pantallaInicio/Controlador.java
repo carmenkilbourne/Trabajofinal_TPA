@@ -1,6 +1,8 @@
 package pantallaInicio;
 
 import java.awt.CardLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JFrame;
@@ -12,9 +14,11 @@ public class Controlador implements KeyListener {
     private JPanel mainPanel;
 
     public Controlador() {
+    	ParametrosFijos parametros = new ParametrosFijos();
+
         frame = new JFrame("Juego");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1280, 720);
+        frame.setSize(parametros.getAnchoPantalla(), parametros.getAlturaPantalla());
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
 
@@ -22,7 +26,7 @@ public class Controlador implements KeyListener {
         mainPanel = new JPanel(cardLayout);
 
         CuadroTexto cuadroTexto = new CuadroTexto("Press Enter to Start");
-        cuadroTexto.setBounds(50, 50, 500, 50); // Ajusta el tamaño
+        cuadroTexto.setBounds(50, 50, 500, 50); 
         cuadroTexto.setOpaque(false);
 
         PantallaInicio pantallaInicial = new PantallaInicio();
@@ -36,7 +40,7 @@ public class Controlador implements KeyListener {
         frame.addKeyListener(this);
         frame.setVisible(true);
     }
-
+    
     // Método para cambiar entre pantallas
     public void cambiarPantalla(String nombrePantalla) {
         cardLayout.show(mainPanel, nombrePantalla);
@@ -50,18 +54,13 @@ public class Controlador implements KeyListener {
         if (keyCode == KeyEvent.VK_ENTER) {
             cambiarPantalla("SeleccionCaracteres");
         }
-        // Agregar más lógica aquí
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {
-        // No implementado
-    }
+    public void keyReleased(KeyEvent e) {}
 
     @Override
-    public void keyTyped(KeyEvent e) {
-        // No implementado
-    }
+    public void keyTyped(KeyEvent e) {}
 
     public static void main(String[] args) {
         new Controlador();
