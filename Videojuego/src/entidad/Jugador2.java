@@ -4,10 +4,12 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+
+import pantallaInicio.Jugador;
 import pantallaInicio.MovimientoJugador2;
 import pantallaInicio.Partida;
 
-public class Jugador2 extends Entity {
+public class Jugador2 extends Entity implements Jugador{
 	Partida p;
 	MovimientoJugador2 movimientojugador2;
 	private int saludMax = 100;
@@ -24,7 +26,7 @@ public class Jugador2 extends Entity {
 		this.p = p;
 		this.movimientojugador2 = movimientojugador2;
 		setVariables();
-		getImagenJugador2();
+		getImagenJugador();
 	}
 	public void setVariables() {
 		x=1080;
@@ -32,7 +34,7 @@ public class Jugador2 extends Entity {
 		desplazamiento = 10;
 		direccion = "arriba";
 	}
-	public void getImagenJugador2() {	//posibilidad de poner en entity ya que es comun a ambos jugadores
+	public void getImagenJugador() {	//posibilidad de poner en entity ya que es comun a ambos jugadores
 		try {
 			salto = ImageIO.read(getClass().getResourceAsStream("/Imagenes/frente.png"));
 			derecha = ImageIO.read(getClass().getResourceAsStream("/Imagenes/derecha.png"));
@@ -196,5 +198,4 @@ public class Jugador2 extends Entity {
     public int getSaludActual() {
         return saludActual;
     }
-
 }

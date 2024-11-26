@@ -11,7 +11,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import entidad.Jugador;
+import entidad.Jugador1;
 import entidad.Jugador2;
 //cambiar nombre a bucle de particula
 public class Partida extends JPanel implements Runnable {
@@ -19,7 +19,7 @@ public class Partida extends JPanel implements Runnable {
 	MovimientoJugador movimientojugador = new MovimientoJugador();
     MovimientoJugador2 movimientoJugador2 = new MovimientoJugador2();
 	Thread hiloPartida; // empieza el hilo para el loop
-	Jugador jugador = new Jugador(this,movimientojugador);
+	Jugador1 jugador = new Jugador1(this,movimientojugador);
     Jugador2 jugador2 = new Jugador2(this, movimientoJugador2);
     private Image fondoPartida;
     private int contador =0;
@@ -135,7 +135,7 @@ public class Partida extends JPanel implements Runnable {
 		 }
 		 return false;
 	 }
-	 public boolean estanColisionando(Jugador jugador1, Jugador jugador2) {
+	 public boolean estanColisionando(Jugador1 jugador1, Jugador1 jugador2) {
 		    return jugador1.getX() < jugador2.getX() + jugador2.getanchuraJugador() &&
 		           jugador1.getX() + jugador1.getanchuraJugador() > jugador2.getX() &&
 		           jugador1.getY() < jugador2.getY() + jugador2.getalturaJugador() &&
