@@ -1,0 +1,30 @@
+package pantallaInicio;
+
+import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class PantallaPartida {
+    private JLayeredPane layeredPane;
+    private Partida partida;
+
+    public PantallaPartida() {
+        FondoPantalla pantallaInicio = new FondoPantalla("/Imagenes/mapa1.jpg");
+        pantallaInicio.setBounds(0, 0, 1280, 720); // Ajustar tamaño del fondo
+
+        panel = new JPanel(new BorderLayout());
+        partida = new Partida();
+        panel.add(partida, BorderLayout.CENTER);
+    }
+
+    public JPanel getPanel() {
+        return panel;
+    }
+
+    public void empezarPartida() {
+        partida.empezarPartida();
+    }
+}

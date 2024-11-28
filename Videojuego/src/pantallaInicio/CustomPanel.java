@@ -4,7 +4,11 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 public class CustomPanel extends JPanel {
-    private MouseInput mouseInput;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private MouseInput mouseInput;
 
     public CustomPanel(MouseInput mouseInput) {
         this.mouseInput = mouseInput;

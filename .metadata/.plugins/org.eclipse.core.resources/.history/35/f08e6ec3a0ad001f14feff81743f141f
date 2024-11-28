@@ -1,0 +1,54 @@
+package pantallaInicio;
+
+import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class PantallaPelea {
+    private JLayeredPane layeredPane;
+
+	
+	   public PantallaPelea() {
+	        FondoPantalla pantallaInicio = new FondoPantalla("/Imagenes/PantallaInicio.png");
+	        pantallaInicio.setBounds(0, 0, 1000, 1000); // Ajustar tamaño del fondo
+
+	        //CuadroTexto cuadroTexto = new CuadroTexto("To start click");
+	        //cuadroTexto.setBounds(350, 350, 800, 800); // Ajustar tamaño y posición del cuadro de texto
+	        //cuadroTexto.setOpaque(false); // Hacer transparente el fondo del CuadroTexto
+
+	        layeredPane = new JLayeredPane();
+	        layeredPane.setPreferredSize(new java.awt.Dimension(1000, 1000));
+	        layeredPane.add(pantallaInicio, Integer.valueOf(0)); // Poner fondo de pantalla en la capa 0
+	        //layeredPane.add(cuadroTexto, Integer.valueOf(1)); // Poner boton de start en la capa 1
+	    }
+
+	
+	public JPanel getPanel() {
+        JPanel panel = new JPanel();
+        panel.setLayout(null);
+        panel.add(layeredPane);
+        return panel;
+    }
+    
+	
+}
+ /*
+  * public class PantallaPelea {
+
+	public static void main(String[] args) {
+		JFrame frame = new JFrame("Pantalla de Pelea");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        Partida partida = new Partida();
+        frame.add(partida);
+        partida.empezarPartida();
+        frame.pack();
+        frame.setVisible(true);
+
+	}
+
+}*/
+ 

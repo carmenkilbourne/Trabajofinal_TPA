@@ -6,7 +6,11 @@ import java.awt.Toolkit;
 import javax.swing.JPanel;
 
 public class FondoPantalla extends JPanel {
-    private Image imagen;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Image imagen;
 
     public FondoPantalla(String path) {
         imagen = Toolkit.getDefaultToolkit().createImage(getClass().getResource(path));

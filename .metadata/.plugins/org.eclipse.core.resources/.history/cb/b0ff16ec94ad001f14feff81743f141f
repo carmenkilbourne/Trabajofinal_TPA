@@ -1,0 +1,27 @@
+package pantallaInicio;
+
+import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class PantallaPartida {
+    private JPanel panel;
+    private Partida partida;
+
+    public PantallaPartida() {
+        panel = new JPanel(new BorderLayout());
+        partida = new Partida();
+        panel.add(partida, BorderLayout.CENTER);
+    }
+
+    public JPanel getPanel() {
+        return panel;
+    }
+
+    public void empezarPartida() {
+        partida.empezarPartida();
+    }
+}

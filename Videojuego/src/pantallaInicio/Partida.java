@@ -5,13 +5,10 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-<<<<<<< HEAD
 import java.awt.Image;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-=======
->>>>>>> main
 import javax.swing.JPanel;
 
 import entidad.Jugador1;
@@ -36,15 +33,14 @@ public class Partida extends JPanel implements Runnable {
     public int areaefectividady = 160; //distancia entre jugadores para que el daño sea efectivo
 
     public long tiempo = 0;
-	public Partida() {
+	public Partida() { // PARA QUE PONGA DISTINTOS FONDOS SOLO HACE FALTA HACER public Partida(string path)
 		this.setPreferredSize(new Dimension(1280, 720));
 		this.setBackground(Color.white);
 		this.addKeyListener(movimientojugador);
         this.addKeyListener(movimientoJugador2); 
 		this.setFocusable(true);
-		// this.setDoubleBuffered(true);\
 		 try {
-			 fondoPartida = ImageIO.read(getClass().getResourceAsStream("/Imagenes/fondo2.jpg"));
+			 fondoPartida = ImageIO.read(getClass().getResourceAsStream("/Imagenes/mapa1.jpg")); // cambiar a path
 			 //tendremos que coger el escenario que hayamos escogido en la anterior frame
 	        } catch (IOException e) {
 	            System.err.println("No se pudo cargar el fondo: " + e.getMessage());
@@ -120,7 +116,7 @@ public class Partida extends JPanel implements Runnable {
 		Graphics2D g1 = (Graphics2D) g;
 		 // Dibujar el fondo
         if (fondoPartida != null) {
-            g1.drawImage(fondoPartida, 0, 0, 1280, 720, null);
+            g1.drawImage(fondoPartida, 0, 0, 1280, 720, null);	//CAMBIAR A DINAMICO
         }
 		jugador.draw(g1);
 		jugador2.draw(g1);

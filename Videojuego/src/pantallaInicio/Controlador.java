@@ -33,9 +33,11 @@ public class Controlador implements KeyListener {
 
 		// Inicializar pantallas
 		PantallaInicio pantallaInicio = new PantallaInicio();
-
+		PantallaPelea pantallaPelea = new PantallaPelea();
 		// Añadir pantallas al panel principal
 		mainPanel.add(pantallaInicio.getPanel(), "PantallaInicio");
+		mainPanel.add(pantallaPelea.getPanel(), "PantallaPelea");
+
 
 		frame.add(mainPanel);
 		frame.addKeyListener(this);
@@ -86,35 +88,49 @@ public class Controlador implements KeyListener {
 		switch (nombrePantalla) {
 		case "PantallaInicio":
 			path = "/Imagenes/PantallaInicio.png";
+			fondoPantalla = new FondoPantalla(path);
+			frame.setContentPane(fondoPantalla);
+			frame.revalidate();
+			frame.setResizable(true);
 			break;
 		case "SeleccionCaracteres":
 			path = "/Imagenes/seleccion_personajes.png";
+			fondoPantalla = new FondoPantalla(path);
+			frame.setContentPane(fondoPantalla);
+			frame.revalidate();
+			frame.setResizable(true);
 			break;
 		case "SeleccionMapa":
-			path = "/Imagenes/seleccion_mapa.png";
+			path = "/Imagenes/seleccion_mapa.png";	//cambiar a imagen que muestre los cuatro mapas
+			fondoPantalla = new FondoPantalla(path);
+			frame.setContentPane(fondoPantalla);
+			frame.revalidate();
+			frame.setResizable(true);
 			break;
 		case "Game":
 			switch (mapa) {
 			case 1:
-				path = "/Imagenes/mapa1.png";
+				frame = new JFrame("Pantalla de Pelea");
+				frame.setLocationRelativeTo(null);
+		        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		        frame.setResizable(false);
+		        Partida partida = new Partida();
+		        frame.add(partida);
+		        partida.empezarPartida();
+		        frame.pack();
+		        frame.setVisible(true);
 				break;
-			case 2:
-				path = "/Imagenes/mapa2.png";
-				break;
-			case 3:
-				path = "/Imagenes/mapa3.png";
-				break;
-			case 4:
-				path = "/Imagenes/mapa4.png";
-				break;
+				default:
+					break;
 			}
+			
 			break;
 		// Agregar más casos según sea necesario
 		}
-		fondoPantalla = new FondoPantalla(path);
-		frame.setContentPane(fondoPantalla);
-		frame.revalidate();
-		frame.setResizable(true);
+		//fondoPantalla = new FondoPantalla(path);
+		//frame.setContentPane(fondoPantalla);
+		//frame.revalidate();
+		//frame.setResizable(true);
 	}
 
 	// Manejar eventos de teclado
@@ -147,4 +163,5 @@ public class Controlador implements KeyListener {
 	public static void main(String[] args) {
 		new Controlador();
 	}
+	
 }
