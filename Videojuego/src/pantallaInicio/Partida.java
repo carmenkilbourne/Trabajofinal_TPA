@@ -5,10 +5,13 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+<<<<<<< HEAD
 import java.awt.Image;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+=======
+>>>>>>> main
 import javax.swing.JPanel;
 
 import entidad.Jugador1;

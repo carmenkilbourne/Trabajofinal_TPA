@@ -3,6 +3,7 @@
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<item key="replaceBarOpen" value="false"/>
 	<list key="searchhistory">
+<<<<<<< HEAD
 		<item value="getimagen"/>
 		<item value="sys"/>
 		<item value="system.out"/>
@@ -13,5 +14,8 @@
 		<item value="sal"/>
 		<item value="thread"/>
 		<item value="key"/>
+=======
+		<item value="actuali"/>
+>>>>>>> main
 	</list>
 </section>
