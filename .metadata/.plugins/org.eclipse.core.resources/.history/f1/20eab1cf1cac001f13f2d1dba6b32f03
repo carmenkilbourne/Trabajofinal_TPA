@@ -1,0 +1,7 @@
+package pantallaInicio;
+
+public interface Jugador {
+	int getAtaque();	//obtiene la fuerza del ataque
+	int getSaludActual();	//obtiene el nivel de vida
+
+}

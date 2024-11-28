@@ -3,8 +3,10 @@ package pantallaInicio;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/*
+ * Implementar una abstraccion*/
 public class MovimientoJugador implements KeyListener {
-	public boolean derecha, izquierda;
+	public boolean derecha, izquierda, arriba, abajo, atacar, defensa, patada;
 
 	@Override
 	public void keyTyped(KeyEvent e) {
@@ -15,10 +17,24 @@ public class MovimientoJugador implements KeyListener {
 		int codigo = e.getKeyCode();
 		if (codigo == KeyEvent.VK_A) { // movimiento izq
 			izquierda = true;
-
 		}
 		if (codigo == KeyEvent.VK_D) { // mov derecha
 			derecha = true;
+		}
+		if (codigo == KeyEvent.VK_W) { // mov arriba
+			arriba = true;
+		}
+		if (codigo == KeyEvent.VK_S) { // mov abajo
+			abajo = true;
+		}
+		if (codigo == KeyEvent.VK_Q) { // atacar
+			atacar = true;
+		}
+		if (codigo == KeyEvent.VK_E) { // defensa
+			defensa = true;
+		}
+		if (codigo == KeyEvent.VK_Z) { // patada
+			patada = true;
 		}
 
 	}
@@ -32,6 +48,21 @@ public class MovimientoJugador implements KeyListener {
 		}
 		if (codigo == KeyEvent.VK_D) { // mov derecha
 			derecha = false;
+		}
+		if (codigo == KeyEvent.VK_W) { // mov arriba
+			arriba = false;
+		}
+		if (codigo == KeyEvent.VK_S) { // mov abajo
+			abajo = false;
+		}
+		if (codigo == KeyEvent.VK_Q) { // atacar
+			atacar = false;
+		}
+		if (codigo == KeyEvent.VK_E) { // defensa
+			defensa = false;
+		}
+		if (codigo == KeyEvent.VK_Z) { // patada
+			patada = false;
 		}
 	}
 }

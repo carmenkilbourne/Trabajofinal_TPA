@@ -1,0 +1,43 @@
+package entidad;
+import java.awt.image.BufferedImage;
+
+public class Entity {
+	protected int x,y;
+	public int desplazamiento;
+	public BufferedImage salto1,derecha1,izquierda1,abajo1,ataque1,ataque12;
+	public String direccion;
+	protected int saludActual;
+    protected int ataque;
+    protected int alturaJugador = 200;
+	protected int anchuraJugador = 200;
+	public int contadorMovimiento = 0;	//spritecounter
+	public int numeroMovimiento = 0;	//spritenumber
+	private int tiempoUltimoAtaque = 0;
+	private final int tiempoEntreAtaques = 30; // FPS = 60, esto permite un ataque cada 0.5 segundos.
+
+	public int getAtaque() {
+        return ataque;
+    }
+    public void recibirDanio(int danio) {
+    	saludActual -= danio;
+        if (saludActual < 0) saludActual = 0;
+        System.out.println("Vida restante: " + saludActual);
+    }
+	 public void atacar(Entity defensor) {
+		 if (contadorMovimiento - tiempoUltimoAtaque >= tiempoEntreAtaques) {
+		        defensor.recibirDanio(this.getAtaque());
+		        tiempoUltimoAtaque = contadorMovimiento;
+		    }	    }
+	 public int getX() {
+		 return x;
+	 }
+	 public int getY() {
+		 return y;
+	 }
+	 public int getalturaJugador() {
+		 return alturaJugador;
+	 }
+	 public int getanchuraJugador() {
+		 return anchuraJugador;
+	 }
+}
