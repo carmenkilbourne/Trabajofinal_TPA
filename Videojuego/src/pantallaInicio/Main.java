@@ -5,5 +5,6 @@ public class Main {
         // Inicializar el controlador
         Controlador controlador = new Controlador();
         controlador.cambiarPantalla("PantallaInicio");
+        System.out.println("Pantalla de inicio mostrada");
     }
 }
