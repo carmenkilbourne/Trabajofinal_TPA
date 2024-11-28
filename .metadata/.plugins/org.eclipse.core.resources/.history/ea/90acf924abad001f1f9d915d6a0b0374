@@ -9,7 +9,6 @@ import java.awt.Image;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import entidad.Jugador1;
@@ -28,7 +27,6 @@ public class Partida extends JPanel implements Runnable {
     private int tiempoRestante =1;
     public static int FrameWidth = 1280;
 	public static int FrameHeight = 720;
-	public boolean acabada = false;
     
 
 
@@ -112,9 +110,8 @@ public class Partida extends JPanel implements Runnable {
 		    jugador.setDefendiendo(movimientojugador.defensa);
 		    jugador2.setDefendiendo(movimientoJugador2.defensa);
 		    if(jugador.getSaludActual() == 0 || jugador2.getSaludActual() == 0 ||tiempoRestante <=0 ) {
-		    	
-		        	
-		    	System.out.println("Partida terminada, tengo que pasar frame a un frame donde ponga Congratulations al ganador y luego volver al inicio");
+		    	gameThread.join();
+		    	//System.out.println("Partida terminada, tengo que pasar frame a un frame donde ponga Congratulations al ganador y luego volver al inicio");
 		    }
 	}
 
@@ -147,8 +144,6 @@ public class Partida extends JPanel implements Runnable {
 		           jugador1.getY() < jugador2.getY() + jugador2.getalturaJugador() &&
 		           jugador1.getY() + jugador1.getalturaJugador() > jugador2.getY();
 		}
-	 public boolean partidaAcabada() {
-		 return acabada;
-	 }	
+	
 
 }

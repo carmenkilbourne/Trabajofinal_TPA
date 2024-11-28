@@ -110,17 +110,22 @@ public class Controlador implements KeyListener {
 		case "Game":
 			switch (mapa) {
 			case 1:
+				frame.setVisible(false);
 				frame = new JFrame("Pantalla de Pelea");
+				frame.setSize(1280, 720);
 				frame.setLocationRelativeTo(null);
 		        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		        frame.setResizable(false);
-		        Partida partida = new Partida();
+		        Partida partida = new Partida();// A PARTIDA LE PASARE EL STRING PATH 
 		        frame.add(partida);
 		        partida.empezarPartida();
 		        frame.pack();
 		        frame.setVisible(true);
+		        //System.out.println("Se acaba el juego");
+		        
 				break;
 				default:
+					System.out.println("Escoge la opcion 1(verde)");
 					break;
 			}
 			

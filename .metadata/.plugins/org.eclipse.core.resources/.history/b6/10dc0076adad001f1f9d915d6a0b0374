@@ -112,9 +112,20 @@ public class Partida extends JPanel implements Runnable {
 		    jugador.setDefendiendo(movimientojugador.defensa);
 		    jugador2.setDefendiendo(movimientoJugador2.defensa);
 		    if(jugador.getSaludActual() == 0 || jugador2.getSaludActual() == 0 ||tiempoRestante <=0 ) {
-		    	
-		        	
-		    	System.out.println("Partida terminada, tengo que pasar frame a un frame donde ponga Congratulations al ganador y luego volver al inicio");
+		    	acabada = true;
+		    	if(acabada) {
+		        	//frame.setVisible(false);
+					JFrame frame = new JFrame("Ganador");
+					frame.setSize(1280, 720);
+					frame.setLocationRelativeTo(null);
+			        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			        frame.setResizable(false);
+			        FondoPantalla fondoPantalla = new FondoPantalla("/Imagenes/PantallaGanador");
+			        frame.setContentPane(fondoPantalla);
+					frame.revalidate();
+					frame.setResizable(true);
+		        }
+		    	//System.out.println("Partida terminada, tengo que pasar frame a un frame donde ponga Congratulations al ganador y luego volver al inicio");
 		    }
 	}
 

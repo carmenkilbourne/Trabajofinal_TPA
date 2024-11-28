@@ -9,7 +9,6 @@ import java.awt.Image;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import entidad.Jugador1;
@@ -26,10 +25,6 @@ public class Partida extends JPanel implements Runnable {
     private int contador =0;
     private int c =0;
     private int tiempoRestante =1;
-    public static int FrameWidth = 1280;
-	public static int FrameHeight = 720;
-	public boolean acabada = false;
-    
 
 
     private double tiempoSleep =0;
@@ -39,7 +34,7 @@ public class Partida extends JPanel implements Runnable {
 
     public long tiempo = 0;
 	public Partida() { // PARA QUE PONGA DISTINTOS FONDOS SOLO HACE FALTA HACER public Partida(string path)
-		this.setPreferredSize(new Dimension(FrameWidth, FrameHeight));
+		this.setPreferredSize(new Dimension(1280, 720));
 		this.setBackground(Color.white);
 		this.addKeyListener(movimientojugador);
         this.addKeyListener(movimientoJugador2); 
@@ -112,9 +107,7 @@ public class Partida extends JPanel implements Runnable {
 		    jugador.setDefendiendo(movimientojugador.defensa);
 		    jugador2.setDefendiendo(movimientoJugador2.defensa);
 		    if(jugador.getSaludActual() == 0 || jugador2.getSaludActual() == 0 ||tiempoRestante <=0 ) {
-		    	
-		        	
-		    	System.out.println("Partida terminada, tengo que pasar frame a un frame donde ponga Congratulations al ganador y luego volver al inicio");
+		    	//System.out.println("Partida terminada, tengo que pasar frame a un frame donde ponga Congratulations al ganador y luego volver al inicio");
 		    }
 	}
 
@@ -123,13 +116,13 @@ public class Partida extends JPanel implements Runnable {
 		Graphics2D g1 = (Graphics2D) g;
 		 // Dibujar el fondo
         if (fondoPartida != null) {
-            g1.drawImage(fondoPartida, 0, 0, FrameWidth, FrameHeight, null);	//CAMBIAR A size DINAMICO
+            g1.drawImage(fondoPartida, 0, 0, 1280, 720, null);	//CAMBIAR A DINAMICO
         }
 		jugador.draw(g1);
 		jugador2.draw(g1);
 	    g1.setColor(Color.BLACK);
 	    g1.setFont(new Font("Arial", Font.BOLD, 30));
-	    tiempoRestante = 60-c;	//si es 0 tambien damos por terminada la partida
+	    tiempoRestante = 5-c;	//si es 0 tambien damos por terminada la partida
 	    g1.drawString(tiempoRestante + "s", (1280/ 2)-30, 50+30);
 		g1.dispose();
 	}
@@ -141,14 +134,11 @@ public class Partida extends JPanel implements Runnable {
 		 }
 		 return false;
 	 }
-	 public boolean estanColisionando(Jugador1 jugador1, Jugador1 jugador2) {//no  funciona aun 
+	 public boolean estanColisionando(Jugador1 jugador1, Jugador1 jugador2) {
 		    return jugador1.getX() < jugador2.getX() + jugador2.getanchuraJugador() &&
 		           jugador1.getX() + jugador1.getanchuraJugador() > jugador2.getX() &&
 		           jugador1.getY() < jugador2.getY() + jugador2.getalturaJugador() &&
 		           jugador1.getY() + jugador1.getalturaJugador() > jugador2.getY();
 		}
-	 public boolean partidaAcabada() {
-		 return acabada;
-	 }	
 
 }
