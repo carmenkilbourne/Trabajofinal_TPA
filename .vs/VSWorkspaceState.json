@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Videojuego",
+    "\\Videojuego\\src",
+    "\\Videojuego\\src\\pantallaInicio"
   ],
+  "SelectedNode": "\\Videojuego\\src\\pantallaInicio",
   "PreviewInSolutionExplorer": false
 }

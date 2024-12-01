@@ -33,10 +33,10 @@ public class Controlador implements KeyListener {
 
 		// Inicializar pantallas
 		PantallaInicio pantallaInicio = new PantallaInicio();
-		PantallaPelea pantallaPelea = new PantallaPelea();
+		//PantallaPelea pantallaPelea = new PantallaPelea();
 		// Añadir pantallas al panel principal
 		mainPanel.add(pantallaInicio.getPanel(), "PantallaInicio");
-		mainPanel.add(pantallaPelea.getPanel(), "PantallaPelea");
+		//mainPanel.add(pantallaPelea.getPanel(), "PantallaPelea");
 
 
 		frame.add(mainPanel);
@@ -110,27 +110,34 @@ public class Controlador implements KeyListener {
 		case "Game":
 			switch (mapa) {
 			case 1:
-				frame.setVisible(false);
-				frame = new JFrame("Pantalla de Pelea");
-				frame.setSize(1280, 720);
-				frame.setLocationRelativeTo(null);
-		        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		        frame.setResizable(false);
-		        Partida partida = new Partida();// A PARTIDA LE PASARE EL STRING PATH 
-		        frame.add(partida);
-		        partida.empezarPartida();
-		        frame.pack();
-		        frame.setVisible(true);
-		        //System.out.println("Se acaba el juego");
-		        
+				path = "/Imagenes/mapa1.jpg";	//cambiar a imagen que muestre los cuatro mapas		        
+				break;
+			case 2:
+				path = "/Imagenes/fondo1.jpg";	//cambiar a imagen que muestre los cuatro mapas		        
+				break;
+			case 3:
+				path = "/Imagenes/mapa3.png";	//cambiar a imagen que muestre los cuatro mapas		        
+				break;
+			case 4:
+				path = "/Imagenes/mapa4.png";	//cambiar a imagen que muestre los cuatro mapas		        
 				break;
 				default:
-					System.out.println("Escoge la opcion 1(verde)");
+					System.out.println("Mapa escogido incorrectamente");
 					break;
 			}
-			
+			frame.setVisible(false);
+			frame = new JFrame("Pantalla de Pelea");
+			frame.setSize(1280, 720);
+			frame.setLocationRelativeTo(null);
+	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	        frame.setResizable(false);
+	        Partida partida = new Partida(path);// A PARTIDA LE PASARE EL STRING PATH 
+	        frame.add(partida);
+	        partida.empezarPartida();
+	        frame.pack();
+	        frame.setVisible(true);
+			frame.setResizable(true);
 			break;
-		// Agregar más casos según sea necesario
 		}
 		//fondoPantalla = new FondoPantalla(path);
 		//frame.setContentPane(fondoPantalla);
@@ -153,6 +160,7 @@ public class Controlador implements KeyListener {
 			System.out.println("Escape key pressed");
 			cambiarPantalla("SeleccionMapa");
 		}
+		
 	}
 
 	@Override

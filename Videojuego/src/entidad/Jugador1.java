@@ -60,12 +60,14 @@ public class Jugador1 extends Entity implements Jugador{
 	}
 
 	public void update() {
+		int panelHeigh = p.getPanelHeight();
+		int panelWidth = p.getPanelWidth();
 		if (movimientojugador.derecha == true) {
 			direccion = "derecha";
 			esDerecha = true;
 			x = x + desplazamiento;
-			if (x > 1280 - 200) { // limite de frame 1280-200
-				x = 1280 - 200;
+			if (x > panelWidth - 200) { // limite de frame 1280-200
+				x = panelWidth - 200;
 			}
 		}
 		if (movimientojugador.izquierda == true) {

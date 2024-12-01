@@ -8,21 +8,20 @@ import javax.swing.JPanel;
 import java.awt.Graphics;
 public class PantallaPelea {
     private JPanel panel;
+    private JLayeredPane layeredPane;
 
-    public PantallaPelea() {
-        panel = new JPanel() {
-			private static final long serialVersionUID = 1L;
 
-			@Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                g.drawString("¡Comienza la pelea!", 50, 50);
-            }
-        };
-        panel.setLayout(null); // Cambia el layout si es necesario
+    public PantallaPelea(String path) {
+    	 layeredPane = new JLayeredPane();
+    	 layeredPane.setPreferredSize(new java.awt.Dimension(1280, 720));
+         Partida partida = new Partida(path);
+         layeredPane.add(partida, Integer.valueOf(0));
     }
 
     public JPanel getPanel() {
+        JPanel panel = new JPanel();
+        panel.setLayout(null);
+        panel.add(layeredPane);
         return panel;
     }
 }

@@ -38,14 +38,14 @@ public class Partida extends JPanel implements Runnable {
     public int areaefectividady = 160; //distancia entre jugadores para que el daño sea efectivo
 
     public long tiempo = 0;
-	public Partida() { // PARA QUE PONGA DISTINTOS FONDOS SOLO HACE FALTA HACER public Partida(string path)
+	public Partida(String path) { // PARA QUE PONGA DISTINTOS FONDOS SOLO HACE FALTA HACER public Partida(string path)
 		this.setPreferredSize(new Dimension(FrameWidth, FrameHeight));
 		this.setBackground(Color.white);
 		this.addKeyListener(movimientojugador);
         this.addKeyListener(movimientoJugador2); 
 		this.setFocusable(true);
 		 try {
-			 fondoPartida = ImageIO.read(getClass().getResourceAsStream("/Imagenes/mapa1.jpg")); // cambiar a path
+			 fondoPartida = ImageIO.read(getClass().getResourceAsStream(path)); // cambiar a path
 			 //tendremos que coger el escenario que hayamos escogido en la anterior frame
 	        } catch (IOException e) {
 	            System.err.println("No se pudo cargar el fondo: " + e.getMessage());
@@ -122,15 +122,17 @@ public class Partida extends JPanel implements Runnable {
 		super.paintComponent(g); // coge de la clase JPanel
 		Graphics2D g1 = (Graphics2D) g;
 		 // Dibujar el fondo
+		 int panelWidth = this.getWidth();
+		 int panelHeight = this.getHeight();
         if (fondoPartida != null) {
-            g1.drawImage(fondoPartida, 0, 0, FrameWidth, FrameHeight, null);	//CAMBIAR A size DINAMICO
+            g1.drawImage(fondoPartida, 0, 0, panelWidth, panelHeight, null);	//CAMBIAR A size DINAMICO
         }
 		jugador.draw(g1);
 		jugador2.draw(g1);
 	    g1.setColor(Color.BLACK);
 	    g1.setFont(new Font("Arial", Font.BOLD, 30));
 	    tiempoRestante = 60-c;	//si es 0 tambien damos por terminada la partida
-	    g1.drawString(tiempoRestante + "s", (1280/ 2)-30, 50+30);
+	    g1.drawString(tiempoRestante + "s", (panelWidth/ 2)-30, 50+30);
 		g1.dispose();
 	}
 	 public boolean esEfectivo() {
@@ -150,5 +152,13 @@ public class Partida extends JPanel implements Runnable {
 	 public boolean partidaAcabada() {
 		 return acabada;
 	 }	
+	 public int getPanelHeight() {
+		    return this.getHeight();
+		}
+
+		public int getPanelWidth() {
+		    return this.getWidth();
+		}
+
 
 }

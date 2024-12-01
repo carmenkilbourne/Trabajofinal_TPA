@@ -3,15 +3,20 @@
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<item key="replaceBarOpen" value="false"/>
 	<list key="searchhistory">
-		<item value="game"/>
+		<item value="FrameWidth"/>
+		<item value="FrameWidth#"/>
+		<item value="1280"/>
+		<item value="mapa"/>
+		<item value="fondo"/>
 		<item value="1000"/>
+		<item value="cambiar"/>
+		<item value="pelea"/>
+		<item value="game"/>
 		<item value="cambiarPa"/>
 		<item value="cambi"/>
 		<item value="FONDO"/>
 		<item value="mouse"/>
 		<item value="system"/>
-		<item value="mapa"/>
 		<item value="mapa1"/>
-		<item value="fondo"/>
 	</list>
 </section>
