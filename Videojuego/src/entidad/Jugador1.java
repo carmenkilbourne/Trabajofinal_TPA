@@ -6,11 +6,9 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-import pantallaInicio.Jugador;
-import pantallaInicio.MovimientoJugador;
 import pantallaInicio.Partida;
 
-public class Jugador1 extends Entity implements Jugador{
+public class Jugador1 extends Entity implements IJugador{
 	Partida p;
 	MovimientoJugador movimientojugador;
 	private int saludMax = 100;// salud inicial del jugador

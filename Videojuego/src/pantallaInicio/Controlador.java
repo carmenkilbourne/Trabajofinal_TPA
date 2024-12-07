@@ -1,6 +1,7 @@
 package pantallaInicio;
 
 import java.awt.CardLayout;
+import java.awt.Container;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JFrame;
@@ -35,7 +36,10 @@ public class Controlador implements KeyListener {
 		PantallaInicio pantallaInicio = new PantallaInicio();
 		//PantallaPelea pantallaPelea = new PantallaPelea();
 		// Añadir pantallas al panel principal
+		PantallaGanador pantallaGanador = new PantallaGanador();
 		mainPanel.add(pantallaInicio.getPanel(), "PantallaInicio");
+		//mainPanel.add(pantallaInicio.getPanel(), "PantallaInicio");
+
 		//mainPanel.add(pantallaPelea.getPanel(), "PantallaPelea");
 
 

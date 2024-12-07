@@ -3,6 +3,12 @@
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<item key="replaceBarOpen" value="false"/>
 	<list key="searchhistory">
+		<item value="SeleccionCaracteres"/>
+		<item value="upda"/>
+		<item value="movimientoJu"/>
+		<item value="altura"/>
+		<item value="200"/>
+		<item value="fra"/>
 		<item value="FrameWidth"/>
 		<item value="FrameWidth#"/>
 		<item value="1280"/>
@@ -12,11 +18,5 @@
 		<item value="cambiar"/>
 		<item value="pelea"/>
 		<item value="game"/>
-		<item value="cambiarPa"/>
-		<item value="cambi"/>
-		<item value="FONDO"/>
-		<item value="mouse"/>
-		<item value="system"/>
-		<item value="mapa1"/>
 	</list>
 </section>

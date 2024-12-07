@@ -1,0 +1,44 @@
+package entidad;
+
+import Interfaces.IMovimiento;
+
+public class MovimientoJugador1 implements IMovimiento {
+    private Jugador1 jugador1;
+
+    public MovimientoJugador1(Jugador1 jugador1) {
+        this.jugador1 = jugador1;
+    }
+
+    @Override
+    public void moverArriba() {
+        jugador1.setY(jugador1.getY() - 10); // Ejemplo de movimiento
+    }
+
+    @Override
+    public void moverAbajo() {
+        jugador1.setY(jugador1.getY() + 10);
+    }
+
+    @Override
+    public void moverIzquierda() {
+        jugador1.setX(jugador1.getX() - 10);
+    }
+
+    @Override
+    public void moverDerecha() {
+        jugador1.setX(jugador1.getX() + desplazamiento);
+        if (x > panelWidth - 200) { // limite de frame 1280-200
+			x = panelWidth - 200;
+		}
+    }
+
+    @Override
+    public void atacar() {
+        // Lógica de ataque
+    }
+
+    @Override
+    public void defender() {
+        jugador1.setDefendiendo(true);
+    }
+}

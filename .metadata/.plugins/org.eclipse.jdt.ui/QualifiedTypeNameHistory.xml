@@ -2,4 +2,5 @@
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="java.awt.Color"/>
     <fullyQualifiedTypeName name="pantallaInicio.FondoPantalla"/>
+    <fullyQualifiedTypeName name="entidad.GestorJugador"/>
 </qualifiedTypeNameHistroy>

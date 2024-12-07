@@ -1,0 +1,159 @@
+package pantallaInicio;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import entidad.Jugador1;
+import entidad.Jugador2;
+import entidad.MovimientoJugador;
+import entidad.MovimientoJugador2;
+import entidad.Temporizador;
+
+
+public class Partida extends JPanel implements Runnable {
+    private static final long serialVersionUID = 1L;
+    MovimientoJugador movimientojugador = new MovimientoJugador();
+    MovimientoJugador2 movimientoJugador2 = new MovimientoJugador2();
+    Thread hiloPartida; // Empieza el hilo para el loop
+    Jugador1 jugador = new Jugador1(this, movimientojugador);
+    Jugador2 jugador2 = new Jugador2(this, movimientoJugador2);
+    private Image fondoPartida;
+    private int contador = 0;
+    private int c = 0;
+    public boolean acabada = false;
+
+    // Instancia del temporizador
+    private Temporizador temporizador;
+
+    private double tiempoSleep = 0;
+    int FPS = 60; // 60 FRAMES PER SECOND
+
+    public Partida(String path) { 
+        this.setPreferredSize(new Dimension(1280, 720));
+        this.setBackground(Color.white);
+        this.addKeyListener(movimientojugador);
+        this.addKeyListener(movimientoJugador2);
+        this.setFocusable(true);
+        
+        // Inicializar el temporizador con 60 segundos (puedes cambiar este valor)
+        temporizador = new Temporizador(60); 
+
+        try {
+            fondoPartida = ImageIO.read(getClass().getResourceAsStream(path)); // Cambiar a path
+        } catch (IOException e) {
+            System.err.println("No se pudo cargar el fondo: " + e.getMessage());
+        }
+    }
+
+    public void empezarPartida() {
+        // Iniciar el temporizador cuando comienza la partida
+        temporizador.reset();
+        hiloPartida = new Thread(this);
+        hiloPartida.start();
+    }
+
+    @Override
+    public void run() {
+        double intervalo = 1000000000 / FPS; // 0.016s pintamos la pantalla
+        double intervalosiguiente = System.nanoTime() + intervalo;
+        while (hiloPartida != null) {
+            tiempo = System.nanoTime();
+            update();
+            repaint();
+            contador++;
+
+            // Actualizar el temporizador
+            temporizador.actualizar();
+
+            try {
+                double tiempoSleep = (intervalosiguiente - System.nanoTime()) / 1000000;
+                if (tiempoSleep < 0)
+                    tiempoSleep = 0;
+                Thread.sleep((long) (tiempoSleep)); // t de sleep en milisegundos
+                if (contador >= 63) {
+                    contador = 0;
+                    c++;
+                }
+
+                intervalosiguiente += intervalo;
+
+                if (temporizador.isTiempoAcabado()) {
+                    // Cuando el tiempo haya terminado, puedes finalizar la partida
+                    System.out.println("El tiempo ha acabado!");
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void update() {
+        jugador.update();
+        jugador2.update();
+        if (esEfectivo()) {
+            if (movimientojugador.atacar) {
+                jugador.atacar(jugador2);
+                movimientojugador.atacar = false; // Reiniciar el ataque
+            }
+            if (movimientoJugador2.atacar) {
+                jugador2.atacar(jugador);
+                movimientoJugador2.atacar = false;
+            }
+            if (movimientojugador.patada) {
+                jugador.atacar(jugador2);
+                movimientojugador.patada = false; // Reiniciar el ataque
+            }
+        }
+        jugador.setDefendiendo(movimientojugador.defensa);
+        jugador2.setDefendiendo(movimientoJugador2.defensa);
+        if (jugador.getSaludActual() == 0 || jugador2.getSaludActual() == 0 || temporizador.isTiempoAcabado()) {
+            System.out.println("Partida terminada");
+        }
+    }
+
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g1 = (Graphics2D) g;
+        // Dibujar el fondo
+        int panelWidth = this.getWidth();
+        int panelHeight = this.getHeight();
+        if (fondoPartida != null) {
+            g1.drawImage(fondoPartida, 0, 0, panelWidth, panelHeight, null);
+        }
+        jugador.draw(g1);
+        jugador2.draw(g1);
+        g1.setColor(Color.BLACK);
+        g1.setFont(new Font("Arial", Font.BOLD, 30));
+
+        // Mostrar el tiempo restante en la pantalla
+        g1.drawString(temporizador.getTiempoRestante() + "s", (panelWidth / 2) - 30, 50 + 30);
+        g1.dispose();
+    }
+
+    public boolean esEfectivo() {
+        int areaefectividad = Math.abs(jugador.getX() - jugador2.getX());
+        int areaefectividady = Math.abs(jugador.getY() - jugador2.getY());
+        return areaefectividad <= 160 && areaefectividady == 0;
+    }
+
+    public boolean partidaAcabada() {
+        return acabada || temporizador.isTiempoAcabado();
+    }
+
+    public int getPanelHeight() {
+        return this.getHeight();
+    }
+
+    public int getPanelWidth() {
+        return this.getWidth();
+    }
+}

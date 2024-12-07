@@ -12,8 +12,11 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import entidad.GestorInterraccionesJugadores;
 import entidad.Jugador1;
 import entidad.Jugador2;
+import entidad.MovimientoJugador;
+import entidad.MovimientoJugador2;
 //cambiar nombre a bucle de particula
 public class Partida extends JPanel implements Runnable {
 	private static final long serialVersionUID = 1L;
@@ -24,18 +27,15 @@ public class Partida extends JPanel implements Runnable {
     Jugador2 jugador2 = new Jugador2(this, movimientoJugador2);
     private Image fondoPartida;
     private int contador =0;
-    private int c =0;
+     private int c =0;
     private int tiempoRestante =1;
     public static int FrameWidth = 1280;
 	public static int FrameHeight = 720;
 	public boolean acabada = false;
-    
-
-
-    private double tiempoSleep =0;
+    public GestorInterraccionesJugadores gestorJugador;
 	int FPS = 60; // 60 FRAMES PER SECOND
-    public int areaefectividad = 160; //distancia entre jugadores para que el daño sea efectivo
-    public int areaefectividady = 160; //distancia entre jugadores para que el daño sea efectivo
+    //public int areaefectividad = 160; //distancia entre jugadores para que el daño sea efectivo
+   // public int areaefectividady = 160; //distancia entre jugadores para que el daño sea efectivo
 
     public long tiempo = 0;
 	public Partida(String path) { // PARA QUE PONGA DISTINTOS FONDOS SOLO HACE FALTA HACER public Partida(string path)
@@ -55,6 +55,7 @@ public class Partida extends JPanel implements Runnable {
 	public void empezarPartida() {
 		hiloPartida = new Thread(this);
 		hiloPartida.start();
+		gestorJugador = new GestorInterraccionesJugadores(jugador,jugador2,movimientojugador,movimientoJugador2);
 	}
 	
 	@Override
@@ -64,6 +65,8 @@ public class Partida extends JPanel implements Runnable {
 		double intervalosiguiente = System.nanoTime() + intervalo;
 		while (hiloPartida != null) {
 			tiempo = System.nanoTime();
+			gestorJugador = new GestorInterraccionesJugadores(jugador,jugador2,movimientojugador,movimientoJugador2);
+
 			update();
 			repaint();
 			contador++;
@@ -87,6 +90,12 @@ public class Partida extends JPanel implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		    if (tiempoRestante == 0) {
+	            // Fin de la partida
+	            hiloPartida = null;
+	            Controlador.getInstance().cambiarPantalla("SeleccionCaracteres");
+	        }
+
 		}
 
 	}
@@ -94,28 +103,14 @@ public class Partida extends JPanel implements Runnable {
 	public void update() {
 		jugador.update();
 		jugador2.update();
-		if(esEfectivo()) {
-		 if (movimientojugador.atacar) {
-		        jugador.atacar(jugador2);
-		        movimientojugador.atacar = false; // reiniciar el ataque para evitar múltiples ataques continuos
-		    }
-		    // Condición para que el jugador 2 ataque al jugador 1
-		    if (movimientoJugador2.atacar) {
-		        jugador2.atacar(jugador);
-		        movimientoJugador2.atacar = false;
-		    }
-		    if (movimientojugador.patada) {
-		        jugador.atacar(jugador2);
-		        movimientojugador.patada = false; // reiniciar el ataque para evitar múltiples ataques continuos
-		    }
-		 	}
-		    jugador.setDefendiendo(movimientojugador.defensa);
-		    jugador2.setDefendiendo(movimientoJugador2.defensa);
-		    if(jugador.getSaludActual() == 0 || jugador2.getSaludActual() == 0 ||tiempoRestante <=0 ) {
-		    	
-		        	
-		    	System.out.println("Partida terminada, tengo que pasar frame a un frame donde ponga Congratulations al ganador y luego volver al inicio");
-		    }
+        gestorJugador.actualizarMovimiento();
+		if(gestorJugador.partidaAcabada()) {
+			hiloPartida = null;
+			Controlador.getInstance().cambiarPantalla("SeleccionCaracteres");
+
+			System.out.println(
+					"Partida terminada, tengo que pasar frame a un frame donde ponga Congratulations al ganador y luego volver al inicio");
+		}
 	}
 
 	public void paintComponent(Graphics g) {
@@ -135,23 +130,6 @@ public class Partida extends JPanel implements Runnable {
 	    g1.drawString(tiempoRestante + "s", (panelWidth/ 2)-30, 50+30);
 		g1.dispose();
 	}
-	 public boolean esEfectivo() {
-		 areaefectividad = Math.abs(jugador.getX()-jugador2.getX());
-		 areaefectividady = Math.abs(jugador.getY()-jugador2.getY());
-		 if (areaefectividad <= 160 && areaefectividady == 0) {
-			 return true;
-		 }
-		 return false;
-	 }
-	 public boolean estanColisionando(Jugador1 jugador1, Jugador1 jugador2) {//no  funciona aun 
-		    return jugador1.getX() < jugador2.getX() + jugador2.getanchuraJugador() &&
-		           jugador1.getX() + jugador1.getanchuraJugador() > jugador2.getX() &&
-		           jugador1.getY() < jugador2.getY() + jugador2.getalturaJugador() &&
-		           jugador1.getY() + jugador1.getalturaJugador() > jugador2.getY();
-		}
-	 public boolean partidaAcabada() {
-		 return acabada;
-	 }	
 	 public int getPanelHeight() {
 		    return this.getHeight();
 		}
@@ -159,6 +137,4 @@ public class Partida extends JPanel implements Runnable {
 		public int getPanelWidth() {
 		    return this.getWidth();
 		}
-
-
 }
