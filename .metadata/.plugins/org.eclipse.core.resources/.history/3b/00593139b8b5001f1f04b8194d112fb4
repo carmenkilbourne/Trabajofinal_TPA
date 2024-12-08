@@ -1,6 +1,6 @@
 package entidad;
 
-import interfaces.IMovimiento;
+import Interfaces.IMovimiento;
 
 public class MovimientoJugador1 implements IMovimiento {
     private Jugador1 jugador1;
@@ -13,7 +13,7 @@ public class MovimientoJugador1 implements IMovimiento {
 
 	/*
 	 * @Override public void moverArriba() { jugador1.setY(jugador1.getY() - 10); //
-	 *  }
+	 * Ejemplo de movimiento }
 	 * 
 	 * @Override public void moverAbajo() { jugador1.setY(jugador1.getY() + 10); }
 	 * 
@@ -23,7 +23,7 @@ public class MovimientoJugador1 implements IMovimiento {
 	 * @Override public void moverDerecha() { jugador1.setX(jugador1.getX() +
 	 * desplazamiento); }
 	 * 
-	 * @Override public void atacar() {  }
+	 * @Override public void atacar() { // Lógica de ataque }
 	 * 
 	 * @Override public void defender() { jugador1.setDefendiendo(true); } public
 	 * void setDesplazamiento(int desplazamiento) { this.desplazamiento =

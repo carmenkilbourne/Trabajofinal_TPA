@@ -1,0 +1,8 @@
+package interfaces;
+
+/*
+ * Clase Partida que va a empezar un hilo(Thread) y que va a parar el hilo*/
+public interface IPartida {
+	void run();
+	void stop();
+}

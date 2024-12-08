@@ -21,7 +21,7 @@ import pantallas.Controlador.CHOICEP1;
 import pantallas.Controlador.CHOICEP2;
 
 //cambiar nombre a bucle de particula
-public class Partida extends JPanel implements Runnable{
+public class Partida extends JPanel implements Runnable {
 	private static final long serialVersionUID = 1L;
 	MovimientoJugador movimientojugador = new MovimientoJugador();
 	MovimientoJugador2 movimientoJugador2 = new MovimientoJugador2();
@@ -35,8 +35,8 @@ public class Partida extends JPanel implements Runnable{
 	public boolean acabada = false;
 	public GestorInterraccionesJugadores gestorJugador;	
 	int FPS = 60; // 60 FRAMES PER SECOND
+	
 	public long tiempo = 0;
-	private boolean isRunning;
 
 	public Partida(String path, CHOICEP1 choiceP1, CHOICEP2 choiceP2) { // PARA QUE PONGA DISTINTOS FONDOS SOLO HACE FALTA HACER public Partida(string
 									// path)
@@ -94,6 +94,7 @@ public class Partida extends JPanel implements Runnable{
 			}
 			if (tiempoRestante == 0) { // Fin de la partida
 				hiloPartida = null;
+				Controlador.getInstance().cambiarPantalla("SeleccionCaracteres");
 			}
 
 		}
@@ -141,8 +142,5 @@ public class Partida extends JPanel implements Runnable{
 
 	public int getTiempoRestante() {
 		return c;
-	}
-	protected static Partida getPartida() {
-		return getPartida();
 	}
 }

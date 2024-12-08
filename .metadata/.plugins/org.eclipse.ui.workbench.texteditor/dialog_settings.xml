@@ -3,6 +3,7 @@
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<item key="replaceBarOpen" value="false"/>
 	<list key="searchhistory">
+		<item value="gestor"/>
 		<item value="choice"/>
 		<item value="frameWidth"/>
 		<item value="frame"/>
@@ -17,6 +18,5 @@
 		<item value="FrameWidth"/>
 		<item value="FrameWidth#"/>
 		<item value="1280"/>
-		<item value="mapa"/>
 	</list>
 </section>

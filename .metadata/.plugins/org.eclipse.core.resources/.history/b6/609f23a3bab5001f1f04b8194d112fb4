@@ -94,6 +94,7 @@ public class Partida extends JPanel implements Runnable{
 			}
 			if (tiempoRestante == 0) { // Fin de la partida
 				hiloPartida = null;
+				Controlador.getInstance().cambiarPantalla("SeleccionCaracteres");
 			}
 
 		}
