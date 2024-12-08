@@ -56,6 +56,25 @@ public class Jugador1 extends Entity implements IJugador{
 			e.printStackTrace();
 		}
 	}
+	public void getImagenJugadorHada() {
+		try {
+			salto = ImageIO.read(getClass().getResourceAsStream("/Imagenes/frente.png"));
+			derecha = ImageIO.read(getClass().getResourceAsStream("/Imagenes/izquierda.png"));
+			izquierda = ImageIO.read(getClass().getResourceAsStream("/Imagenes/izquierda.png"));
+			abajo1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/izquierda.png"));
+			ataque1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/izquierda.png"));
+			ataque12 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/izquierda.png"));
+			patada1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/patada1.png"));
+			patada2 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/patadapow.png"));
+			patada1i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/patadaIzquierda.png"));
+			patada2i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/patadapowi.png"));
+			ataque1i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/MovMano1i.png"));
+			ataque2i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/pow2i.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	 
 
 	public void update() {
 		int panelHeigh = p.getPanelHeight();

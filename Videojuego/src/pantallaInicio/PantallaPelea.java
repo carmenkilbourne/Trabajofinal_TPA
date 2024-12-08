@@ -14,8 +14,8 @@ public class PantallaPelea {
     public PantallaPelea(String path) {
     	 layeredPane = new JLayeredPane();
     	 layeredPane.setPreferredSize(new java.awt.Dimension(1280, 720));
-         Partida partida = new Partida(path);
-         layeredPane.add(partida, Integer.valueOf(0));
+         //Partida partida = new Partida(path);
+         //layeredPane.add(partida, Integer.valueOf(0));
     }
 
     public JPanel getPanel() {

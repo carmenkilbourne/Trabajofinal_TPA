@@ -71,7 +71,7 @@ public class Controlador implements KeyListener {
 	}
 
 	// Selección de personajes
-	public static enum CHOICEP1 {
+	public static enum CHOICEP1 {	//deberia cambiar para ser solo un enum
 		GIGANTE1, HADA1, NOTHING
 	}
 
@@ -98,14 +98,14 @@ public class Controlador implements KeyListener {
 			frame.setResizable(true);
 			break;
 		case "SeleccionCaracteres":
-			path = "/Imagenes/seleccion_personajes.png";
+			path = "/Imagenes/Fondos/seleccion_personajes.png";
 			fondoPantalla = new FondoPantalla(path);
 			frame.setContentPane(fondoPantalla);
 			frame.revalidate();
 			frame.setResizable(true);
 			break;
 		case "SeleccionMapa":
-			path = "/Imagenes/seleccion_mapa.png";	//cambiar a imagen que muestre los cuatro mapas
+			path = "/Imagenes/Fondos/seleccion_mapa.png";	//cambiar a imagen que muestre los cuatro mapas
 			fondoPantalla = new FondoPantalla(path);
 			frame.setContentPane(fondoPantalla);
 			frame.revalidate();
@@ -114,16 +114,16 @@ public class Controlador implements KeyListener {
 		case "Game":
 			switch (mapa) {
 			case 1:
-				path = "/Imagenes/mapa1.jpg";	//cambiar a imagen que muestre los cuatro mapas		        
+				path = "/Imagenes/Mapas/Montana.jpg";	//cambiar a imagen que muestre los cuatro mapas		        
 				break;
 			case 2:
-				path = "/Imagenes/fondo1.jpg";	//cambiar a imagen que muestre los cuatro mapas		        
+				path = "/Imagenes/Mapas/Jungla.jpg";	//cambiar a imagen que muestre los cuatro mapas		        
 				break;
 			case 3:
-				path = "/Imagenes/mapa3.png";	//cambiar a imagen que muestre los cuatro mapas		        
+				path = "/Imagenes/Mapas/BoxingRing.png";	//cambiar a imagen que muestre los cuatro mapas		        
 				break;
 			case 4:
-				path = "/Imagenes/mapa4.png";	//cambiar a imagen que muestre los cuatro mapas		        
+				path = "/Imagenes/Mapas/Candyland.jpg";	//cambiar a imagen que muestre los cuatro mapas		        
 				break;
 				default:
 					System.out.println("Mapa escogido incorrectamente");
@@ -135,7 +135,8 @@ public class Controlador implements KeyListener {
 			frame.setLocationRelativeTo(null);
 	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        frame.setResizable(false);
-	        Partida partida = new Partida(path);// A PARTIDA LE PASARE EL STRING PATH 
+	        //Controlador.choiceP1	Controlador.choiceP2
+	        Partida partida = new Partida(path,Controlador.choiceP1,Controlador.choiceP2);// A PARTIDA LE PASARE EL STRING PATH 
 	        frame.add(partida);
 	        partida.empezarPartida();
 	        frame.pack();
@@ -175,10 +176,6 @@ public class Controlador implements KeyListener {
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// Implementar si es necesario
-	}
-
-	public static void main(String[] args) {
-		new Controlador();
 	}
 	
 }

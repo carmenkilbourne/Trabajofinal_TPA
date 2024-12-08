@@ -1,0 +1,20 @@
+package pantallaInicio;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics2D;
+
+public class DibujarJugador extends Partida {
+	public DibujarJugador(String path) {
+		super(path);
+		Graphics2D g1 = (Graphics2D) g;
+		jugador.draw(g1);
+		jugador2.draw(g1);
+		g1.setColor(Color.BLACK);
+		g1.setFont(new Font("Arial", Font.BOLD, 30));
+		tiempoRestante = 60 - c; // si es 0 tambien damos por terminada la partida
+		g1.drawString(tiempoRestante + "s", (panelWidth / 2) - 30, 50 + 30);
+		g1.dispose();
+	}
+
+}
