@@ -2,7 +2,7 @@ package entidad;
 
 import java.awt.Image;
 
-import pantallas.Controlador;
+import pantallaInicio.Controlador;
 
 public class GestorInterraccionesJugadores {
     private Jugador1 jugador1;

@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-import pantallas.Partida;
+import pantallaInicio.Partida;
 
 public class Jugador1 extends Entity implements IJugador{
 	Partida p;
