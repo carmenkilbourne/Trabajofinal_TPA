@@ -33,7 +33,7 @@ public class GestorInterraccionesJugadores {
 			}
 			if (movimientojugador.patada) {
 				jugador1.atacar(jugador2);
-			s	movimientojugador.patada = false; // reiniciar el ataque para evitar múltiples ataques continuos
+				movimientojugador.patada = false; // reiniciar el ataque para evitar múltiples ataques continuos
 			}
 			if (movimientoJugador2.patada) {
 				jugador1.atacar(jugador1);
