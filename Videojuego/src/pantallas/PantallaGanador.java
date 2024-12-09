@@ -10,7 +10,7 @@ public class PantallaGanador {
 
 		FondoPantalla pantallaInicio = new FondoPantalla("/Imagenes/PantallaInicio.png");
         pantallaInicio.setBounds(0, 0, 1480, 720); // Ajustar tamaño del fondo
-
+        
         layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new java.awt.Dimension(1480, 720));
         layeredPane.add(pantallaInicio, Integer.valueOf(0)); // Poner fondo de pantalla en la capa 0
@@ -24,3 +24,4 @@ public class PantallaGanador {
 	        return panel;
 	    }
 }
+

@@ -200,4 +200,7 @@ public class Jugador2 extends Entity implements IJugador{
     public int getSaludActual() {
         return saludActual;
     }
+    public boolean esDerecha() {
+		  return esDerecha;
+	  }
 }

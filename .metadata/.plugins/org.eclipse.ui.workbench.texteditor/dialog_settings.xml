@@ -3,6 +3,11 @@
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<item key="replaceBarOpen" value="false"/>
 	<list key="searchhistory">
+		<item value="abajo1"/>
+		<item value="salto"/>
+		<item value="fondoPa"/>
+		<item value="direccion"/>
+		<item value="esdere"/>
 		<item value="gestor"/>
 		<item value="choice"/>
 		<item value="frameWidth"/>
@@ -13,10 +18,5 @@
 		<item value="upda"/>
 		<item value="movimientoJu"/>
 		<item value="altura"/>
-		<item value="200"/>
-		<item value="fra"/>
-		<item value="FrameWidth"/>
-		<item value="FrameWidth#"/>
-		<item value="1280"/>
 	</list>
 </section>

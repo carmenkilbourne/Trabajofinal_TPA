@@ -1,6 +1,6 @@
 package pantallas;
 
 public interface IPantalla {
-    void update();
-    void render();
+    void update();	//metodo que va a refrescar la pantalla 
+    void render();	//metodo que 
 }

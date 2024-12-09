@@ -28,7 +28,6 @@ public class Partida extends JPanel implements Runnable{
 	Thread hiloPartida; // empieza el hilo para el loop
 	Jugador1 jugador = new Jugador1(this, movimientojugador);
 	Jugador2 jugador2 = new Jugador2(this, movimientoJugador2);
-	private Image fondoPartida;
 	private int contador = 0;
 	private int c = 0;
 	private int tiempoRestante = 1;
@@ -37,23 +36,16 @@ public class Partida extends JPanel implements Runnable{
 	int FPS = 60; // 60 FRAMES PER SECOND
 	public long tiempo = 0;
 	private boolean isRunning;
+	private Image fondoPartida;
 
 	public Partida(String path, CHOICEP1 choiceP1, CHOICEP2 choiceP2) { // PARA QUE PONGA DISTINTOS FONDOS SOLO HACE FALTA HACER public Partida(string
-									// path)
-		System.out.println(choiceP1);
-		System.out.println(choiceP2);
-		//dependiendo de los tipos cargar distintas imagenes con distintos parametros
 		this.setPreferredSize(new Dimension(1280, 720));
 		this.setBackground(Color.white);
-		this.addKeyListener(movimientojugador);
-		this.addKeyListener(movimientoJugador2);
+		this.addKeyListener(movimientojugador);	//escuchador de movimiento del jugador 1
+		this.addKeyListener(movimientoJugador2); //escuchador de movimiento del jugador 2
 		this.setFocusable(true);
-		try {
-			fondoPartida = ImageIO.read(getClass().getResourceAsStream(path)); // cambiar a path
-			// tendremos que coger el escenario que hayamos escogido en la anterior frame
-		} catch (IOException e) {
-			System.err.println("No se pudo cargar el fondo: " + e.getMessage());
-		}
+		CargarImagenes fondo = new CargarImagenes(path);
+		fondoPartida = fondo.getGrafico();		
 	}
 
 
@@ -61,6 +53,9 @@ public class Partida extends JPanel implements Runnable{
 		hiloPartida = new Thread(this);
 		hiloPartida.start();
 		gestorJugador = new GestorInterraccionesJugadores(jugador, jugador2, movimientojugador, movimientoJugador2);
+	}
+	public void terminarPartida() {
+		hiloPartida = null;
 	}
 
 	@Override
@@ -86,16 +81,14 @@ public class Partida extends JPanel implements Runnable{
 					contador = 0;
 					c++;
 				}
-
 				intervalosiguiente += intervalo;
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			if (tiempoRestante == 0) { // Fin de la partida
-				hiloPartida = null;
+				terminarPartida();
 			}
-
 		}
 
 	}

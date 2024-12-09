@@ -1,0 +1,31 @@
+package entidad;
+
+import pantallas.CargarImagenes;
+
+/*
+ * Que quiero conseguir:
+ * quiero crear un objeto de esta clase y llamar a un metodo como por ejemplo
+ * CargarImagenesOgro(DERECHA)*/
+public class CargarImagenesPersonaje {
+	private String personaje;	//tipo de personaje
+	private String path;	//direccion donde se encuentra mi imagen
+	CargarImagenes imagen; //graficos para cada direccion
+	public CargarImagenesPersonaje() {
+		if(personaje == "Ogro" ) {
+			//cargar todas las imagenes asociadas al ogro
+			CargarImagenesOgro();
+		}
+		if(personaje == "Hada") {
+			//cargar todas las imagenes asociadas al hada
+		}
+	}
+	public Image CargarImagenesOgro(String direccion) {
+		 =new CargarImagenes();
+		if(direccion == "derecha") {
+			path = "/Imagenes/derecha.png"
+		}
+		//retorna un arreglo de Hashmap o un array
+		CargarImagenes = new CargarImagenes(path)
+	}
+
+}

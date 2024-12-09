@@ -1,0 +1,36 @@
+package pantallas;
+
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.JPanel;
+
+public class CargarImagenes extends JPanel{
+	/**
+	 * Clase que va a cargar un grafico y lo va ha dibujar 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Image grafico;
+	public CargarImagenes(String path){
+		try {
+			grafico = ImageIO.read(getClass().getResourceAsStream(path)); // cambiar a path
+			// tendremos que coger el escenario que hayamos escogido en la anterior frame
+		} catch (IOException e) {
+			System.err.println("No se pudo cargar el fondo: " + e.getMessage());
+		}
+	}
+	 @Override
+	    protected void paintComponent(Graphics g) {
+	        super.paintComponent(g);
+	        if (imagen != null) {
+	            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+	        }
+	    }
+	 public Image getGrafico() {	//metodo que va a devolver una imagen(grafico)
+		 return grafico;
+	}
+
+}

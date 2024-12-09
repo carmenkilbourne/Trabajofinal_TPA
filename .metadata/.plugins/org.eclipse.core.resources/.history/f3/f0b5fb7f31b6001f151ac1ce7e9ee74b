@@ -1,0 +1,54 @@
+package entidad;
+
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+
+import pantallas.Partida;
+
+public class Jugador1 extends Entity implements IJugador {
+    private CargarImagenesPersonaje imagenesPersonaje; // Nueva clase para gestionar gráficos
+    private Image[] imagenesActuales; // Gráficos actuales según dirección
+    private String tipoPersonaje;
+
+    public Jugador1(Partida p, MovimientoJugador movimientojugador, String tipoPersonaje) {
+        this.p = p;
+        this.movimientojugador = movimientojugador;
+        this.tipoPersonaje = tipoPersonaje;
+        imagenesPersonaje = new CargarImagenesPersonaje(tipoPersonaje);
+        setVariables();
+        actualizarImagenes();
+    }
+
+    public void actualizarImagenes() {
+        imagenesActuales = imagenesPersonaje.getGraficos(direccion);
+    }
+
+    @Override
+    public void update() {
+        super.update(); // Mantén la lógica existente
+        actualizarImagenes(); // Actualiza las imágenes según la dirección
+    }
+
+    @Override
+    public void draw(Graphics2D g1) {
+        Image image = null;
+        if (imagenesActuales != null && imagenesActuales.length > 0) {
+            if (direccion.equals("ataque") || direccion.equals("patada")) {
+                int frame = (contadorAtaque > DURACION_ATAQUE / 2) ? 0 : 1;
+                if (!esDerecha) frame += 2; // Usa los frames de la izquierda
+                image = imagenesActuales[frame];
+            } else {
+                image = imagenesActuales[0]; // Usar el primer frame por defecto
+            }
+        }
+        if (image != null) {
+            g1.drawImage(image, x, y, alturaJugador, anchuraJugador, null);
+        }
+        // Lógica de la barra de salud
+        super.draw(g1);
+    }
+}

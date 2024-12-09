@@ -49,8 +49,15 @@ public class GestorInterraccionesJugadores {
     	areaEfectividad = Math.abs(jugador1.getX()-jugador2.getX());
     	areaEfectividady = Math.abs(jugador1.getY()-jugador2.getY());
 		 if (areaEfectividad <= 160 && areaEfectividady == 0) {
+			 //comprobar la direccion
+			 if ((jugador1.esDerecha() && jugador1.getX() < jugador2.getX() || 
+			         !jugador1.esDerecha() && jugador1.getX() > jugador2.getX()) && 
+			        (jugador2.esDerecha() && jugador2.getX() < jugador1.getX() || 
+			         !jugador2.esDerecha() && jugador2.getX() > jugador1.getX())) 
 			 return true;
 		 }
+		 //1 esta hacia la derecha y el jugador 2 tiene que estar a la derecha del jugador
+		 //
 		 return false;
 	 }
 

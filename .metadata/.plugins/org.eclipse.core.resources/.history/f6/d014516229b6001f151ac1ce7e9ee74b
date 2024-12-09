@@ -1,0 +1,17 @@
+package entidad;
+
+public class CargarImagenesPersonaje {
+	private String personaje;
+	public CargarImagenesPersonaje() {
+		if(personaje == "Ogro" ) {
+			//cargar todas las imagenes asociadas al ogro
+		}
+		if(personaje == "Hada") {
+			//cargar todas las imagenes asociadas al hada
+		}
+	}
+	public CargarImagenesOgro() {
+		//retorna un arreglo de Hashmap
+	}
+
+}

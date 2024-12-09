@@ -6,7 +6,7 @@ import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class Controlador implements KeyListener {
+public class Controlador implements KeyListener, IControlador{
 	private static Controlador instance;
 	private JFrame frame;
 	private CardLayout cardLayout;
@@ -86,7 +86,7 @@ public class Controlador implements KeyListener {
 	}
 
 	// Método para actualizar la imagen de fondo
-	private void actualizarFondo(String nombrePantalla) {
+	public void actualizarFondo(String nombrePantalla) {
 		String path = "";
 		switch (nombrePantalla) {
 		case "PantallaInicio":
@@ -168,13 +168,17 @@ public class Controlador implements KeyListener {
 	}
 
 	@Override
-	public void keyReleased(KeyEvent e) {
-		// Implementar si es necesario
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public void keyTyped(KeyEvent e) {
-		// Implementar si es necesario
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
+
+	
 	
 }

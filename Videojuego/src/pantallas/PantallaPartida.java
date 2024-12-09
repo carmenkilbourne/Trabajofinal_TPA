@@ -2,7 +2,7 @@ package pantallas;
 
 import entidad.Jugador1;
 import entidad.Jugador2;
-
+/*Clase encargada de dibujar a ambos jugadores en la pantalla*/
 public class PantallaPartida implements IPantalla{
 	  private final Jugador1 jugador1;
 	  private final Jugador2 jugador2;
