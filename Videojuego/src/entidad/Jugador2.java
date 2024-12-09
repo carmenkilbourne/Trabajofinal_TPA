@@ -5,11 +5,9 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-import pantallaInicio.Jugador;
-import pantallaInicio.MovimientoJugador2;
-import pantallaInicio.Partida;
+import pantallas.Partida;
 
-public class Jugador2 extends Entity implements Jugador{
+public class Jugador2 extends Entity implements IJugador{
 	Partida p;
 	MovimientoJugador2 movimientojugador2;
 	private int saludMax = 100;
@@ -54,12 +52,14 @@ public class Jugador2 extends Entity implements Jugador{
 		}
 	}
 	public void update() {
+		int panelHeigh = p.getPanelHeight();
+		int panelWidth = p.getPanelWidth();
 		if (movimientojugador2.derecha == true) {
 			direccion = "derecha";
 			esDerecha = true;
 			x = x + desplazamiento;
-			if(x>1280-200) {	//limite de fram 1280-200
-				x=1280-200;
+			if(x>panelWidth-200) {	//limite de fram 1280-200
+				x=panelWidth-200;
 			}
 		}
 		if (movimientojugador2.izquierda == true) {
@@ -121,6 +121,8 @@ public class Jugador2 extends Entity implements Jugador{
 	    }
 	}
 	public void draw(Graphics2D g1) {
+		int panelHeigh = p.getPanelHeight();
+		int panelWidth = p.getPanelWidth();
 		BufferedImage image = null;
 		switch(direccion) {
 		case "arriba":
@@ -175,9 +177,9 @@ public class Jugador2 extends Entity implements Jugador{
 	    int barraSalud = (int) ((double) saludActual / saludMax * anchoBarra);
 
 	    g1.setColor(Color.RED);
-	    g1.fillRect(1280-anchoBarra-30, 50, anchoBarra, alturaBarra); // Fondo rojo para la barra
+	    g1.fillRect(panelWidth-anchoBarra-30, 50, anchoBarra, alturaBarra); // Fondo rojo para la barra
 	    g1.setColor(Color.GREEN);
-	    g1.fillRect(1280-anchoBarra-30, 50, barraSalud, alturaBarra); // Barra verde 
+	    g1.fillRect(panelWidth-anchoBarra-30, 50, barraSalud, alturaBarra); // Barra verde 
 	}
     public void recibirDanio(int cantidad) {
     	if (defendiendo) {
@@ -198,4 +200,7 @@ public class Jugador2 extends Entity implements Jugador{
     public int getSaludActual() {
         return saludActual;
     }
+    public boolean esDerecha() {
+		  return esDerecha;
+	  }
 }

@@ -6,11 +6,9 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-import pantallaInicio.Jugador;
-import pantallaInicio.MovimientoJugador;
-import pantallaInicio.Partida;
+import pantallas.Partida;
 
-public class Jugador1 extends Entity implements Jugador{
+public class Jugador1 extends Entity implements IJugador{
 	Partida p;
 	MovimientoJugador movimientojugador;
 	private int saludMax = 100;// salud inicial del jugador
@@ -58,14 +56,35 @@ public class Jugador1 extends Entity implements Jugador{
 			e.printStackTrace();
 		}
 	}
+	public void getImagenJugadorHada() {
+		try {
+			salto = ImageIO.read(getClass().getResourceAsStream("/Imagenes/frente.png"));
+			derecha = ImageIO.read(getClass().getResourceAsStream("/Imagenes/izquierda.png"));
+			izquierda = ImageIO.read(getClass().getResourceAsStream("/Imagenes/izquierda.png"));
+			abajo1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/izquierda.png"));
+			ataque1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/izquierda.png"));
+			ataque12 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/izquierda.png"));
+			patada1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/patada1.png"));
+			patada2 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/patadapow.png"));
+			patada1i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/patadaIzquierda.png"));
+			patada2i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/patadapowi.png"));
+			ataque1i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/MovMano1i.png"));
+			ataque2i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/pow2i.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	 
 
 	public void update() {
+		int panelHeigh = p.getPanelHeight();
+		int panelWidth = p.getPanelWidth();
 		if (movimientojugador.derecha == true) {
 			direccion = "derecha";
 			esDerecha = true;
 			x = x + desplazamiento;
-			if (x > 1280 - 200) { // limite de frame 1280-200
-				x = 1280 - 200;
+			if (x > panelWidth - 200) { // limite de frame 1280-200
+				x = panelWidth - 200;
 			}
 		}
 		if (movimientojugador.izquierda == true) {
@@ -227,5 +246,8 @@ public class Jugador1 extends Entity implements Jugador{
 	        if (saludActual < 0) saludActual = 0;
 	        System.out.println("Jugador1 ha recibido daño, vida restante: " + saludActual);
 	    }
+	  public boolean esDerecha() {
+		  return esDerecha;
+	  }
 
 }
