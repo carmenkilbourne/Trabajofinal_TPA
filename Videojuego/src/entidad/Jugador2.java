@@ -18,13 +18,17 @@ public class Jugador2 extends Entity implements IJugador{
 	private int contadorAtaque = 0; // Controla la duración de la animación del ataque.
 	private  int DURACION_ATAQUE = 20; // Duración en frames del ataque.
 	private boolean esDerecha = false; //si es false es derecha si es true es izquierda
-
+	public BufferedImage salto,derecha,izquierda,abajo1,ataque1,ataque12,pow,patada1,patada2,patada1i,patada2i,ataque1i,ataque2i;
+	private CargarImagenesPersonajeFactory personaje;
 
 	public Jugador2(Partida p, MovimientoJugador2 movimientojugador2) 	{
 		this.p = p;
 		this.movimientojugador2 = movimientojugador2;
 		setVariables();
-		getImagenJugador();
+		//getImagenJugador();
+		 personaje = new CargarImagenesPersonajeFactory("hada");
+	     setVariables();
+	     personaje.CargarImagenesHada();
 	}
 	public void setVariables() {
 		x=1080;
@@ -124,63 +128,64 @@ public class Jugador2 extends Entity implements IJugador{
 		int panelHeigh = p.getPanelHeight();
 		int panelWidth = p.getPanelWidth();
 		BufferedImage image = null;
-		switch(direccion) {
+		//image =personaje.getImagen(direccion);
+		//image = null;
+		switch (direccion) {
 		case "arriba":
-			image = salto;
+			image = personaje.getImagen("salto");
 			break;
 		case "abajo":
-			image = abajo1;
+			image = personaje.getImagen("abajo1");
 			break;
 		case "derecha":
-			image = derecha;
+			image = personaje.getImagen("derecha");
 			break;
 		case "izquierda":
-			image = izquierda;
+			image = personaje.getImagen("izquierda");
 			break;
 		case "atacar":
-			if(esDerecha) {
-		    if (contadorAtaque > DURACION_ATAQUE / 2) {
-		        image = ataque1; // Primer frame del ataque.
-		    } else {
-		        image = ataque12; // Segundo frame del ataque (impacto).
-		    }
-			}
-			else {
-				  if (contadorAtaque > DURACION_ATAQUE / 2) {
-				        image = ataque1i; // Primer frame del ataque.
-				    } else {
-				        image = ataque2i; // Segundo frame del ataque (impacto).
-				    }	
+			if (esDerecha) {
+				if (contadorAtaque > DURACION_ATAQUE / 2) {
+					image = personaje.getImagen("ataque1"); // Primer frame del ataque.
+				} else {
+					image = personaje.getImagen("ataque12"); // Segundo frame del ataque (impacto).
+				}
+			} else {
+				if (contadorAtaque > DURACION_ATAQUE / 2) {
+					image = personaje.getImagen("ataque1i"); // Primer frame del ataque.
+				} else {
+					image = personaje.getImagen("ataque2i"); // Segundo frame del ataque (impacto).
+				}
 			}
 			break;
 		case "patada":
-			if(esDerecha) {
-		    if (contadorAtaque > DURACION_ATAQUE / 2) {
-		        image = patada1; // Primer frame del ataque.
-		    } else {
-		        image = patada2; // Segundo frame del ataque (impacto).
-		    }
-			}
-			else {
-				 if (contadorAtaque > DURACION_ATAQUE / 2) {
-				        image = patada1i; // Primer frame del ataque.
-				    } else {
-				        image = patada2i; // Segundo frame del ataque (impacto).
-				    }	
+			if (esDerecha) {
+				if (contadorAtaque > DURACION_ATAQUE / 2) {
+					image = personaje.getImagen("patada1"); // Primer frame del ataque.
+				} else {
+					image = personaje.getImagen("patada2"); // Segundo frame del ataque (impacto).
+				}
+			} else {
+				if (contadorAtaque > DURACION_ATAQUE / 2) {
+					image = personaje.getImagen("patada1i"); // Primer frame del ataque.
+				} else {
+					image = personaje.getImagen("patada2i"); // Segundo frame del ataque (impacto).
+				}
 			}
 			break;
 		}
-		g1.drawImage(image, x, y,200,200,null);
+		g1.drawImage(image, x, y, alturaJugador, anchuraJugador, null); // jugador tiene unas medidas de 200x200 pxl
 		// Dibuja la barra de salud encima del jugador
 		int anchoBarra = 500;
-	    int alturaBarra = 30;
-	    int barraSalud = (int) ((double) saludActual / saludMax * anchoBarra);
+		int alturaBarra = 30;
+		int barraSalud = (int) ((double) saludActual / saludMax * anchoBarra);
 
-	    g1.setColor(Color.RED);
-	    g1.fillRect(panelWidth-anchoBarra-30, 50, anchoBarra, alturaBarra); // Fondo rojo para la barra
-	    g1.setColor(Color.GREEN);
-	    g1.fillRect(panelWidth-anchoBarra-30, 50, barraSalud, alturaBarra); // Barra verde 
+		 g1.setColor(Color.RED);
+		    g1.fillRect(panelWidth-anchoBarra-30, 50, anchoBarra, alturaBarra); // Fondo rojo para la barra
+		    g1.setColor(Color.GREEN);
+		    g1.fillRect(panelWidth-anchoBarra-30, 50, barraSalud, alturaBarra); // Barra verde 
 	}
+	
     public void recibirDanio(int cantidad) {
     	if (defendiendo) {
             cantidad = 0; // reduce el daño a la mitad si está defendiendo

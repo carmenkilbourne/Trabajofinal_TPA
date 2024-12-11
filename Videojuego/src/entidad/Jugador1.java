@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 
 import pantallas.Partida;
 
-public class Jugador1 extends Entity implements IJugador{
+public class Jugador1  extends Entity implements IJugador{
 	Partida p;
 	MovimientoJugador movimientojugador;
 	private int saludMax = 100;// salud inicial del jugador
@@ -23,12 +23,14 @@ public class Jugador1 extends Entity implements IJugador{
 	private int velocidadSalto = 10; // Velocidad de subida.
 	private int maxAlturaSalto = 100; // Altura máxima que alcanza el salto.
 	private int tiempoSalto = 0; // Tiempo que el jugador lleva saltando.
+	private CargarImagenesPersonajeFactory personaje;
 
 	public Jugador1(Partida p, MovimientoJugador movimientojugador) {
 		this.p = p;
 		this.movimientojugador = movimientojugador;
-		setVariables();
-		getImagenJugador();
+	     personaje = new CargarImagenesPersonajeFactory("ogro");
+	     setVariables();
+	     personaje.CargarImagenesOgro();
 	}
 
 	public void setVariables() {
@@ -38,43 +40,7 @@ public class Jugador1 extends Entity implements IJugador{
 		direccion = "arriba";
 	}
 
-	public void getImagenJugador() {
-		try {
-			salto = ImageIO.read(getClass().getResourceAsStream("/Imagenes/frente.png"));
-			derecha = ImageIO.read(getClass().getResourceAsStream("/Imagenes/derecha.png"));
-			izquierda = ImageIO.read(getClass().getResourceAsStream("/Imagenes/izquierda.png"));
-			abajo1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/abajo.png"));
-			ataque1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/impactoMano1.png"));
-			ataque12 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/pow2.png"));
-			patada1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/patada1.png"));
-			patada2 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/patadapow.png"));
-			patada1i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/patadaIzquierda.png"));
-			patada2i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/patadapowi.png"));
-			ataque1i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/MovMano1i.png"));
-			ataque2i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/pow2i.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	public void getImagenJugadorHada() {
-		try {
-			salto = ImageIO.read(getClass().getResourceAsStream("/Imagenes/frente.png"));
-			derecha = ImageIO.read(getClass().getResourceAsStream("/Imagenes/izquierda.png"));
-			izquierda = ImageIO.read(getClass().getResourceAsStream("/Imagenes/izquierda.png"));
-			abajo1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/izquierda.png"));
-			ataque1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/izquierda.png"));
-			ataque12 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/izquierda.png"));
-			patada1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/patada1.png"));
-			patada2 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/patadapow.png"));
-			patada1i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/patadaIzquierda.png"));
-			patada2i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/patadapowi.png"));
-			ataque1i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/MovMano1i.png"));
-			ataque2i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/pow2i.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	 
+
 
 	public void update() {
 		int panelHeigh = p.getPanelHeight();
@@ -169,46 +135,48 @@ public class Jugador1 extends Entity implements IJugador{
 
 	public void draw(Graphics2D g1) {
 		BufferedImage image = null;
+		//image =personaje.getImagen(direccion);
+		//image = null;
 		switch (direccion) {
 		case "arriba":
-			image = salto;
+			image = personaje.getImagen("salto");
 			break;
 		case "abajo":
-			image = abajo1;
+			image = personaje.getImagen("abajo1");
 			break;
 		case "derecha":
-			image = derecha;
+			image = personaje.getImagen("derecha");
 			break;
 		case "izquierda":
-			image = izquierda;
+			image = personaje.getImagen("izquierda");
 			break;
 		case "atacar":
 			if (esDerecha) {
 				if (contadorAtaque > DURACION_ATAQUE / 2) {
-					image = ataque1; // Primer frame del ataque.
+					image = personaje.getImagen("ataque1"); // Primer frame del ataque.
 				} else {
-					image = ataque12; // Segundo frame del ataque (impacto).
+					image = personaje.getImagen("ataque12"); // Segundo frame del ataque (impacto).
 				}
 			} else {
 				if (contadorAtaque > DURACION_ATAQUE / 2) {
-					image = ataque1i; // Primer frame del ataque.
+					image = personaje.getImagen("ataque1i"); // Primer frame del ataque.
 				} else {
-					image = ataque2i; // Segundo frame del ataque (impacto).
+					image = personaje.getImagen("ataque2i"); // Segundo frame del ataque (impacto).
 				}
 			}
 			break;
 		case "patada":
 			if (esDerecha) {
 				if (contadorAtaque > DURACION_ATAQUE / 2) {
-					image = patada1; // Primer frame del ataque.
+					image = personaje.getImagen("patada1"); // Primer frame del ataque.
 				} else {
-					image = patada2; // Segundo frame del ataque (impacto).
+					image = personaje.getImagen("patada2"); // Segundo frame del ataque (impacto).
 				}
 			} else {
 				if (contadorAtaque > DURACION_ATAQUE / 2) {
-					image = patada1i; // Primer frame del ataque.
+					image = personaje.getImagen("patada1i"); // Primer frame del ataque.
 				} else {
-					image = patada2i; // Segundo frame del ataque (impacto).
+					image = personaje.getImagen("patada2i"); // Segundo frame del ataque (impacto).
 				}
 			}
 			break;

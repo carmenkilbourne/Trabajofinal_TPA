@@ -27,18 +27,18 @@ public class GestorInterraccionesJugadores {
 				movimientojugador.atacar = false; // reiniciar el ataque para evitar múltiples ataques continuos
 			}
 			// Condición para que el jugador 2 ataque al jugador 1
-			if (movimientoJugador2.atacar) {
-				jugador2.atacar(jugador1);
-				movimientoJugador2.atacar = false;
-			}
+			//if (movimientoJugador2.atacar) {
+				//jugador2.atacar(jugador1);
+				//movimientoJugador2.atacar = false;
+			//}
 			if (movimientojugador.patada) {
 				jugador1.atacar(jugador2);
 				movimientojugador.patada = false; // reiniciar el ataque para evitar múltiples ataques continuos
 			}
-			if (movimientoJugador2.patada) {
-				jugador1.atacar(jugador1);
-				movimientoJugador2.patada = false; // reiniciar el ataque para evitar múltiples ataques continuos
-			}
+			//if (movimientoJugador2.patada) {
+				//jugador1.atacar(jugador1);
+				//movimientoJugador2.patada = false; // reiniciar el ataque para evitar múltiples ataques continuos
+			//}
 		}
 		jugador1.setDefendiendo(movimientojugador.defensa);
 		jugador2.setDefendiendo(movimientoJugador2.defensa);
