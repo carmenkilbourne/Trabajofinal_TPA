@@ -40,7 +40,7 @@ public class CargarImagenesPersonajeFactory {
                 return derecha;
             case "izquierda":
                 return izquierda;
-            case "abajo":
+            case "abajo1":
                 return abajo1;
             case "ataque1":
                 return ataque1;

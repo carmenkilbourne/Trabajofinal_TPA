@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import entidad.GestorInterraccionesJugadores;
+import entidad.InputsJugadores;
 import entidad.Jugador1;
 import entidad.Jugador2;
 import entidad.MovimientoJugador;
@@ -23,7 +24,7 @@ import pantallas.Controlador.CHOICEP2;
 //cambiar nombre a bucle de particula
 public class Partida extends JPanel implements Runnable{
 	private static final long serialVersionUID = 1L;
-	MovimientoJugador movimientojugador = new MovimientoJugador();
+	InputsJugadores movimientojugador = new InputsJugadores();
 	MovimientoJugador2 movimientoJugador2 = new MovimientoJugador2();
 	Thread hiloPartida; // empieza el hilo para el loop
 	Jugador1 jugador = new Jugador1(this, movimientojugador);
