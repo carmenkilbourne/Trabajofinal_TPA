@@ -20,8 +20,8 @@ public class Jugador2 extends Jugador implements IJugador {
         setVariables();
         saludActual = saludMax;
         movimientoJugador2 = new MovimientoJugador2(inputs,x,y);
-        personaje = new CargarImagenesPersonajeFactory("ogro");
-        personaje.CargarImagenesOgro();
+        personaje = new CargarImagenesPersonajeFactory("hada");
+        personaje.CargarImagenesHada();
     }
 
     public void setVariables() {

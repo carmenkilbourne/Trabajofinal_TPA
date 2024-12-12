@@ -71,19 +71,19 @@ public class CargarImagenesPersonajeFactory {
         }
     }
     public void CargarImagenesHada() {
-        try {
-            salto = ImageIO.read(getClass().getResourceAsStream("/Imagenes/frente.png"));
+    	try {
+            salto = ImageIO.read(getClass().getResourceAsStream("/Imagenes/Hada/frente.png"));
             derecha = ImageIO.read(getClass().getResourceAsStream("/Imagenes/Hada/derecha.png"));
             izquierda = ImageIO.read(getClass().getResourceAsStream("/Imagenes/Hada/izquierda.png"));
             abajo1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/abajo.png"));
-            ataque1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/impactoMano1.png"));
-            ataque12 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/pow2.png"));
-            patada1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/Hada/patadadrch.png"));
-            patada2 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/patadapow.png"));
-            patada1i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/Hada/patadaizq.png"));
-            patada2i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/patadapowi.png"));
-            ataque1i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/MovMano1i.png"));
-            ataque2i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/pow2i.png"));
+            ataque1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/Hada/punetazoDrcha.png"));
+            ataque12 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/Hada/punetazoDrchaPow.png"));
+            patada1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/Hada/patadaDrcha.png"));
+            patada2 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/Hada/punetazoDrchaPow.png"));
+            patada1i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/Hada/patadaIzq.png"));
+            patada2i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/Hada/patadaIzqPow.png"));
+            ataque1i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/Hada/punetazoIzq.png"));
+            ataque2i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/Hada/punetazoIzqPow.png"));
         } catch (IOException e) {
             System.err.println("Error cargando imágenes: " + e.getMessage());
             e.printStackTrace();
