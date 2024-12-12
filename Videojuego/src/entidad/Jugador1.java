@@ -3,15 +3,12 @@ package entidad;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-
 import pantallas.Partida;
-public class Jugador1 extends Entity implements IJugador {
+
+public class Jugador1 extends Jugador implements IJugador {
     Partida p;
     InputsJugadores inputs;
     private int saludMax = 100;
-    private int saludActual = saludMax;
     private int contadorAtaque = 0;
     private int DURACION_ATAQUE = 20;
     private CargarImagenesPersonajeFactory personaje;
@@ -23,6 +20,7 @@ public class Jugador1 extends Entity implements IJugador {
         movimientoJugador1 = new MovimientoJugador(inputs,x,y);
         personaje = new CargarImagenesPersonajeFactory("ogro");
         setVariables();
+        saludActual = saludMax;
         personaje.CargarImagenesOgro();
     }
 
@@ -70,7 +68,11 @@ public class Jugador1 extends Entity implements IJugador {
                 break;
         }
         g1.drawImage(image, x, y, alturaJugador, anchuraJugador, null);
-        BarraSalud barrasalud = new BarraSalud(saludMax,saludActual,g1);
+        int barraSalud = (int) ((double) saludActual / saludMax * 500);
+        g1.setColor(Color.RED);
+        g1.fillRect(10, 50, 500, 20);
+        g1.setColor(Color.GREEN);
+        g1.fillRect(10, 50, barraSalud, 20);
     }
 
 	@Override
@@ -80,10 +82,8 @@ public class Jugador1 extends Entity implements IJugador {
 	public int getSaludMaxima() {
 		return saludMax;
 	}
+	 public void setDefendiendo(boolean defendiendo) {
+	        this.defendiendo = defendiendo;
+	    }
 
-	@Override
-	public void setDefendiendo(boolean defendiendo) {
-		// TODO Auto-generated method stub
-		
-	}
 }

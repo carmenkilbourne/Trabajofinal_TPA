@@ -1,17 +1,5 @@
 package entidad;
 
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
-import pantallas.CargarImagenes;
-
-/*
- * Clase CargarImagenesPersonaje
- * Funcion: carga imagenes de un determinado Personaje
- * Devolver un array de imagenes en la direccion del personaje*/
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;

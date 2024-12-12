@@ -1,8 +1,5 @@
 package entidad;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
 public class MovimientoJugador2 {
     private int x, y;
     private boolean saltando = false;

@@ -2,12 +2,10 @@ package entidad;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 
 import pantallas.Partida;
 
-public class Jugador2 extends Entity implements IJugador {
+public class Jugador2 extends Jugador implements IJugador {
     Partida p;
     InputsJugadores inputs;
     private int saludMax = 100;
@@ -88,9 +86,8 @@ public class Jugador2 extends Entity implements IJugador {
 	public int getSaludMaxima() {
 		return saludMax;
 	}
+	 public void setDefendiendo(boolean defendiendo) {
+	        this.defendiendo = defendiendo;
+	    }
 
-	@Override
-	public void setDefendiendo(boolean defendiendo) {
-		
-	}
 }

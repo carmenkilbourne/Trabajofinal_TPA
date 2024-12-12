@@ -6,18 +6,11 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import entidad.GestorInterraccionesJugadores;
+import entidad.GestorInteraccionesJugadores;
 import entidad.InputsJugadores;
 import entidad.Jugador1;
 import entidad.Jugador2;
-import entidad.MovimientoJugador;
-import entidad.MovimientoJugador2;
 import pantallas.Controlador.CHOICEP1;
 import pantallas.Controlador.CHOICEP2;
 
@@ -33,7 +26,7 @@ public class Partida extends JPanel implements Runnable{
 	private int c = 0;
 	private int tiempoRestante = 1;
 	public boolean acabada = false;
-	public GestorInterraccionesJugadores gestorJugador;	
+	public GestorInteraccionesJugadores gestorJugador;	
 	int FPS = 60; // 60 FRAMES PER SECOND
 	public long tiempo = 0;
 	private boolean isRunning;
@@ -53,7 +46,7 @@ public class Partida extends JPanel implements Runnable{
 	public void empezarPartida() {
 		hiloPartida = new Thread(this);
 		hiloPartida.start();
-		gestorJugador = new GestorInterraccionesJugadores(jugador, jugador2, movimientojugador, movimientoJugador2);
+		gestorJugador = new GestorInteraccionesJugadores(jugador, jugador2, movimientojugador, movimientoJugador2);
 	}
 	public void terminarPartida() {
 		hiloPartida = null;
@@ -67,7 +60,7 @@ public class Partida extends JPanel implements Runnable{
 		double intervalosiguiente = System.nanoTime() + intervalo;
 		while (hiloPartida != null) {
 			tiempo = System.nanoTime();
-			gestorJugador = new GestorInterraccionesJugadores(jugador, jugador2, movimientojugador, movimientoJugador2);
+			gestorJugador = new GestorInteraccionesJugadores(jugador, jugador2, movimientojugador, movimientoJugador2);
 
 			update();
 			repaint();
@@ -98,13 +91,14 @@ public class Partida extends JPanel implements Runnable{
 		jugador.update();
 		jugador2.update();
 		gestorJugador.actualizarMovimiento();
-		if (gestorJugador.partidaAcabada()) {
-			hiloPartida = null;
-			Controlador.getInstance().cambiarPantalla("SeleccionCaracteres");
-
-			System.out.println(
-					"Partida terminada, tengo que pasar frame a un frame donde ponga Congratulations al ganador y luego volver al inicio");
-		}
+		/*
+		 * if (gestorJugador.partidaAcabada()) { hiloPartida = null;
+		 * Controlador.getInstance().cambiarPantalla("SeleccionCaracteres");
+		 * 
+		 * System.out.println(
+		 * "Partida terminada, tengo que pasar frame a un frame donde ponga Congratulations al ganador y luego volver al inicio"
+		 * ); }
+		 */
 	}
 
 	public void paintComponent(Graphics g) {

@@ -70,4 +70,13 @@ public class InputsJugadores implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {}
+    public void resetAccionJugador1() {
+        // Restablece la acción del jugador 1 a un estado predeterminado, como 'NINGUNA'
+        this.accionJugador1 = Accion.NINGUNO;
+    }
+
+    public void resetAccionJugador2() {
+        // Restablece la acción del jugador 2 a un estado predeterminado, como 'NINGUNA'
+        this.accionJugador2 = Accion.NINGUNO;
+    }
 }
