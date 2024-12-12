@@ -25,7 +25,7 @@ import pantallas.Controlador.CHOICEP2;
 public class Partida extends JPanel implements Runnable{
 	private static final long serialVersionUID = 1L;
 	InputsJugadores movimientojugador = new InputsJugadores();
-	MovimientoJugador2 movimientoJugador2 = new MovimientoJugador2();
+	InputsJugadores movimientoJugador2 = new InputsJugadores();
 	Thread hiloPartida; // empieza el hilo para el loop
 	Jugador1 jugador = new Jugador1(this, movimientojugador);
 	Jugador2 jugador2 = new Jugador2(this, movimientoJugador2);

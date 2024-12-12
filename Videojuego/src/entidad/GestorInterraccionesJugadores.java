@@ -8,12 +8,12 @@ public class GestorInterraccionesJugadores {
     private Jugador1 jugador1;
     private Jugador2 jugador2;
     InputsJugadores inputsJugador1 = new InputsJugadores();
-    MovimientoJugador2 movimientoJugador2 = new MovimientoJugador2();
+    InputsJugadores movimientoJugador2 = new InputsJugadores();
     private int areaEfectividad = 160;
     private int areaEfectividady = 160;
 
 
-    public GestorInterraccionesJugadores(Jugador1 jugador1, Jugador2 jugador2,InputsJugadores inputsJugador1,MovimientoJugador2 movimientoJugador2 ) {
+    public GestorInterraccionesJugadores(Jugador1 jugador1, Jugador2 jugador2,InputsJugadores inputsJugador1,InputsJugadores movimientoJugador2 ) {
         this.jugador1 = jugador1;
         this.jugador2 = jugador2;
         this.inputsJugador1 = inputsJugador1;

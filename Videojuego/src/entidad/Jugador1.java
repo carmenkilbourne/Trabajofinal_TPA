@@ -12,7 +12,6 @@ public class Jugador1 extends Entity implements IJugador {
     InputsJugadores inputs;
     private int saludMax = 100;
     private int saludActual = saludMax;
-    private boolean atacando = false;
     private int contadorAtaque = 0;
     private int DURACION_ATAQUE = 20;
     private CargarImagenesPersonajeFactory personaje;
@@ -28,9 +27,6 @@ public class Jugador1 extends Entity implements IJugador {
     }
 
     public void setVariables() {
-        x = 0;
-        y = 320;
-        desplazamiento = 10;
         direccion = "arriba";
     }
 
@@ -74,19 +70,15 @@ public class Jugador1 extends Entity implements IJugador {
                 break;
         }
         g1.drawImage(image, x, y, alturaJugador, anchuraJugador, null);
-
-        // Barra de salud
-        int barraSalud = (int) ((double) saludActual / saludMax * 500);
-        g1.setColor(Color.RED);
-        g1.fillRect(10, 50, 500, 20);
-        g1.setColor(Color.GREEN);
-        g1.fillRect(10, 50, barraSalud, 20);
+        BarraSalud barrasalud = new BarraSalud(saludMax,saludActual,g1);
     }
 
 	@Override
 	public int getSaludActual() {
-		// TODO Auto-generated method stub
-		return 100;
+		return saludActual;
+	}
+	public int getSaludMaxima() {
+		return saludMax;
 	}
 
 	@Override
