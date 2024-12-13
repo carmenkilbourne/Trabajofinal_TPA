@@ -23,9 +23,7 @@ public class MovimientoJugador {
     }
 
     public void setVariables() {
-        x = 0;
-        y = 320;
-        direccion = "arriba";
+        direccion = "derecha";
     }
     public void update(int panelWidth, int panelHeight) {
         // Movimientos basados en entradas del jugador
@@ -51,7 +49,7 @@ public class MovimientoJugador {
         if (saltando) {
             if (tiempoSalto < maxAlturaSalto) {
                 y -= velocidadSalto;
-                if (y < 120) y = 120; // Limitar altura máxima
+                if (y < 120) y = 120; // Limitar de altura máxima
                 tiempoSalto += velocidadSalto;
             } else {
                 saltando = false;
@@ -59,7 +57,7 @@ public class MovimientoJugador {
         }
 
         if (y < 320 && !saltando) {
-            y += velocidadSalto;  // Gravedad
+            y += velocidadSalto;  // Gravedad(va bajando a una velocidad )
             if (y > 320) y = 320;
         }
 
@@ -69,18 +67,39 @@ public class MovimientoJugador {
             if (y > 320) y = 320;
         }
 
-        if ((inputs.getAccionJugador1() == InputsJugadores.Accion.ATAQUE || 
-            inputs.getAccionJugador1() == InputsJugadores.Accion.PATADA) && !atacando) {
+        if (inputs.getAccionJugador1() == InputsJugadores.Accion.ATAQUE && !atacando) {
             atacando = true;
             contadorAtaque = DURACION_ATAQUE;
-            direccion = (inputs.getAccionJugador1() == InputsJugadores.Accion.ATAQUE) ? "atacar" : "patada";
+            direccion = esDerecha ? "ataque1" : "ataque1i"; // Primera fase del ataque
+        } else if (inputs.getAccionJugador1() == InputsJugadores.Accion.PATADA && !atacando) {
+            atacando = true;
+            contadorAtaque = DURACION_ATAQUE;
+            direccion = esDerecha ? "patada1" : "patada1i"; // Primera fase de la patada
         }
 
+        // Actualizar el estado del ataque/patada
         if (atacando) {
             contadorAtaque--;
+            if (contadorAtaque > DURACION_ATAQUE / 2) {
+                // Primera fase de la animación
+                if (direccion.startsWith("ataque")) {
+                    direccion = esDerecha ? "ataque1" : "ataque1i";
+                } else if (direccion.startsWith("patada")) {
+                    direccion = esDerecha ? "patada1" : "patada1i";
+                }
+            } else {
+                // Segunda fase de la animación
+                if (direccion.startsWith("ataque")) {
+                    direccion = esDerecha ? "ataque12" : "ataque2i";
+                } else if (direccion.startsWith("patada")) {
+                    direccion = esDerecha ? "patada2" : "patada2i";
+                }
+            }
+
+            // Terminar el ataque/patada
             if (contadorAtaque <= 0) {
                 atacando = false;
-                direccion = esDerecha ? "derecha" : "izquierda";
+                direccion = esDerecha ? "derecha" : "izquierda"; // Regresar a la posición inicial
             }
         }
     }

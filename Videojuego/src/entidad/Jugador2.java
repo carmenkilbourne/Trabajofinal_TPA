@@ -14,19 +14,13 @@ public class Jugador2 extends Jugador implements IJugador {
     private CargarImagenesPersonajeFactory personaje;
     private MovimientoJugador2 movimientoJugador2;
 
-    public Jugador2(Partida p, InputsJugadores inputs) {
+    public Jugador2(Partida p, InputsJugadores inputs,String tipo) {
         this.p = p;
         this.inputs = inputs;
-        setVariables();
+        personaje = new CargarImagenesPersonajeFactory(tipo);
         saludActual = saludMax;
         movimientoJugador2 = new MovimientoJugador2(inputs,x,y);
-        personaje = new CargarImagenesPersonajeFactory("hada");
-        personaje.CargarImagenesHada();
     }
-
-    public void setVariables() {
-		direccion = "arriba";
-	}
 
     public void update() {
         int panelWidth = p.getPanelWidth(); 

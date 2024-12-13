@@ -71,11 +71,11 @@ public class Controlador implements KeyListener, IControlador{
 
 	// Selección de personajes
 	public static enum CHOICEP1 {	//deberia cambiar para ser solo un enum
-		GIGANTE1, HADA1, NOTHING
+		GIGANTE, HADA, NOTHING
 	}
 
 	public static enum CHOICEP2 {
-		GIGANTE2, HADA2, NOTHING2
+		GIGANTE, HADA, NOTHING2
 	}
 
 	// Método para cambiar entre pantallas

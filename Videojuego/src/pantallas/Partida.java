@@ -20,8 +20,8 @@ public class Partida extends JPanel implements Runnable{
 	InputsJugadores movimientojugador = new InputsJugadores();
 	InputsJugadores movimientoJugador2 = new InputsJugadores();
 	Thread hiloPartida; // empieza el hilo para el loop
-	Jugador1 jugador = new Jugador1(this, movimientojugador);
-	Jugador2 jugador2 = new Jugador2(this, movimientoJugador2);
+	Jugador1 jugador;
+	Jugador2 jugador2;
 	private int contador = 0;
 	private int c = 0;
 	private int tiempoRestante = 1;
@@ -32,12 +32,15 @@ public class Partida extends JPanel implements Runnable{
 	private boolean isRunning;
 	private Image fondoPartida;
 
+
 	public Partida(String path, CHOICEP1 choiceP1, CHOICEP2 choiceP2) { // PARA QUE PONGA DISTINTOS FONDOS SOLO HACE FALTA HACER public Partida(string
 		this.setPreferredSize(new Dimension(1280, 720));
 		this.setBackground(Color.white);
 		this.addKeyListener(movimientojugador);	//escuchador de movimiento del jugador 1
 		this.addKeyListener(movimientoJugador2); //escuchador de movimiento del jugador 2
 		this.setFocusable(true);
+		jugador2 = new Jugador2(this, movimientoJugador2,choiceP2.name().toLowerCase());
+		jugador = new Jugador1(this, movimientojugador,choiceP1.name().toLowerCase());
 		CargarImagenes fondo = new CargarImagenes(path);
 		fondoPartida = fondo.getGrafico();		
 	}
@@ -47,6 +50,7 @@ public class Partida extends JPanel implements Runnable{
 		hiloPartida = new Thread(this);
 		hiloPartida.start();
 		gestorJugador = new GestorInteraccionesJugadores(jugador, jugador2, movimientojugador, movimientoJugador2);
+		isRunning = true;
 	}
 	public void terminarPartida() {
 		hiloPartida = null;

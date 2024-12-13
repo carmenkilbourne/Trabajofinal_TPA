@@ -11,13 +11,17 @@ public class CargarImagenesPersonajeFactory {
             ataque1i, ataque2i;
     protected BufferedImage image;
 
-    public CargarImagenesPersonajeFactory(String tipo) {	
-    	if (tipo == "ogro") {
-        this.CargarImagenesOgro();
-    	}
-    	if(tipo == "hada") {
-    		this.CargarImagenesHada();
-    	}
+    public CargarImagenesPersonajeFactory(String tipo) {
+        switch (tipo.toLowerCase()) {
+            case "gigante":
+                CargarImagenesGigante();
+                break;
+            case "hada":
+                CargarImagenesHada();
+                break;
+            default:
+                throw new IllegalArgumentException("Tipo de personaje no soportado: " + tipo);
+        }
     }
 
     public BufferedImage getImagen(String direccion) {
@@ -51,7 +55,7 @@ public class CargarImagenesPersonajeFactory {
         }
     }
 
-    public void CargarImagenesOgro() {
+    public void CargarImagenesGigante() {
         try {
             salto = ImageIO.read(getClass().getResourceAsStream("/Imagenes/frente.png"));
             derecha = ImageIO.read(getClass().getResourceAsStream("/Imagenes/derecha.png"));

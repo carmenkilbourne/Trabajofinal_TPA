@@ -32,10 +32,10 @@ public class MouseInput implements MouseListener {
             System.out.println("Current state: CHARSEL1");
             if (mx < frame.getWidth() / 2) {
                 System.out.println("Left side clicked: Gigante selected");
-                Controlador.choiceP1 = Controlador.CHOICEP1.GIGANTE1;
+                Controlador.choiceP1 = Controlador.CHOICEP1.GIGANTE;
             } else {
                 System.out.println("Right side clicked: Hada selected");
-                Controlador.choiceP1 = Controlador.CHOICEP1.HADA1;
+                Controlador.choiceP1 = Controlador.CHOICEP1.HADA;
             }
             // Cambiar a selección de personaje 2
             Controlador.state = Controlador.STATE.CHARSEL2;
@@ -50,10 +50,10 @@ public class MouseInput implements MouseListener {
             System.out.println("Current state: CHARSEL2");
             if (mx < frame.getWidth() / 2) {
                 System.out.println("Left side clicked: Gigante selected");
-                Controlador.choiceP2 = Controlador.CHOICEP2.GIGANTE2;
+                Controlador.choiceP2 = Controlador.CHOICEP2.GIGANTE;
             } else {
                 System.out.println("Right side clicked: Hada selected");
-                Controlador.choiceP2 = Controlador.CHOICEP2.HADA2;
+                Controlador.choiceP2 = Controlador.CHOICEP2.HADA;
             }
             // Cambiar a la selección de mapa
             Controlador.state = Controlador.STATE.CHOOSE;

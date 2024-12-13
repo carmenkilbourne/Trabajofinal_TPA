@@ -25,7 +25,7 @@ public class MovimientoJugador2 {
     public void setVariables() {
     	x=1080;
 		y=320;
-        direccion = "arriba";
+        direccion = "izquierda";
     }
     public void update(int panelWidth, int panelHeight) {
         // Movimientos basados en entradas del jugador
