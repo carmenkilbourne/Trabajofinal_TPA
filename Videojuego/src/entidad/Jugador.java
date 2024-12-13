@@ -31,5 +31,11 @@ public abstract class Jugador {
     public int getSaludActual() {
         return saludActual;
     }
+    public int getX() {
+    	return x;
+    }
+    public int getY() {
+    	return x;
+    }
 
 }

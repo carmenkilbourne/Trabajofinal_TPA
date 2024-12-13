@@ -23,14 +23,13 @@ public class Partida extends JPanel implements Runnable{
 	Jugador1 jugador;
 	Jugador2 jugador2;
 	private int contador = 0;
-	private int c = 0;
-	private int tiempoRestante = 1;
 	public boolean acabada = false;
 	public GestorInteraccionesJugadores gestorJugador;	
 	int FPS = 60; // 60 FRAMES PER SECOND
 	public long tiempo = 0;
 	private boolean isRunning;
 	private Image fondoPartida;
+	private Cronometro cronometro;
 
 
 	public Partida(String path, CHOICEP1 choiceP1, CHOICEP2 choiceP2) { // PARA QUE PONGA DISTINTOS FONDOS SOLO HACE FALTA HACER public Partida(string
@@ -43,6 +42,8 @@ public class Partida extends JPanel implements Runnable{
 		jugador = new Jugador1(this, movimientojugador,choiceP1.name().toLowerCase());
 		CargarImagenes fondo = new CargarImagenes(path);
 		fondoPartida = fondo.getGrafico();		
+		cronometro = new Cronometro(10,this.getPanelWidth());
+		isRunning= true;
 	}
 
 
@@ -54,6 +55,10 @@ public class Partida extends JPanel implements Runnable{
 	}
 	public void terminarPartida() {
 		hiloPartida = null;
+		isRunning = false;
+		//Hay que tener en el controlador una clase que a parte de cambiar pantalla haga algo como dibujarla de nuevo??'
+		Controlador controlador = new Controlador();
+		controlador.cambiarPantalla("PantallaInicio");
 	}
 
 	@Override
@@ -77,15 +82,14 @@ public class Partida extends JPanel implements Runnable{
 				Thread.sleep((long) (tiempoSleep));// t de sleep en milisegundos
 				if (contador >= 63) { // 0.016x62.5 = 1 segundo
 					contador = 0;
-					c++;
+					cronometro.update();
 				}
 				intervalosiguiente += intervalo;
+				if(cronometro.esTiempoAgotado()) {
+					terminarPartida();
+				}
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-			if (tiempoRestante == 0) { // Fin de la partida
-				terminarPartida();
 			}
 		}
 
@@ -116,11 +120,9 @@ public class Partida extends JPanel implements Runnable{
 		}
 		jugador.draw(g1);
 		jugador2.draw(g1);
-		g1.setColor(Color.BLACK);
-	    g1.setFont(new Font("Arial", Font.BOLD, 30));
-	    tiempoRestante = 60-c;	//si es 0 tambien damos por terminada la partida
-	    g1.drawString(tiempoRestante + "s", (panelWidth/ 2)-30, 50+30); 
-		g1.dispose();
+	    cronometro.dibujar(g1);
+	    g1.dispose();
+
 	}
 
 	public int getPanelHeight() {
@@ -130,11 +132,11 @@ public class Partida extends JPanel implements Runnable{
 	public int getPanelWidth() {
 		return this.getWidth();
 	}
-
-	public int getTiempoRestante() {
-		return c;
-	}
 	protected static Partida getPartida() {
 		return getPartida();
+	}
+	@SuppressWarnings("unused")
+	private boolean esPartidaTerminada() {
+		return isRunning;
 	}
 }

@@ -50,4 +50,7 @@ public class Jugador1 extends Jugador implements IJugador {
 		this.defendiendo = defendiendo;
 	}
 
+	public boolean esDerecha() {
+		return movimientoJugador1.esDerecha();
+	}
 }
