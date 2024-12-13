@@ -15,7 +15,7 @@ import pantallas.Controlador.CHOICEP1;
 import pantallas.Controlador.CHOICEP2;
 
 //cambiar nombre a bucle de particula
-public class Partida extends JPanel implements Runnable{
+public class Partida extends JPanel implements Runnable {
 	private static final long serialVersionUID = 1L;
 	InputsJugadores movimientojugador = new InputsJugadores();
 	InputsJugadores movimientoJugador2 = new InputsJugadores();
@@ -24,28 +24,27 @@ public class Partida extends JPanel implements Runnable{
 	Jugador2 jugador2;
 	private int contador = 0;
 	public boolean acabada = false;
-	public GestorInteraccionesJugadores gestorJugador;	
+	public GestorInteraccionesJugadores gestorJugador;
 	int FPS = 60; // 60 FRAMES PER SECOND
 	public long tiempo = 0;
 	private boolean isRunning;
 	private Image fondoPartida;
 	private Cronometro cronometro;
 
-
-	public Partida(String path, CHOICEP1 choiceP1, CHOICEP2 choiceP2) { // PARA QUE PONGA DISTINTOS FONDOS SOLO HACE FALTA HACER public Partida(string
+	public Partida(String path, CHOICEP1 choiceP1, CHOICEP2 choiceP2) { // PARA QUE PONGA DISTINTOS FONDOS SOLO HACE
+																		// FALTA HACER public Partida(string
 		this.setPreferredSize(new Dimension(1280, 720));
 		this.setBackground(Color.white);
-		this.addKeyListener(movimientojugador);	//escuchador de movimiento del jugador 1
-		this.addKeyListener(movimientoJugador2); //escuchador de movimiento del jugador 2
+		this.addKeyListener(movimientojugador); // escuchador de movimiento del jugador 1
+		this.addKeyListener(movimientoJugador2); // escuchador de movimiento del jugador 2
 		this.setFocusable(true);
-		jugador2 = new Jugador2(this, movimientoJugador2,choiceP2.name().toLowerCase());
-		jugador = new Jugador1(this, movimientojugador,choiceP1.name().toLowerCase());
+		jugador2 = new Jugador2(this, movimientoJugador2, choiceP2.name().toLowerCase());
+		jugador = new Jugador1(this, movimientojugador, choiceP1.name().toLowerCase());
 		CargarImagenes fondo = new CargarImagenes(path);
-		fondoPartida = fondo.getGrafico();		
-		cronometro = new Cronometro(10,this.getPanelWidth());
-		isRunning= true;
+		fondoPartida = fondo.getGrafico();
+		cronometro = new Cronometro(10, this.getPanelWidth());
+		isRunning = true;
 	}
-
 
 	public void empezarPartida() {
 		hiloPartida = new Thread(this);
@@ -53,10 +52,12 @@ public class Partida extends JPanel implements Runnable{
 		gestorJugador = new GestorInteraccionesJugadores(jugador, jugador2, movimientojugador, movimientoJugador2);
 		isRunning = true;
 	}
+
 	public void terminarPartida() {
 		hiloPartida = null;
 		isRunning = false;
-		//Hay que tener en el controlador una clase que a parte de cambiar pantalla haga algo como dibujarla de nuevo??'
+		// Hay que tener en el controlador una clase que a parte de cambiar pantalla
+		// haga algo como dibujarla de nuevo??'
 		Controlador controlador = new Controlador();
 		controlador.cambiarPantalla("PantallaInicio");
 	}
@@ -85,7 +86,8 @@ public class Partida extends JPanel implements Runnable{
 					cronometro.update();
 				}
 				intervalosiguiente += intervalo;
-				if(cronometro.esTiempoAgotado()) {
+				if (cronometro.esTiempoAgotado()) {
+					isRunning = false;
 					terminarPartida();
 				}
 			} catch (InterruptedException e) {
@@ -99,14 +101,11 @@ public class Partida extends JPanel implements Runnable{
 		jugador.update();
 		jugador2.update();
 		gestorJugador.actualizarMovimiento();
-		/*
-		 * if (gestorJugador.partidaAcabada()) { hiloPartida = null;
-		 * Controlador.getInstance().cambiarPantalla("SeleccionCaracteres");
-		 * 
-		 * System.out.println(
-		 * "Partida terminada, tengo que pasar frame a un frame donde ponga Congratulations al ganador y luego volver al inicio"
-		 * ); }
-		 */
+		if (jugador.getSaludActual() == 0 || jugador2.getSaludActual() == 0) {
+			isRunning = false;
+			terminarPartida();
+
+		}
 	}
 
 	public void paintComponent(Graphics g) {
@@ -120,8 +119,8 @@ public class Partida extends JPanel implements Runnable{
 		}
 		jugador.draw(g1);
 		jugador2.draw(g1);
-	    cronometro.dibujar(g1);
-	    g1.dispose();
+		cronometro.dibujar(g1);
+		g1.dispose();
 
 	}
 
@@ -132,11 +131,14 @@ public class Partida extends JPanel implements Runnable{
 	public int getPanelWidth() {
 		return this.getWidth();
 	}
+
 	protected static Partida getPartida() {
 		return getPartida();
 	}
+
 	@SuppressWarnings("unused")
-	private boolean esPartidaTerminada() {
+	private boolean esPartidaTerminada() {// si tengo en el controlador algo que escucha hasta que este parametro sea
+											// false
 		return isRunning;
 	}
 }
