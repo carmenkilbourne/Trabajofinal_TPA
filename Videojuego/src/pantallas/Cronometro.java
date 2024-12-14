@@ -8,14 +8,15 @@ public class Cronometro {
     private int tiempoInicial;
     private int panelWidth;
     private int tiempo = 0;
-    
+    private boolean isRunning = false;
     public Cronometro(int tiempoInicial, int panelWidth) {
         this.tiempoInicial = tiempoInicial;
         this.panelWidth = panelWidth;
+        isRunning=true;
     }
 
     public void actualizar() {
-        if (tiempoRestante > 0) {
+        if (tiempoRestante > 0 && isRunning == true) {
             tiempoRestante--;
         }
     }
@@ -38,5 +39,8 @@ public class Cronometro {
 
     public int getTiempoRestante() {
         return tiempoRestante;
+    }
+    void pararContador() {
+    	isRunning = false;
     }
 }

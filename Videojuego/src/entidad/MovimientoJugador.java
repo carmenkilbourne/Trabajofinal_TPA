@@ -62,7 +62,7 @@ public class MovimientoJugador {
         }
 
         if (inputs.getAccionJugador1() == InputsJugadores.Accion.ABAJO) {
-            direccion = "abajo";
+            direccion = "abajo1";
             y += desplazamiento;
             if (y > 320) y = 320;
         }

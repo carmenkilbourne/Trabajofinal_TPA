@@ -6,6 +6,9 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import javax.swing.JPanel;
 import entidad.GestorInteraccionesJugadores;
 import entidad.InputsJugadores;
@@ -13,12 +16,13 @@ import entidad.Jugador1;
 import entidad.Jugador2;
 import pantallas.Controlador.CHOICEP1;
 import pantallas.Controlador.CHOICEP2;
+import pantallas.Controlador.STATE;
 
 //cambiar nombre a bucle de particula
-public class Partida extends JPanel implements Runnable {
+public class Partida extends JPanel implements Runnable,KeyListener {
 	private static final long serialVersionUID = 1L;
 	InputsJugadores movimientojugador = new InputsJugadores();
-	InputsJugadores movimientoJugador2 = new InputsJugadores();
+	//InputsJugadores movimientoJugador2 = new InputsJugadores();
 	Thread hiloPartida; // empieza el hilo para el loop
 	Jugador1 jugador;
 	Jugador2 jugador2;
@@ -30,29 +34,40 @@ public class Partida extends JPanel implements Runnable {
 	private boolean isRunning;
 	private Image fondoPartida;
 	private Cronometro cronometro;
-
+	  @Override
+	    public void keyPressed(KeyEvent e) {
+	        int keyCode = e.getKeyCode();
+	        if (keyCode == KeyEvent.VK_ESCAPE) {
+	            System.out.println("Escape key pressed");
+	            Controlador controlador = new Controlador();
+	    		controlador.cambiarPantalla("PantallaInicio");
+	        }
+	    }
 	public Partida(String path, CHOICEP1 choiceP1, CHOICEP2 choiceP2) { // PARA QUE PONGA DISTINTOS FONDOS SOLO HACE
 																		// FALTA HACER public Partida(string
 		this.setPreferredSize(new Dimension(1280, 720));
 		this.setBackground(Color.white);
 		this.addKeyListener(movimientojugador); // escuchador de movimiento del jugador 1
-		this.addKeyListener(movimientoJugador2); // escuchador de movimiento del jugador 2
+		this.addKeyListener(movimientojugador); // escuchador de movimiento del jugador 2
 		this.setFocusable(true);
-		jugador2 = new Jugador2(this, movimientoJugador2, choiceP2.name().toLowerCase());
+		jugador2 = new Jugador2(this, movimientojugador, choiceP2.name().toLowerCase());
 		jugador = new Jugador1(this, movimientojugador, choiceP1.name().toLowerCase());
 		CargarImagenes fondo = new CargarImagenes(path);
 		fondoPartida = fondo.getGrafico();
-		cronometro = new Cronometro(10, this.getPanelWidth());
+		cronometro = new Cronometro(60, this.getPanelWidth());
 		isRunning = true;
 	}
 
 	public void empezarPartida() {
 		hiloPartida = new Thread(this);
 		hiloPartida.start();
-		gestorJugador = new GestorInteraccionesJugadores(jugador, jugador2, movimientojugador, movimientoJugador2);
+		gestorJugador = new GestorInteraccionesJugadores(jugador, jugador2, movimientojugador);
 		isRunning = true;
 	}
-
+	public void pausarPartida() {
+		//parar el contador 
+		//
+	}
 	public void terminarPartida() {
 		hiloPartida = null;
 		isRunning = false;
@@ -70,7 +85,7 @@ public class Partida extends JPanel implements Runnable {
 		double intervalosiguiente = System.nanoTime() + intervalo;
 		while (hiloPartida != null) {
 			tiempo = System.nanoTime();
-			gestorJugador = new GestorInteraccionesJugadores(jugador, jugador2, movimientojugador, movimientoJugador2);
+			gestorJugador = new GestorInteraccionesJugadores(jugador, jugador2, movimientojugador);
 
 			update();
 			repaint();
@@ -136,9 +151,18 @@ public class Partida extends JPanel implements Runnable {
 		return getPartida();
 	}
 
-	@SuppressWarnings("unused")
-	private boolean esPartidaTerminada() {// si tengo en el controlador algo que escucha hasta que este parametro sea
+	public boolean esPartidaTerminada() {// si tengo en el controlador algo que escucha hasta que este parametro sea
 											// false
-		return isRunning;
+		return !isRunning;
+	}
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
