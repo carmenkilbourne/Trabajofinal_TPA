@@ -1,2 +1,8 @@
 .metadata/
 .vs/
+.project
+.settings/
+.vscode/
+*.class
+bin/
+.classpath
