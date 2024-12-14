@@ -21,6 +21,7 @@ public class Jugador1 extends Jugador implements IJugador {
 		barraSalud = new BarraSalud(saludMax, 10, 50);
 	}
 
+	@Override
 	public void update() {
 		movimientoJugador1.update(p.getPanelWidth(), p.getPanelHeight());
 		x = movimientoJugador1.getX();
@@ -29,6 +30,7 @@ public class Jugador1 extends Jugador implements IJugador {
 
 	}
 
+	@Override
 	public void draw(Graphics2D g1) {
 		BufferedImage image = null;
 		image = personaje.getImagen(direccion);
@@ -42,15 +44,27 @@ public class Jugador1 extends Jugador implements IJugador {
 		return saludActual;
 	}
 
+	@Override
 	public int getSaludMaxima() {
 		return saludMax;
 	}
 
+	@Override
 	public void setDefendiendo(boolean defendiendo) {
 		this.defendiendo = defendiendo;
 	}
 
+	@Override
 	public boolean esDerecha() {
 		return movimientoJugador1.esDerecha();
+	}
+
+	public void setX(int x) {
+        movimientoJugador1.setX(x);
+
+	}
+
+	public void setY(int y) {
+        movimientoJugador1.setY(y);
 	}
 }

@@ -110,4 +110,11 @@ public class MovimientoJugador {
     public boolean esDerecha() {
     	return esDerecha;
     }
+    public void setX(int x) {
+        this.x = x;
+    }
+
+	public void setY(int y) {
+		this.y = y;
+	}
 }

@@ -6,6 +6,7 @@ public class GestorInteraccionesJugadores{
     private InputsJugadores inputsJugadores;
     private final int areaEfectividadX = 160;
     private final int areaEfectividadY = 160;
+    private final int distanciaMinima = 10; // Distancia mínima para evitar colisiones
 
     public GestorInteraccionesJugadores(Jugador1 jugador1, Jugador2 jugador2, InputsJugadores inputsJugadores) {
         this.jugador1 = jugador1;
@@ -39,11 +40,12 @@ public class GestorInteraccionesJugadores{
  // Establecer estado de defensa de los jugadores
     jugador1.setDefendiendo(inputsJugadores.getAccionJugador1() == InputsJugadores.Accion.DEFENSA);
     jugador2.setDefendiendo(inputsJugadores.getAccionJugador2() == InputsJugadores.Accion.DEFENSA);
+    evitarColisiones();
     }
  
     private boolean esEfectivo() {
         // Calcular las diferencias en las coordenadas X y Y
-        int distanciaX = Math.abs(jugador1.getX() - jugador2.getX());	//calculo de la distancia en x
+        int distanciaX = Math.abs(jugador1.getX() - jugador2.getX());
         int distanciaY = Math.abs(jugador1.getY() - jugador2.getY());
 
         // Verificar si los jugadores están dentro del área de efectividad
@@ -52,13 +54,32 @@ public class GestorInteraccionesJugadores{
             boolean jugador1MiraJugador2 = jugador1.esDerecha() && jugador1.getX() < jugador2.getX();
             boolean jugador2MiraJugador1 = !jugador2.esDerecha() && jugador2.getX() > jugador1.getX();
 
-            if (jugador1MiraJugador2 || jugador2MiraJugador1) {
-                return true; // Los jugadores están dentro del área y se están mirando
+            // Verificar si están mirando en la dirección correcta
+            boolean mirandoCorrectamente = (jugador1MiraJugador2 || jugador2MiraJugador1) ||
+                                           (!jugador1.esDerecha() && jugador1.getX() > jugador2.getX()) ||
+                                           (jugador2.esDerecha() && jugador2.getX() < jugador1.getX());
+
+            if (mirandoCorrectamente) {
+                return true; // Los jugadores están dentro del área y se están mirando correctamente
             }
         }
 
         return false; // No cumplen las condiciones de efectividad
     }
+    private void evitarColisiones() {
+        int distanciaX = Math.abs(jugador1.getX() - jugador2.getX());
+        int distanciaY = Math.abs(jugador1.getY() - jugador2.getY());
 
+        if (distanciaX < distanciaMinima && distanciaY !=0) {
+            // Ajustar posiciones para evitar colisión
+            if (jugador1.getX() < jugador2.getX()) {
+                jugador1.setX(jugador1.getX() - distanciaMinima);
+                jugador2.setX(jugador2.getX() + distanciaMinima);
+            } else {
+                jugador1.setX(jugador1.getX() + distanciaMinima);
+                jugador2.setX(jugador2.getX() - distanciaMinima);
+            }
+        }
+    }
 }
 

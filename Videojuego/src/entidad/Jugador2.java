@@ -53,4 +53,10 @@ public class Jugador2 extends Jugador implements IJugador {
 	public boolean esDerecha() {
 		return movimientoJugador2.esDerecha();
 	}
+	public void setX(int x) {
+        movimientoJugador2.setX(x);
+	}
+	public void setY(int y) {
+        movimientoJugador2.setY(y);
+	}
 }

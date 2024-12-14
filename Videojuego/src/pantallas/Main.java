@@ -1,7 +1,14 @@
 package pantallas;
+
 /**
- * Punto de entrada del programa*/
+ * Punto de entrada del programa
+ * 
+ */
 public class Main {
+    /**
+     * Programa que va a inicializar nuestra clase principal Controlador
+     * @param args
+     */
     public static void main(String[] args) {
         new Controlador();	        // Inicializar el controlador
     }
