@@ -1,47 +1,47 @@
 package entidad;
 
 public class MovimientoJugador {
-    private int x, y;
-    private boolean saltando = false;
-    private int tiempoSalto = 0;
-    private final int maxAlturaSalto = 100;
-    private final int velocidadSalto = 10;
-    private final int desplazamiento = 10;
-    private boolean atacando = false;
-    private int contadorAtaque = 0;
-    private final int DURACION_ATAQUE = 10;
-    private boolean esDerecha = true;
-    private String direccion;
 
     private InputsJugadores inputs;
+    private int x;
+    private int y;
+    private String direccion;
+    private boolean esDerecha;
+    private boolean saltando;
+    private int tiempoSalto = 0;
+    private int desplazamiento = 10;
+    private int velocidadSalto = 10;
+    private int maxAlturaSalto = 100;
+    private boolean atacando = false;
+    private int contadorAtaque = 0;
+    private static final int DURACION_ATAQUE = 10;
 
-    public MovimientoJugador(InputsJugadores inputs, int inicialX, int inicialY) {
+    public MovimientoJugador(InputsJugadores inputs, int inicialX, int inicialY, String posInicial) {
         this.inputs = inputs;
-        this.x = inicialX;  // Inicializar x
-        this.y = inicialY;  // Inicializar y
-        setVariables();
+        this.x = inicialX;
+        this.y = inicialY;
+        direccion = posInicial;
     }
 
-    public void setVariables() {
-        direccion = "derecha";
-    }
-    public void update(int panelWidth, int panelHeight) {
-        // Movimientos basados en entradas del jugador
-        if (inputs.getAccionJugador1() == InputsJugadores.Accion.DERECHA) {
+    public void update(int panelWidth, int panelHeight, boolean esJugador1) {
+        // Movimientos basados en entradas del jugador dependiendo de si se trata del jugador 1 o 2
+        InputsJugadores.Accion accion = esJugador1 ? inputs.getAccionJugador1() : inputs.getAccionJugador2();
+
+        if (accion == InputsJugadores.Accion.DERECHA) {
             direccion = "derecha";
             esDerecha = true;
             x += desplazamiento;
             if (x > panelWidth - 200) x = panelWidth - 200;
         }
 
-        if (inputs.getAccionJugador1() == InputsJugadores.Accion.IZQUIERDA) {
+        if (accion == InputsJugadores.Accion.IZQUIERDA) {
             direccion = "izquierda";
             esDerecha = false;
             x -= desplazamiento;
             if (x < 0) x = 0;
         }
 
-        if (inputs.getAccionJugador1() == InputsJugadores.Accion.ARRIBA && !saltando) {
+        if (accion == InputsJugadores.Accion.ARRIBA && !saltando) {
             saltando = true;
             tiempoSalto = 0;
         }
@@ -61,17 +61,17 @@ public class MovimientoJugador {
             if (y > 320) y = 320;
         }
 
-        if (inputs.getAccionJugador1() == InputsJugadores.Accion.ABAJO) {
+        if (accion == InputsJugadores.Accion.ABAJO) {
             direccion = "abajo1";
             y += desplazamiento;
             if (y > 320) y = 320;
         }
 
-        if (inputs.getAccionJugador1() == InputsJugadores.Accion.ATAQUE && !atacando) {
+        if (accion == InputsJugadores.Accion.ATAQUE && !atacando) {
             atacando = true;
             contadorAtaque = DURACION_ATAQUE;
             direccion = esDerecha ? "ataque1" : "ataque1i"; // Primera fase del ataque
-        } else if (inputs.getAccionJugador1() == InputsJugadores.Accion.PATADA && !atacando) {
+        } else if (accion == InputsJugadores.Accion.PATADA && !atacando) {
             atacando = true;
             contadorAtaque = DURACION_ATAQUE;
             direccion = esDerecha ? "patada1" : "patada1i"; // Primera fase de la patada

@@ -9,20 +9,20 @@ public class Jugador2 extends Jugador implements IJugador {
 	InputsJugadores inputs;
 	private int saludMax = 100;
 	private CargarImagenesPersonajeFactory personaje;
-	private MovimientoJugador2 movimientoJugador2;
+	private MovimientoJugador movimientoJugador2;
 	private BarraSalud barraSalud;
 
 	public Jugador2(Partida p, InputsJugadores inputs, String tipo) {
 		this.p = p;
 		this.inputs = inputs;
-		movimientoJugador2 = new MovimientoJugador2(inputs, 1080, 320);
+		movimientoJugador2 = new MovimientoJugador(inputs, 1080, 320,"izquierda");
 		personaje = new CargarImagenesPersonajeFactory(tipo);
 		saludActual = saludMax;
 		barraSalud = new BarraSalud(saludMax, 1280-500-30, 50);
 	}
 
 	public void update() {
-		movimientoJugador2.update(p.getPanelWidth(), p.getPanelHeight());
+		movimientoJugador2.update(p.getPanelWidth(), p.getPanelHeight(),false);
 		x = movimientoJugador2.getX();
 		y = movimientoJugador2.getY();
 		direccion = movimientoJugador2.getDireccion();

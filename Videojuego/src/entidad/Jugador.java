@@ -12,7 +12,7 @@ public abstract class Jugador {
     // Métodos comunes a todos los jugadores
     public void recibirDanio(int cantidad) {
         if (defendiendo) {
-            cantidad = 0; // Reducir daño si está defendiendo
+            cantidad = 0; // Si est defendiendo no se provo
         }
         saludActual -= cantidad;
         if (saludActual < 0) saludActual = 0;

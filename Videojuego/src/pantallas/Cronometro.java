@@ -6,12 +6,10 @@ import java.awt.Graphics2D;
 public class Cronometro {
     private int tiempoRestante =1;
     private int tiempoInicial;
-    private int panelWidth;
     private int tiempo = 0;
     private boolean isRunning = false;
-    public Cronometro(int tiempoInicial, int panelWidth) {
+    public Cronometro(int tiempoInicial) {
         this.tiempoInicial = tiempoInicial;
-        this.panelWidth = panelWidth;
         isRunning=true;
     }
 
@@ -29,7 +27,7 @@ public class Cronometro {
         g1.setFont(new Font("Arial", Font.BOLD, 30));
         tiempoRestante = tiempoInicial-tiempo;
         int posX = (1280 - 50) / 2; // Coordenada X centrada
-        int posY = (720 + 30) / 2;  // Coordenada Y centrada (baseline)
+        int posY = (720 + 30) / 2;  // Coordenada Y centrada 
         g1.drawString(tiempoRestante + "s",posX,50);
     }
 

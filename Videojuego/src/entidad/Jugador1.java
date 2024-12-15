@@ -15,7 +15,7 @@ public class Jugador1 extends Jugador implements IJugador {
 	public Jugador1(Partida p, InputsJugadores inputs, String tipo) {
 		this.p = p;
 		this.inputs = inputs;
-		movimientoJugador1 = new MovimientoJugador(inputs, 0, 320);
+		movimientoJugador1 = new MovimientoJugador(inputs, 0, 320,"derecha");
 		personaje = new CargarImagenesPersonajeFactory(tipo);
 		saludActual = saludMax;
 		barraSalud = new BarraSalud(saludMax, 10, 50);
@@ -23,7 +23,7 @@ public class Jugador1 extends Jugador implements IJugador {
 
 	@Override
 	public void update() {
-		movimientoJugador1.update(p.getPanelWidth(), p.getPanelHeight());
+		movimientoJugador1.update(p.getPanelWidth(), p.getPanelHeight(),true);
 		x = movimientoJugador1.getX();
 		y = movimientoJugador1.getY();
 		direccion = movimientoJugador1.getDireccion();

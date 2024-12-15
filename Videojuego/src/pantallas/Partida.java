@@ -54,7 +54,7 @@ public class Partida extends JPanel implements Runnable,KeyListener {
 		jugador = new Jugador1(this, movimientojugador, choiceP1.name().toLowerCase());
 		CargarImagenes fondo = new CargarImagenes(path);
 		fondoPartida = fondo.getGrafico();
-		cronometro = new Cronometro(60, this.getPanelWidth());
+		cronometro = new Cronometro(60);
 		isRunning = true;
 	}
 
