@@ -18,6 +18,8 @@ public class Jugador2 extends Jugador implements IJugador {
 		ParametrosJugadores stats = ParametrosJugadoresFactory.getStats(tipo);
 		this.saludMax = stats.getSaludMax();
 	    this.ataque = stats.getAtaque();
+	    this.alturaJugador = stats.getAlturaJugador();
+	    this.anchuraJugador = stats.getAnchuraJugador();
 		personaje = new CargarImagenesPersonaje(tipo);
 		saludActual = saludMax;
 		barraSalud = new BarraSalud(saludMax, 1280-500-30, 50);

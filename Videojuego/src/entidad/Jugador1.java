@@ -18,7 +18,8 @@ public class Jugador1 extends Jugador implements IJugador {
 	    ParametrosJugadores stats = ParametrosJugadoresFactory.getStats(tipo);
 	    this.saludMax = stats.getSaludMax();
 	    this.ataque = stats.getAtaque();
-
+	    this.alturaJugador = stats.getAlturaJugador();
+	    this.anchuraJugador = stats.getAnchuraJugador();
 	    saludActual = saludMax;
 		movimientoJugador1 = new MovimientoJugador(inputs, 0, 320,"derecha");
 		personaje = new CargarImagenesPersonaje(tipo);
