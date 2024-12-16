@@ -7,16 +7,21 @@ import pantallas.Partida;
 public class Jugador1 extends Jugador implements IJugador {
 	Partida p;
 	InputsJugadores inputs;
-	private int saludMax = 100;
-	private CargarImagenesPersonajeFactory personaje;
+	private CargarImagenesPersonaje personaje;
 	private MovimientoJugador movimientoJugador1;
 	private BarraSalud barraSalud;
 
 	public Jugador1(Partida p, InputsJugadores inputs, String tipo) {
 		this.p = p;
 		this.inputs = inputs;
+		   // Obtener estadísticas desde el factory
+	    ParametrosJugadores stats = ParametrosJugadoresFactory.getStats(tipo);
+	    this.saludMax = stats.getSaludMax();
+	    this.ataque = stats.getAtaque();
+
+	    saludActual = saludMax;
 		movimientoJugador1 = new MovimientoJugador(inputs, 0, 320,"derecha");
-		personaje = new CargarImagenesPersonajeFactory(tipo);
+		personaje = new CargarImagenesPersonaje(tipo);
 		saludActual = saludMax;
 		barraSalud = new BarraSalud(saludMax, 10, 50);
 	}
@@ -37,11 +42,6 @@ public class Jugador1 extends Jugador implements IJugador {
 		g1.drawImage(image, x, y, alturaJugador, anchuraJugador, null);
 		barraSalud.dibujar(g1, saludActual);
 
-	}
-
-	@Override
-	public int getSaludActual() {
-		return saludActual;
 	}
 
 	@Override

@@ -6,12 +6,12 @@ import javax.imageio.ImageIO;
 /*
  * Clase CargarImagenesPersonajeFactory que carga todas las imagenes de los jugadores y luego devuelve la imagen 
  * correspondiente a la direccion seleccionada */
-public class CargarImagenesPersonajeFactory {
+public class CargarImagenesPersonaje {
     private BufferedImage salto, derecha, izquierda, abajo1, ataque1, ataque12, patada1, patada2, patada1i, patada2i,
             ataque1i, ataque2i;
     protected BufferedImage image;
 
-    public CargarImagenesPersonajeFactory(String tipo) {
+    public CargarImagenesPersonaje(String tipo) {
         switch (tipo.toLowerCase()) {
             case "gigante":
                 CargarImagenesGigante();

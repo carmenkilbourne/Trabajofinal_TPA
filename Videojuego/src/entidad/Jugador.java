@@ -1,41 +1,73 @@
 package entidad;
 
+/**
+ * Clase  base de los Jugador que tiene elementos que son comunes en ambas clases
+ */
 public abstract class Jugador {
     protected int saludActual;
     protected int saludMax;
     protected boolean defendiendo;
-    protected int ataque = 10;
+    protected int ataque;
     protected String direccion;
     protected int alturaJugador = 200;
     protected int anchuraJugador=200;
     protected int x,y;
     // Métodos comunes a todos los jugadores
-    public void recibirDanio(int cantidad) {
+    /**Metodo para recibir una cantidad de daño dependiendo de si se esta defendiendo o no
+     * @param cantidadDanio
+     */
+    public void recibirDanio(int cantidadDanio) {
         if (defendiendo) {
-            cantidad = 0; // Si est defendiendo no se provo
+            cantidadDanio = 0; // Si est defendiendo no se provo
         }
-        saludActual -= cantidad;
+        saludActual -= cantidadDanio;
         if (saludActual < 0) saludActual = 0;
         System.out.println(getClass().getSimpleName() + " ha recibido daño, vida restante: " + getSaludActual());
     }
 
+    /**
+     * Metodo que devuelve el impacto sobre la vida de otro jugador
+     * @return ataque
+     */
     public int getAtaque() {
         return ataque;
     }
+    /**
+     * Metodo para quitar vida a otro jugador
+     * @param enemigo
+     */
     public void atacar(Jugador enemigo) {
-        System.out.println(getClass().getSimpleName() + " ataca a " + enemigo.getClass().getSimpleName());
         enemigo.recibirDanio(this.ataque);
     }
 
 
+    /**
+     * Devuelve la cantidad de vida que tiene el jugador en cada momento
+     * @return saludActual
+     */
     public int getSaludActual() {
         return saludActual;
     }
+    /**
+     * Metodo que devuelve la posicion del jugador en el eje X
+     * @return x
+     */
     public int getX() {
     	return x;
     }
+    /**
+     * Metodo que devuelve la posicion en el eje Y del jugador
+     * @return y
+     */
     public int getY() {
-    	return x;
+    	return y;
+    }
+    /**
+     * Metodo para set salud maxima;
+     * @param saludMax
+     */
+    public void setSaludMaxima(int saludMax) {
+    	this.saludMax = saludMax;
     }
 
 }
