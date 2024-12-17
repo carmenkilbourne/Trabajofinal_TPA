@@ -9,8 +9,9 @@ public class MovimientoJugador {
     private boolean esDerecha;
     private boolean saltando;
     private int tiempoSalto = 0;
-    private int desplazamiento = 10;
-    private int velocidadSalto = 10;
+    private int desplazamiento;
+
+	private int velocidadSalto = 10;
     private int maxAlturaSalto = 100;
     private boolean atacando = false;
     private int contadorAtaque = 0;
@@ -116,5 +117,12 @@ public class MovimientoJugador {
 
 	public void setY(int y) {
 		this.y = y;
+	}
+    public int getDesplazamiento() {
+		return desplazamiento;
+	}
+
+	public void setDesplazamiento(int desplazamiento) {
+		this.desplazamiento = desplazamiento;
 	}
 }

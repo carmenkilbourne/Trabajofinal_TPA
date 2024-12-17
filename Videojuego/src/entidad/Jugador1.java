@@ -22,6 +22,8 @@ public class Jugador1 extends Jugador implements IJugador {
 	    this.anchuraJugador = stats.getAnchuraJugador();
 	    saludActual = saludMax;
 		movimientoJugador1 = new MovimientoJugador(inputs, 0, 320,"derecha");
+	    movimientoJugador1.setDesplazamiento(stats.getDesplazamiento());
+
 		personaje = new CargarImagenesPersonaje(tipo);
 		saludActual = saludMax;
 		barraSalud = new BarraSalud(saludMax, 10, 50);

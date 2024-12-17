@@ -8,10 +8,7 @@ class ParametrosJugadores {
     int saludMax;
     int ataque;
 	int alturaJugador;
-	public int getAlturaJugador() {
-		return alturaJugador;
-	}
-	
+	int desplazamiento;
 	int anchuraJugador;
 
    
@@ -20,11 +17,12 @@ class ParametrosJugadores {
      * @param saludMax
      * @param ataque
      */
-    public ParametrosJugadores(int saludMax, int ataque,int alturaJugador,int anchuraJugador) {
+    public ParametrosJugadores(int saludMax, int ataque,int alturaJugador,int anchuraJugador,int desplazamiento) {
         this.saludMax = saludMax;
         this.ataque = ataque;
         this.alturaJugador = alturaJugador;
         this.anchuraJugador = anchuraJugador;
+        this.desplazamiento = desplazamiento;
     }
     public int getSaludMax() {
     	return saludMax;
@@ -34,5 +32,11 @@ class ParametrosJugadores {
     }
     public int getAnchuraJugador() {
 		return anchuraJugador;
+	}
+	public int getAlturaJugador() {
+		return alturaJugador;
+	}
+	public int getDesplazamiento() {
+		return desplazamiento;
 	}
 }

@@ -14,12 +14,15 @@ public class Jugador2 extends Jugador implements IJugador {
 	public Jugador2(Partida p, InputsJugadores inputs, String tipo) {
 		this.p = p;
 		this.inputs = inputs;
-		movimientoJugador2 = new MovimientoJugador(inputs, 1080, 320,"izquierda");
-		ParametrosJugadores stats = ParametrosJugadoresFactory.getStats(tipo);
+		 ParametrosJugadores stats = ParametrosJugadoresFactory.getStats(tipo);
 		this.saludMax = stats.getSaludMax();
-	    this.ataque = stats.getAtaque();
-	    this.alturaJugador = stats.getAlturaJugador();
-	    this.anchuraJugador = stats.getAnchuraJugador();
+		this.ataque = stats.getAtaque();
+		this.alturaJugador = stats.getAlturaJugador();
+		this.anchuraJugador = stats.getAnchuraJugador();
+		saludActual = saludMax;
+		movimientoJugador2 = new MovimientoJugador(inputs, 1080, 320,"izquierda");
+		movimientoJugador2.setDesplazamiento(stats.getDesplazamiento());
+
 		personaje = new CargarImagenesPersonaje(tipo);
 		saludActual = saludMax;
 		barraSalud = new BarraSalud(saludMax, 1280-500-30, 50);
