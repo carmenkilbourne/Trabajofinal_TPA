@@ -4,18 +4,29 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import pantallas.Partida;
 
+/**
+ *Clase que extiende la clase base e implementa la interfaz IJugador 
+ *se le va a pasar la partida y va a dibujar y e implementar la logica del movimiento del
+ *jugador 
+ */
 public class Jugador1 extends Jugador implements IJugador {
-	Partida p;
+	Partida partida;
 	InputsJugadores inputs;
-	private CargarImagenesPersonaje personaje;
+	private CargarImagenesPersonaje imagenesPersonaje;
 	private MovimientoJugador movimientoJugador1;
 	private BarraSalud barraSalud;
 
-	public Jugador1(Partida p, InputsJugadores inputs, String tipo) {
-		this.p = p;
+	/**Constructor de la clase Jugador1 a la que se le pasa lo necesario para incluir logica de
+	 * movimiento y cargar la imagen necesaria
+	 * @param partida
+	 * @param inputs
+	 * @param tipoPersonaje
+	 */
+	public Jugador1(Partida partida, InputsJugadores inputs, String tipoPersonaje) {
+		this.partida = partida;
 		this.inputs = inputs;
 		   // Obtener estadísticas desde el factory
-	    ParametrosJugadores stats = ParametrosJugadoresFactory.getStats(tipo);
+	    ParametrosJugadores stats = ParametrosJugadoresFactory.getStats(tipoPersonaje);
 	    this.saludMax = stats.getSaludMax();
 	    this.ataque = stats.getAtaque();
 	    this.alturaJugador = stats.getAlturaJugador();
@@ -24,14 +35,14 @@ public class Jugador1 extends Jugador implements IJugador {
 		movimientoJugador1 = new MovimientoJugador(inputs, 0, 320,"derecha");
 	    movimientoJugador1.setDesplazamiento(stats.getDesplazamiento());
 
-		personaje = new CargarImagenesPersonaje(tipo);
+		imagenesPersonaje = new CargarImagenesPersonaje(tipoPersonaje);
 		saludActual = saludMax;
 		barraSalud = new BarraSalud(saludMax, 10, 50);
 	}
 
 	@Override
 	public void update() {
-		movimientoJugador1.update(p.getPanelWidth(), p.getPanelHeight(),true);
+		movimientoJugador1.update(partida.getPanelWidth(), partida.getPanelHeight(),true);
 		x = movimientoJugador1.getX();
 		y = movimientoJugador1.getY();
 		direccion = movimientoJugador1.getDireccion();
@@ -41,21 +52,11 @@ public class Jugador1 extends Jugador implements IJugador {
 	@Override
 	public void draw(Graphics2D g1) {
 		BufferedImage image = null;
-		image = personaje.getImagen(direccion);
+		image = imagenesPersonaje.getImagen(direccion);
 		g1.drawImage(image, x, y, alturaJugador, anchuraJugador, null);
 		barraSalud.dibujar(g1, saludActual);
 
-	}
-
-	@Override
-	public int getSaludMaxima() {
-		return saludMax;
-	}
-
-	@Override
-	public void setDefendiendo(boolean defendiendo) {
-		this.defendiendo = defendiendo;
-	}
+	}		
 
 	@Override
 	public boolean esDerecha() {

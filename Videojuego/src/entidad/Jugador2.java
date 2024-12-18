@@ -44,13 +44,6 @@ public class Jugador2 extends Jugador implements IJugador {
 
 	}
 
-	public int getSaludMaxima() {
-		return saludMax;
-	}
-
-	public void setDefendiendo(boolean defendiendo) {
-		this.defendiendo = defendiendo;
-	}
 
 	public boolean esDerecha() {
 		return movimientoJugador2.esDerecha();

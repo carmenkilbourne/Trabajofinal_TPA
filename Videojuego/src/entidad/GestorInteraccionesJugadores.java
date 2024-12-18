@@ -6,7 +6,7 @@ public class GestorInteraccionesJugadores{
     private InputsJugadores inputsJugadores;
     private final int areaEfectividadX = 160;
     private final int areaEfectividadY = 160;
-    private final int distanciaMinima = 10; // Distancia mínima para evitar colisiones
+    private final int distanciaMinima = 50; // Distancia mínima para evitar colisiones
 
     public GestorInteraccionesJugadores(Jugador1 jugador1, Jugador2 jugador2, InputsJugadores inputsJugadores) {
         this.jugador1 = jugador1;
@@ -66,11 +66,11 @@ public class GestorInteraccionesJugadores{
 
         return false; // No cumplen las condiciones de efectividad
     }
-    private void evitarColisiones() {
+    private void evitarColisiones() {	//se empuja al otro jugador si entra dentro del rango del jugador contrario
         int distanciaX = Math.abs(jugador1.getX() - jugador2.getX());
         int distanciaY = Math.abs(jugador1.getY() - jugador2.getY());
 
-        if (distanciaX < distanciaMinima && distanciaY !=0) {
+        if (distanciaX <= distanciaMinima && distanciaY ==0) {
             // Ajustar posiciones para evitar colisión
             if (jugador1.getX() < jugador2.getX()) {
                 jugador1.setX(jugador1.getX() - distanciaMinima);

@@ -1,7 +1,8 @@
 package entidad;
 
 /**
- * Clase base de los Jugador que tiene elementos que son comunes en ambas clases
+ * Clase base de los Jugador que tiene elementos que son comunes en ambas clases,
+ * es una clase abstracta ya que nunca la voy a instanciar
  */
 public abstract class Jugador {
 	protected int saludActual;
@@ -22,7 +23,7 @@ public abstract class Jugador {
 	 */
 	public void recibirDanio(int cantidadDanio) {
 		if (defendiendo) {
-			cantidadDanio = 0; // Si est defendiendo no se provo
+			cantidadDanio = 0; // Si est defendiendo no se provoCA daño
 		}
 		saludActual -= cantidadDanio;
 		if (saludActual < 0)
@@ -97,6 +98,12 @@ public abstract class Jugador {
 
 	public void setAnchuraJugador(int anchuraJugador) {
 		this.anchuraJugador = anchuraJugador;
+	}
+	public int getSaludMaxima() {
+		return saludMax;
+	}
+	public void setDefendiendo(boolean defendiendo) {
+		this.defendiendo = defendiendo;
 	}
 
 }

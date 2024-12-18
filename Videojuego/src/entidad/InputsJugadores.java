@@ -4,15 +4,25 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class InputsJugadores implements KeyListener {
-	/*
-	 * Clase */
+	
+    /**
+     * Enum de Accion donde se recoge cada accion realizada por un jugador
+     */
     public enum Accion {
         DERECHA, IZQUIERDA, ARRIBA, ABAJO, ATAQUE, DEFENSA, PATADA, NINGUNO
     }
 
+    /**
+     * Inicializacion de ambos jugadores a no estar realizando ninguna accion
+     * 
+     */
     private Accion accionJugador1 = Accion.NINGUNO;
     private Accion accionJugador2 = Accion.NINGUNO;
 
+    /**
+     *Funcion que recoge los imputs de los usuarios y 
+     *los asigna a su determinada accion
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
@@ -38,6 +48,10 @@ public class InputsJugadores implements KeyListener {
         }
     }
 
+    /**
+     *Metodo para que cuando no se este realizando ninguna accion cuando se deja de presionar el
+     *personaje vuelva a un estado de no estar realizando ninguna accion
+     */
     @Override
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
@@ -70,11 +84,16 @@ public class InputsJugadores implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {}
+    /**
+     * Metodo para resetear el jugador 1 como jugador que no esta realizando ninguna acción
+     */
     public void resetAccionJugador1() {
         // Restablece la acción del jugador 1 a un estado predeterminado, como 'NINGUNA'
         this.accionJugador1 = Accion.NINGUNO;
     }
-
+    /**
+     * Metodo para resetear el jugador 2 como jugador que no esta realizando ninguna acción
+     */
     public void resetAccionJugador2() {
         // Restablece la acción del jugador 2 a un estado predeterminado, como 'NINGUNA'
         this.accionJugador2 = Accion.NINGUNO;

@@ -27,7 +27,6 @@ public class Partida extends JPanel implements Runnable,KeyListener {
 	Jugador1 jugador;
 	Jugador2 jugador2;
 	private int contador = 0;
-	public boolean acabada = false;
 	public GestorInteraccionesJugadores gestorJugador;
 	int FPS = 60; // 60 FRAMES PER SECOND
 	public long tiempo = 0;
