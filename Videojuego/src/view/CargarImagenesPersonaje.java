@@ -109,8 +109,8 @@ public class CargarImagenesPersonaje {
 			ataque1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/Hada/punetazoDrcha.png"));
 			ataque12 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/Hada/punetazoDrchaPow.png"));
 			patada1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/Hada/patadaDrcha.png"));
-			patada2 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/Hada/punetazoDrchaPow.png"));
-			patada1i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/Hada/patadaIzq.png"));
+			patada2 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/Hada/patadaDrchaPow.png"));
+			patada1i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/Hada/patadaizq.png"));
 			patada2i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/Hada/patadaIzqPow.png"));
 			ataque1i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/Hada/punetazoIzq.png"));
 			ataque2i = ImageIO.read(getClass().getResourceAsStream("/Imagenes/Hada/punetazoIzqPow.png"));

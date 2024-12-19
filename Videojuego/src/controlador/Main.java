@@ -1,7 +1,6 @@
 package controlador;
 
 import model.Controlador;
-
 /**
  * Punto de entrada del programa
  */
