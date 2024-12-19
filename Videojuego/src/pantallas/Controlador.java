@@ -1,6 +1,8 @@
 package pantallas;
 
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JFrame;
@@ -178,33 +180,54 @@ public class Controlador implements KeyListener, IControlador {
     public void keyReleased(KeyEvent e) {
         // TODO Auto-generated method stub
     }
-    public void mostrarPantallaGanador(String ganador) {
-        // Lógica para mostrar la pantalla de ganador
-        JFrame pantallaGanador = new JFrame("¡Ganador!");
-        
-        pantallaGanador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        pantallaGanador.setSize(FrameWidth, FrameHeight);
-        pantallaGanador.setResizable(false);
-        pantallaGanador.setLocationRelativeTo(null);
-
-        // Crear el panel de fondo personalizado
-        String path = "/Imagenes/PantallaGanador.jpg"; // Ruta del fondo
-        FondoPantalla fondoPantalla = new FondoPantalla(path);  // Usamos la clase FondoPantalla para dibujar la imagen de fondo
-        
-        // Crear un panel para mostrar el texto del ganador
-        JPanel winnerPanel = new JPanel();
-        JLabel winnerLabel = new JLabel("¡El ganador es: " + ganador + "!");
-        winnerPanel.setOpaque(false);  // Hacer transparente el panel para que se vea el fondo
-        winnerPanel.add(winnerLabel);
-
-        // Añadir los dos paneles: fondo + texto
-        pantallaGanador.setContentPane(fondoPantalla);  // Establece el panel de fondo como el contenedor principal
-        pantallaGanador.add(winnerPanel);  // Añadir el panel con el texto encima del fondo
-        pantallaGanador.revalidate();
-        pantallaGanador.repaint();
-
-        // Hacer visible la ventana
-        pantallaGanador.setVisible(true);
+    public static void incrementarVictoriasJugador1() {
+        victoriasJugador1++;
     }
+
+    public static void incrementarVictoriasJugador2() {
+        victoriasJugador2++;
+    }
+    public static final int MAX_RONDAS = 3; // Número máximo de rondas
+    public static int rondaActual = 0; // Contador de rondas, inicia en 1
+    public static int victoriasJugador1 = 0;
+    public static int victoriasJugador2 = 0;
+    public static String getGanadorFinal() {
+        if (victoriasJugador1 > victoriasJugador2) {
+            return "Jugador 1";
+        } else if (victoriasJugador2 > victoriasJugador1) {
+            return "Jugador 2";
+        } else {
+            return "Empate";
+        }
+    }
+    public void mostrarPantallaGanador(String ganador) {
+         JFrame pantallaGanador = new JFrame("¡Ganador!");
+         
+         pantallaGanador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         pantallaGanador.setSize(FrameWidth, FrameHeight);
+         pantallaGanador.setResizable(false);
+         pantallaGanador.setLocationRelativeTo(null);
+
+         // Crear el panel de fondo personalizado
+         String path = "/Imagenes/PantallaGanador.jpg"; // Ruta del fondo
+         FondoPantalla fondoPantalla = new FondoPantalla(path);  // Usamos la clase FondoPantalla para dibujar la imagen de fondo
+         
+         // Crear un panel para mostrar el texto del ganador
+         JPanel winnerPanel = new JPanel();
+         JLabel winnerLabel = new JLabel(ganador);
+         winnerLabel.setFont(new Font("Arial", Font.BOLD, 100));  // Cambia "Arial" por cualquier fuente que prefieras, 50 es el tamaño
+         winnerLabel.setForeground(Color.BLACK);  // Establecer el color del texto a amarillo
+         winnerPanel.setOpaque(false);  // Hacer transparente el panel para que se vea el fondo
+         winnerPanel.add(winnerLabel);
+
+         // Añadir los dos paneles: fondo + texto
+         pantallaGanador.setContentPane(fondoPantalla);  // Establece el panel de fondo como el contenedor principal
+         pantallaGanador.add(winnerPanel);  // Añadir el panel con el texto encima del fondo
+         pantallaGanador.revalidate();
+         pantallaGanador.repaint();
+
+         // Hacer visible la ventana
+         pantallaGanador.setVisible(true);
+     }
 
 }

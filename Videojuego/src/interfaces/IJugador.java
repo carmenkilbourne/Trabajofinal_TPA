@@ -3,10 +3,9 @@ package interfaces;
 import java.awt.Graphics2D;
 
 /**
- * Interfaz de Jugadores 1 y 2 
+ * Interfaz de Jugadores 1 y 2
  */
 public interface IJugador {
-
 
 	/**
 	 * Método que actualiza el movimiento del jugador y las imagenes
@@ -32,4 +31,13 @@ public interface IJugador {
 	 */
 	void setX(int x);
 
+	/**
+	 * Método que resetea la salud a la máxima para empezar una nueva ronda.
+	 */
+	void resetSalud();
+
+	/**
+	 * Poner al jugador en la posición inicial.
+	 */
+	void reiniciarPosicion();
 }

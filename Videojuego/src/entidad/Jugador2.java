@@ -84,4 +84,19 @@ public class Jugador2 extends Jugador implements IJugador {
 	public void setX(int x) {
 		movimientoJugador2.setX(x);
 	}
+
+	/**
+	 * Método que resetea la salud a la máxima para empezar una nueva ronda.
+	 */
+	public void resetSalud() {
+	    this.saludActual = this.getSaludMaxima(); // Reinicia la salud al máximo		
+	}
+
+	/**
+	 * Poner al jugador en la posición inicial.
+	 */
+	public void reiniciarPosicion() {
+		movimientoJugador2.setX(1080);
+		movimientoJugador2.setY(320);
+	}
 }

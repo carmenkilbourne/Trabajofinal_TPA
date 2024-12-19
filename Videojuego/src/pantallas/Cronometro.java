@@ -43,4 +43,10 @@ public class Cronometro {
     void pararContador() {
     	isRunning = false;
     }
+
+	public void reiniciar() {
+		 this.tiempoRestante = this.tiempoInicial;  // Reinicia el tiempo al valor inicial
+	     this.tiempo = 0;  // Reinicia el contador de tiempo transcurrido	
+	     this.isRunning = true;  // Reactiva el cronómetro
+	}
 }
