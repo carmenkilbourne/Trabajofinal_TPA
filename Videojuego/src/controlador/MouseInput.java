@@ -6,8 +6,11 @@ import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JFrame;
-
 import model.Controlador;
+import model.Enums;
+import model.Enums.CHOICEP1;
+import model.Enums.CHOICEP2;
+import model.Enums.STATE;
 
 /**
  * Clase que recoje los inputs de los jugadores para dsecidir entre los 4 mapas
@@ -44,19 +47,19 @@ public class MouseInput implements MouseListener {
 	public void mousePressed(MouseEvent e) {
 		int mx = e.getX();
 		int my = e.getY();
-		// System.out.println("Mouse pressed at: (" + mx + ", " + my + ")");
+		System.out.println("Mouse pressed at: (" + mx + ", " + my + ")");
 
-		if (Controlador.state == Controlador.STATE.CHARSEL1) {
+		if (Enums.getState() == STATE.CHARSEL1) {
 			// System.out.println("Current state: CHARSEL1");
 			if (mx < frame.getWidth() / 2) {
 				// System.out.println("Left side clicked: Gigante selected");
-				Controlador.choiceP1 = Controlador.CHOICEP1.GIGANTE;
+				Controlador.choiceP1 = CHOICEP1.GIGANTE;
 			} else {
 				System.out.println("Right side clicked: Hada selected");
-				Controlador.choiceP1 = Controlador.CHOICEP1.HADA;
+				Controlador.choiceP1 = CHOICEP1.HADA;
 			}
 			// Cambiar a selección de personaje 2
-			Controlador.state = Controlador.STATE.CHARSEL2;
+			Enums.setState(STATE.CHARSEL2);
 			Controlador controlador = Controlador.getInstance();
 			if (controlador != null) {
 				controlador.cambiarPantalla("SeleccionCaracteres");
@@ -64,17 +67,17 @@ public class MouseInput implements MouseListener {
 			} else {
 				// System.out.println("Controlador instance is null");
 			}
-		} else if (Controlador.state == Controlador.STATE.CHARSEL2) {
+		} else if (Enums.getState() == STATE.CHARSEL2) {
 			// System.out.println("Current state: CHARSEL2");
 			if (mx < frame.getWidth() / 2) {
 				// System.out.println("Left side clicked: Gigante selected");
-				Controlador.choiceP2 = Controlador.CHOICEP2.GIGANTE;
+				Controlador.choiceP2 = CHOICEP2.GIGANTE;
 			} else {
 				// System.out.println("Right side clicked: Hada selected");
-				Controlador.choiceP2 = Controlador.CHOICEP2.HADA;
+				Controlador.choiceP2 = CHOICEP2.HADA;
 			}
 			// Cambiar a la selección de mapa
-			Controlador.state = Controlador.STATE.CHOOSE;
+			Enums.setState(STATE.CHOOSE); 
 			Controlador controlador = Controlador.getInstance();
 			if (controlador != null) {
 				controlador.cambiarPantalla("SeleccionMapa");
@@ -82,28 +85,28 @@ public class MouseInput implements MouseListener {
 			} else {
 				// System.out.println("Controlador instance is null");
 			}
-		} else if (Controlador.state == Controlador.STATE.CHOOSE) {
+		} else if (Enums.getState() == STATE.CHOOSE) {
 			// System.out.println("Current state: CHOOSE");
 			int width = frame.getWidth();
 			int height = frame.getHeight();
 			if (mx < width / 2 && my < height / 2) {
-				// System.out.println("Top-left quadrant clicked: Map 1 selected");
+				 System.out.println("Top-left quadrant clicked: Map 1 selected");
 				Controlador.mapa = 1;
 			} else if (mx >= width / 2 && my < height / 2) {
-				// System.out.println("Top-right quadrant clicked: Map 2 selected");
+				 System.out.println("Top-right quadrant clicked: Map 2 selected");
 				Controlador.mapa = 2;
 			} else if (mx < width / 2 && my >= height / 2) {
-				// System.out.println("Bottom-left quadrant clicked: Map 3 selected");
+				 System.out.println("Bottom-left quadrant clicked: Map 3 selected");
 				Controlador.mapa = 3;
 			} else if (mx >= width / 2 && my >= height / 2) {
-				// System.out.println("Bottom-right quadrant clicked: Map 4 selected");
+				 System.out.println("Bottom-right quadrant clicked: Map 4 selected");
 				Controlador.mapa = 4;
 			}
 			// Cambiar al estado del juego
-			Controlador.state = Controlador.STATE.GAME;
+			Enums.setState(STATE.GAME);
 			Controlador controlador = Controlador.getInstance();
 			if (controlador != null) {
-				controlador.cambiarPantalla("Game");
+				controlador.cambiarPantalla("PantallaPelea");
 				// System.out.println("State changed to: GAME");
 			} else {
 				// System.out.println("Controlador instance is null");

@@ -18,7 +18,7 @@ public interface IControlador {
 	 * 
 	 * @param nombrePantalla Nombre de la pantalla a mostrar.
 	 */
-	void actualizarFondo(String nombrePantalla);
+	void actualizarFondo(String nombrePantalla,int mapa);
 
 	/**
 	 * Manejar eventos de teclado pasanso de pantalla inicial a seleccion de

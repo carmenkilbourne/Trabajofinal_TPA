@@ -1,5 +1,6 @@
 package view;
 
+import controlador.InputsJugadores;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -7,19 +8,16 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-
-import controlador.InputsJugadores;
 import model.Controlador;
 import model.Cronometro;
+import model.Enums.CHOICEP1;
+import model.Enums.CHOICEP2;
 import model.GestorInteraccionesJugadores;
 import model.Jugador1;
 import model.Jugador2;
-import model.Controlador.CHOICEP1;
-import model.Controlador.CHOICEP2;
 
 /**
  *  Clase Partida que representa el juego principal, tiene toda la lógica de movimiento, 
@@ -156,6 +154,8 @@ public class Partida extends JPanel implements Runnable,KeyListener, IPartida {
 	        return "Jugador 2";
 	    }
 	}
+
+	
 	/**
 	 *Método run que implementa el bucle del juego, actualiza parametros de los jugadores, cronometro y 
 	 *pintar la pantalla.
