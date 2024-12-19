@@ -4,6 +4,19 @@ Magic Duel Quest es un juego en el que se pueden elegir entre dos personajes con
 Cada juego constará de 3 rondas y gana el que gane más rondas.
 
 ## Modo de descargar Magic Duel Quest
+Como no me funcionaba el .jar en primera instancia he tenido que realizar los siguientes pasos:
+
+1.Descargarme Java para desktop en el siguiente enlace 
+
+`https://www.java.com/es/`
+
+2.Descargarme el JarFix en el siguiente enlace:
+
+`https://johann.loefflmann.net/en/software/jarfix/index.html`
+
+3.Descargarme un JDK adecuado ya que no tenia uno adecuado a mi sistema en el siguiente enlace:
+
+`https://www.oracle.com/java/technologies/downloads/#jdk23-windows`
 
 ## Mecánica del juego:
 ![alt text](<_Photo Collage Vision Board .png>)
