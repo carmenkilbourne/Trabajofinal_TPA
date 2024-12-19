@@ -11,20 +11,35 @@ public class Cronometro {
     private int tiempoInicial;
     private int tiempo = 0;
     private boolean isRunning = false;
+    /**
+     * Constructor de cronometro al que se le pasan los segundos que va a durar la cuenta de pelea.
+     * @param tiempoInicial
+     */
     public Cronometro(int tiempoInicial) {
         this.tiempoInicial = tiempoInicial;
         isRunning=true;
     }
 
+    /**
+     * descontar un segundo cada segundo que pasa.
+     */
     public void actualizar() {
         if (tiempoRestante > 0 && isRunning == true) {
             tiempoRestante--;
         }
     }
+    /**
+     * aumenta el tiempo cada segundo.
+     */
     public void update() {
     	tiempo ++;
     }
 
+    /**
+     * Dibuja en el panel en la mitad del panel el cronometro.
+     * @param g1
+     * @param panelWidth
+     */
     public void dibujar(Graphics2D g1, int panelWidth) {
         g1.setColor(Color.BLACK);
         g1.setFont(new Font("Arial", Font.BOLD, 30));

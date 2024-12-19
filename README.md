@@ -1,9 +1,31 @@
 # Magic Duel Quest
 
-El **objetivo** de nuestro trabajo es desarrollar un juego de peleas por rondas. Los jugadores podrán elegir entre dos personajes diferentes y seleccionar entre una variedad de escenarios. La clase principal del juego gestionará las funciones esenciales, como iniciar partida, cargar partida, pausar partida y finalizar partida. Para navegar por las diferentes pantallas del juego, habrá un botón (activado al presionar la tecla Enter) que permitirá avanzar de una pantalla a otra, como la de selección de personajes y la elección de escenarios.
+Magic Duel Quest es un juego en el que se pueden elegir entre dos personajes con diferentes caracteristicas y un diverso número de mapas para pelear.
+Cada juego constará de 3 rondas y gana el que gane más rondas.
+
+## Modo de descargar Magic Duel Quest
+
 ## Mecánica del juego:
 ![alt text](<_Photo Collage Vision Board .png>)
+
+## Pantallas del juego
+Enter para pasar a la siguiente pantalla
+![alt text](image-1.png)
+
+Pinchar 2 veces una por cada jugador para elegir personaje
+![alt text](image-2.png)
+
+Pinchar en el mapa deseado
+![alt text](image-3.png)
+
+Pantalla de partida con contador de 60 segundos, gana el que mate al contrario.
+![alt text](image-4.png)
+
+Pantalla de anuncio del Ganador 
+![alt text](image-5.png)
 
 ## Diagrama UML
 ![alt text](uml2.png)
 ![alt text](uml.png)
+
+
