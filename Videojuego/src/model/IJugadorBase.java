@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * Interfaz de Jugador que es la clase base que luego se va a extender para crear las clases jugador 1 y 2.
+ */
 public interface IJugadorBase {
 
 	/**

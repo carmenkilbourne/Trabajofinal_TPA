@@ -3,6 +3,9 @@ package view;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
+/**
+ * Interfaz de la clase Partida.
+ */
 public interface IPartida {
 
 	void keyPressed(KeyEvent e);

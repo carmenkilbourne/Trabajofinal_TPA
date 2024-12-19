@@ -26,7 +26,7 @@ public class Jugador2 extends Jugador implements IJugador {
 	 * Constructor de la clase Jugador2 a la que se le pasa lo necesario para
 	 * incluir logica de movimiento y cargar la imagen necesaria
 	 * 
-	 * @param partida       es la partida que tiene mi bucle de partida.
+	 * @param IPartida       es la partida que tiene mi bucle de partida.
 	 * @param inputs        son los inputs del jugador.
 	 * @param tipoPersonaje es el tipo de jugador seleccionado.
 	 */

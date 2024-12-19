@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"Videojuego","l":"entidad"},{"m":"Videojuego","l":"pantallaInicio"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"Videojuego","l":"controlador"},{"m":"Videojuego","l":"model"},{"m":"Videojuego","l":"view"}];updateSearchResults();

@@ -2,7 +2,6 @@ package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -21,7 +20,6 @@ import model.Jugador1;
 import model.Jugador2;
 import model.Controlador.CHOICEP1;
 import model.Controlador.CHOICEP2;
-import model.Controlador.STATE;
 
 /**
  *  Clase Partida que representa el juego principal, tiene toda la lógica de movimiento, 
@@ -34,18 +32,27 @@ import model.Controlador.STATE;
  */
 public class Partida extends JPanel implements Runnable,KeyListener, IPartida {
 	private static final long serialVersionUID = 1L;
-	InputsJugadores movimientojugador = new InputsJugadores();
-	//InputsJugadores movimientoJugador2 = new InputsJugadores();
-	Thread hiloPartida; // empieza el hilo para el loop
+	/**Recoge los inputs de los jugadores*/
+	InputsJugadores movimientojugador = new InputsJugadores();	
+	/**hilo de la partida*/
+	Thread hiloPartida; 
+	/**Jugador 1*/
 	Jugador1 jugador;
+	/**Jugador 2*/
 	Jugador2 jugador2;
-	private int contador = 0;
+	/**contador de los segundos que pasan*/
+	private int contador = 0;	
+	/**Gestión de interacciones de jugadores*/
 	public GestorInteraccionesJugadores gestorJugador;
-	int FPS = 60; // 60 FRAMES PER SECOND
+	 /**60 FRAMES PER SECOND*/
+	int FPS = 60;
 	public long tiempo = 0;
-	private boolean isRunning;
-	private Image fondoPartida;
-	private Cronometro cronometro;
+	/**Indica si la partida está ejecutandose si es true*/
+	private boolean isRunning;	
+	/**Fondo de pantalla de partida*/
+	private Image fondoPartida;	
+	/**Cronometro*/
+	private Cronometro cronometro;	
 	  @Override
 	    public void keyPressed(KeyEvent e) {
 	      
@@ -280,8 +287,10 @@ public class Partida extends JPanel implements Runnable,KeyListener, IPartida {
 	 */
 	private String getGanadorFinal() {
         if (Controlador.victoriasJugador1 > Controlador.victoriasJugador2) {
+        	Controlador.incrementarVictoriasJugador1(); 
             return "Jugador 1";
         } else if (Controlador.victoriasJugador2 > Controlador.victoriasJugador1) {
+        	Controlador.incrementarVictoriasJugador2(); 
             return "Jugador 2";
         } else {
             return "¡Es un empate!";

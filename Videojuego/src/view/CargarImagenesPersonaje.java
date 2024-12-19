@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-/*
+/**
  * Clase CargarImagenesPersonajeFactory que carga todas las imagenes del personaje elegido por los Personajes y 
  * luego devuelve la imagen correspondiente a la direccion seleccionada. 
  * Implementa el patrón de diseño de Factory method.
@@ -23,7 +23,6 @@ public class CargarImagenesPersonaje {
 	 * @throws IllegalArgumentException si el tipo de personaje es distinto a los
 	 *                                  permitidos
 	 */
-
 	public CargarImagenesPersonaje(String tipoPersonaje) {
 		switch (tipoPersonaje.toLowerCase()) {
 		case "gigante":

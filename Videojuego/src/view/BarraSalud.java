@@ -8,7 +8,7 @@ import java.awt.Graphics2D;
  * indicando la cantidad de vida actual de un jugador.
  * 
  */
-public class BarraSalud implements IBarraSalud {
+public class BarraSalud  {
 	private int x, y;
 	private int saludMax;
 

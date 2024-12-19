@@ -101,6 +101,7 @@ public class InputsJugadores implements KeyListener {
 	/**
 	 * Metodo keyTyped no usado pero se tiene que poner ya que es parte del
 	 * KeyListener
+	 * @param e es el evento escuchado por teclado
 	 */
 
 	@Override

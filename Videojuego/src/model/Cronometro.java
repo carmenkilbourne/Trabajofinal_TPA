@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 /**
- * Clase Cronometro
+ * Clase Cronometro que muestra el cronometro por pantalla y cuenta el tiempo que se pasa por teclado.
  */
 public class Cronometro {
     private int tiempoRestante =1;

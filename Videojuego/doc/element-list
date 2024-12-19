@@ -1,3 +1,4 @@
 module:Videojuego
-entidad
-pantallaInicio
+controlador
+model
+view

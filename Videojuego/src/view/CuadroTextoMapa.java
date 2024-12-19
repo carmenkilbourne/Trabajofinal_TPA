@@ -4,13 +4,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
+/**
+ * Clase que separa los mapas en 4 subsecciones par seleccionar el mapa.
+ */
 public class CuadroTextoMapa extends JPanel {
     
     private static final long serialVersionUID = 1L;
-    private JLabel etiqueta;
-    private JButton botonMapa1;
-    private JButton botonMapa2;
-    private JButton botonMapa3;
+    private JLabel etiqueta;	/**etiqueta para coger mapa*/
+    private JButton botonMapa1;	/**botón del mapa 1*/
+    private JButton botonMapa2;	/**botón del mapa 2*/
+    private JButton botonMapa3;	/**botón del mapa 3*/
 
     public CuadroTextoMapa(String texto) {
         // Usar layout nulo para definir posiciones manualmente

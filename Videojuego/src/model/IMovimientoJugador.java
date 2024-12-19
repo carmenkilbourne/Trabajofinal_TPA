@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * Interfaz para el movimiento del jugador.
+ */
 public interface IMovimientoJugador {
 
 	/**
