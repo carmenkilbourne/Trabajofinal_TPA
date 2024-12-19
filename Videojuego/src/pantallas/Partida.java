@@ -9,7 +9,10 @@ import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+
 import entidad.GestorInteraccionesJugadores;
 import entidad.InputsJugadores;
 import entidad.Jugador1;
@@ -35,12 +38,7 @@ public class Partida extends JPanel implements Runnable,KeyListener {
 	private Cronometro cronometro;
 	  @Override
 	    public void keyPressed(KeyEvent e) {
-	        int keyCode = e.getKeyCode();
-	        if (keyCode == KeyEvent.VK_ESCAPE) {
-	            System.out.println("Escape key pressed");
-	            Controlador controlador = new Controlador();
-	    		controlador.cambiarPantalla("PantallaInicio");
-	        }
+	      
 	    }
 	public Partida(String path, CHOICEP1 choiceP1, CHOICEP2 choiceP2) { // PARA QUE PONGA DISTINTOS FONDOS SOLO HACE
 																		// FALTA HACER public Partida(string
@@ -63,17 +61,20 @@ public class Partida extends JPanel implements Runnable,KeyListener {
 		gestorJugador = new GestorInteraccionesJugadores(jugador, jugador2, movimientojugador);
 		isRunning = true;
 	}
-	public void pausarPartida() {
-		//parar el contador 
-		//
-	}
 	public void terminarPartida() {
 		hiloPartida = null;
 		isRunning = false;
-		// Hay que tener en el controlador una clase que a parte de cambiar pantalla
-		// haga algo como dibujarla de nuevo??'
-		Controlador controlador = new Controlador();
-		controlador.cambiarPantalla("PantallaInicio");
+		// Remover la pantalla de la partida
+	    JFrame mainFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+	    if (mainFrame != null) {
+	        mainFrame.dispose();  // Cierra el JFrame completamente
+	    }
+
+	    // Llamar al controlador para mostrar la pantalla de ganador si se desea
+	    Controlador controlador = Controlador.getInstance();
+	    if (controlador != null) {
+	        controlador.cambiarPantalla("Winner");  // Cambia la pantalla a la de ganador
+	    }
 	}
 
 	@Override
@@ -118,8 +119,22 @@ public class Partida extends JPanel implements Runnable,KeyListener {
 		if (jugador.getSaludActual() == 0 || jugador2.getSaludActual() == 0) {
 			isRunning = false;
 			terminarPartida();
-
+			 // Determinar el ganador
+	        if (jugador.getSaludActual() > 0) {
+	            // Jugador 1 gana
+	            Controlador.choiceP1 = Controlador.CHOICEP1.GIGANTE; // O el personaje que elijas
+	        } else {
+	            // Jugador 2 gana
+	            Controlador.choiceP2 = Controlador.CHOICEP2.HADA; // O el personaje que elijas
+	        }
+	        
+	        // Cambiar a la pantalla del ganador
+	        Controlador stateControlador = Controlador.getInstance();
+	        if (stateControlador != null) {
+	            stateControlador.mostrarPantallaGanador(getGanador());
+	        }
 		}
+		
 	}
 
 	public void paintComponent(Graphics g) {
@@ -133,7 +148,7 @@ public class Partida extends JPanel implements Runnable,KeyListener {
 		}
 		jugador.draw(g1);
 		jugador2.draw(g1);
-		cronometro.dibujar(g1);
+		cronometro.dibujar(g1,getPanelWidth());
 		g1.dispose();
 
 	}
@@ -162,6 +177,14 @@ public class Partida extends JPanel implements Runnable,KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
+		
+	}
+	public String getGanador() {
+		if(jugador.getSaludActual()>0) {
+		return "jugador1";
+		}
+		else
+			return "jugador2";
 		
 	}
 }

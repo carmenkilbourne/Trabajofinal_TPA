@@ -4,6 +4,7 @@ import java.awt.CardLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Controlador implements KeyListener, IControlador {
@@ -17,12 +18,12 @@ public class Controlador implements KeyListener, IControlador {
     public static CHOICEP1 choiceP1 = CHOICEP1.NOTHING;
     public static CHOICEP2 choiceP2 = CHOICEP2.NOTHING2;
     public static int mapa = 0;
-    public static int FrameWidth = 1000;
-    public static int FrameHeight = 1000;
+    public static int FrameWidth = 1280;
+    public static int FrameHeight = 720;
 
     // Estados del juego
     public static enum STATE {
-        MENU, CHARSEL1, CHARSEL2, CHOOSE, GAME
+        MENU, CHARSEL1, CHARSEL2, CHOOSE, GAME, GANADOR
     }
 
     // Selección de personajes
@@ -177,4 +178,33 @@ public class Controlador implements KeyListener, IControlador {
     public void keyReleased(KeyEvent e) {
         // TODO Auto-generated method stub
     }
+    public void mostrarPantallaGanador(String ganador) {
+        // Lógica para mostrar la pantalla de ganador
+        JFrame pantallaGanador = new JFrame("¡Ganador!");
+        
+        pantallaGanador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        pantallaGanador.setSize(FrameWidth, FrameHeight);
+        pantallaGanador.setResizable(false);
+        pantallaGanador.setLocationRelativeTo(null);
+
+        // Crear el panel de fondo personalizado
+        String path = "/Imagenes/PantallaGanador.jpg"; // Ruta del fondo
+        FondoPantalla fondoPantalla = new FondoPantalla(path);  // Usamos la clase FondoPantalla para dibujar la imagen de fondo
+        
+        // Crear un panel para mostrar el texto del ganador
+        JPanel winnerPanel = new JPanel();
+        JLabel winnerLabel = new JLabel("¡El ganador es: " + ganador + "!");
+        winnerPanel.setOpaque(false);  // Hacer transparente el panel para que se vea el fondo
+        winnerPanel.add(winnerLabel);
+
+        // Añadir los dos paneles: fondo + texto
+        pantallaGanador.setContentPane(fondoPantalla);  // Establece el panel de fondo como el contenedor principal
+        pantallaGanador.add(winnerPanel);  // Añadir el panel con el texto encima del fondo
+        pantallaGanador.revalidate();
+        pantallaGanador.repaint();
+
+        // Hacer visible la ventana
+        pantallaGanador.setVisible(true);
+    }
+
 }
