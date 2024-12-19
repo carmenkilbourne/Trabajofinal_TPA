@@ -1,4 +1,4 @@
-package pantallas;
+package model;
 /*
  * Interfaz de IControlador 
  * Funciones que deberia hacer: cambiar pantalla*/

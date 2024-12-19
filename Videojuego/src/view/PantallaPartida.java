@@ -1,4 +1,4 @@
-package pantallas;
+package view;
 
 /*Clase encargada de dibujar a ambos jugadores en la pantalla*/
 public class PantallaPartida {

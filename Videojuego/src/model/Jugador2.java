@@ -1,71 +1,70 @@
-package entidad;
+package model;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-import interfaces.IJugador;
-import pantallas.Partida;
+import controlador.InputsJugadores;
+import view.BarraSalud;
+import view.CargarImagenesPersonaje;
+import view.IPartida;
 
 /**
  * Clase que extiende la clase base e implementa la interfaz IJugador. Se le va
  * a pasar la partida y va a dibujar y e implementar la logica del movimiento
- * del jugador 1. Implementa el patrón de comportamiento de Strategy ya que el
+ * del jugador 2. Implementa el patrón de comportamiento de Strategy ya que el
  * movimiento se controla mediante un objeto llamado Movimiento de jugador.
  * 
  */
-public class Jugador1 extends Jugador implements IJugador {
-	Partida partida;
+public class Jugador2 extends Jugador implements IJugador {
+	IPartida p;
 	InputsJugadores inputs;
-	private CargarImagenesPersonaje imagenesPersonaje;
-	private MovimientoJugador movimientoJugador1;
+	private CargarImagenesPersonaje personaje;
+	private IMovimientoJugador movimientoJugador2;
 	private BarraSalud barraSalud;
 
 	/**
-	 * Constructor de la clase Jugador1 a la que se le pasa lo necesario para
+	 * Constructor de la clase Jugador2 a la que se le pasa lo necesario para
 	 * incluir logica de movimiento y cargar la imagen necesaria
 	 * 
 	 * @param partida       es la partida que tiene mi bucle de partida.
 	 * @param inputs        son los inputs del jugador.
 	 * @param tipoPersonaje es el tipo de jugador seleccionado.
 	 */
-	public Jugador1(Partida partida, InputsJugadores inputs, String tipoPersonaje) {
-		this.partida = partida;
+	public Jugador2(IPartida p, InputsJugadores inputs, String tipo) {
+		this.p = p;
 		this.inputs = inputs;
-		// Obtener estadísticas desde el factory
-		ParametrosJugadores stats = ParametrosJugadoresFactory.getStats(tipoPersonaje);
+		ParametrosJugadores stats = ParametrosJugadoresFactory.getStats(tipo);
 		this.saludMax = stats.getSaludMax();
 		this.ataque = stats.getAtaque();
 		this.alturaJugador = stats.getAlturaJugador();
 		this.anchuraJugador = stats.getAnchuraJugador();
 		saludActual = saludMax;
-		movimientoJugador1 = new MovimientoJugador(inputs, 0, 320, "derecha");
-		movimientoJugador1.setDesplazamiento(stats.getDesplazamiento());
+		movimientoJugador2 = new MovimientoJugador(inputs, 1080, 320, "izquierda");
+		movimientoJugador2.setDesplazamiento(stats.getDesplazamiento());
 
-		imagenesPersonaje = new CargarImagenesPersonaje(tipoPersonaje);
+		personaje = new CargarImagenesPersonaje(tipo);
 		saludActual = saludMax;
-		barraSalud = new BarraSalud(saludMax, 10, 50);
+		barraSalud = new BarraSalud(saludMax, 1280 - 500 - 30, 50);
 	}
 
 	/**
 	 * Método que actualiza el movimiento del jugador y las imagenes
 	 * correspondientes.
 	 */
-	@Override
 	public void update() {
-		movimientoJugador1.update(partida.getPanelWidth(), partida.getPanelHeight(), true);
-		x = movimientoJugador1.getX();
-		y = movimientoJugador1.getY();
-		direccion = movimientoJugador1.getDireccion();
+		movimientoJugador2.update(p.getPanelWidth(), p.getPanelHeight(), false);
+		x = movimientoJugador2.getX();
+		y = movimientoJugador2.getY();
+		direccion = movimientoJugador2.getDireccion();
 
 	}
 
 	/**
 	 * Método para dibujar en la partida el jugador y la barra de salud del jugador.
 	 */
-	@Override
 	public void draw(Graphics2D g1) {
 		BufferedImage image = null;
-		image = imagenesPersonaje.getImagen(direccion);
+		image = personaje.getImagen(direccion);
 		g1.drawImage(image, x, y, alturaJugador, anchuraJugador, null);
 		barraSalud.dibujar(g1, saludActual);
 
@@ -75,9 +74,8 @@ public class Jugador1 extends Jugador implements IJugador {
 	 * Método que devuelve si su ultima posicion a sido derecha o izquierda para
 	 * luego comprobar si se estan mirando ambos jugadores.
 	 */
-	@Override
 	public boolean esDerecha() {
-		return movimientoJugador1.esDerecha();
+		return movimientoJugador2.esDerecha();
 	}
 
 	/**
@@ -85,25 +83,22 @@ public class Jugador1 extends Jugador implements IJugador {
 	 * 
 	 * @param x
 	 */
-	@Override
 	public void setX(int x) {
-		movimientoJugador1.setX(x);
-
+		movimientoJugador2.setX(x);
 	}
 
 	/**
 	 * Método que resetea la salud a la máxima para empezar una nueva ronda.
 	 */
 	public void resetSalud() {
-		this.saludActual = this.getSaludMaxima(); // Reinicia la salud al máximo
+	    this.saludActual = this.getSaludMaxima(); // Reinicia la salud al máximo		
 	}
 
 	/**
 	 * Poner al jugador en la posición inicial.
 	 */
 	public void reiniciarPosicion() {
-		movimientoJugador1.setX(0);
-		movimientoJugador1.setY(320);
+		movimientoJugador2.setX(1080);
+		movimientoJugador2.setY(320);
 	}
-
 }

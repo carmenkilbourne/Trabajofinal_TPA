@@ -1,4 +1,4 @@
-package pantallas;
+package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -13,13 +13,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import entidad.GestorInteraccionesJugadores;
-import entidad.InputsJugadores;
-import entidad.Jugador1;
-import entidad.Jugador2;
-import pantallas.Controlador.CHOICEP1;
-import pantallas.Controlador.CHOICEP2;
-import pantallas.Controlador.STATE;
+import controlador.InputsJugadores;
+import model.Controlador;
+import model.Cronometro;
+import model.GestorInteraccionesJugadores;
+import model.Jugador1;
+import model.Jugador2;
+import model.Controlador.CHOICEP1;
+import model.Controlador.CHOICEP2;
+import model.Controlador.STATE;
 
 /**
  *  Clase Partida que representa el juego principal, tiene toda la lógica de movimiento, 
@@ -30,7 +32,7 @@ import pantallas.Controlador.STATE;
  *  
  *  
  */
-public class Partida extends JPanel implements Runnable,KeyListener {
+public class Partida extends JPanel implements Runnable,KeyListener, IPartida {
 	private static final long serialVersionUID = 1L;
 	InputsJugadores movimientojugador = new InputsJugadores();
 	//InputsJugadores movimientoJugador2 = new InputsJugadores();
@@ -72,6 +74,7 @@ public class Partida extends JPanel implements Runnable,KeyListener {
 	/**
 	 * Método para empezar partida.
 	 */
+	@Override
 	public void empezarPartida() {
 		hiloPartida = new Thread(this);
 		hiloPartida.start();
@@ -82,15 +85,16 @@ public class Partida extends JPanel implements Runnable,KeyListener {
 	/**
 	 * Método para terminar partida y si es la ultima ronda se declara el ganador y pasa a la  pantalla del ganador.
 	 */
+	@Override
 	public void terminarPartida() {
 	    isRunning = false;
 
 	    // Determinar el ganador de la ronda actual
 	    if (jugador.getSaludActual() > 0) {
-	        System.out.println("Ganador de la ronda: Jugador 1");
+	        //System.out.println("Ganador de la ronda: Jugador 1");
 	        Controlador.incrementarVictoriasJugador1();  // Incrementar victorias del jugador 1
 	    } else {
-	        System.out.println("Ganador de la ronda: Jugador 2");
+	       // System.out.println("Ganador de la ronda: Jugador 2");
 	        Controlador.incrementarVictoriasJugador2();  // Incrementar victorias del jugador 2
 	    }
 
@@ -106,7 +110,7 @@ public class Partida extends JPanel implements Runnable,KeyListener {
 		        mainFrame.dispose();  // Cierra el JFrame completamente
 		    }
 	        // Si es la tercera ronda, mostrar el ganador final
-	        System.out.println("Juego terminado. Ganador final: " + getGanadorFinal());
+	        //System.out.println("Juego terminado. Ganador final: " + getGanadorFinal());
 	        Controlador stateControlador = Controlador.getInstance();
 	        if (stateControlador != null) {
 	            stateControlador.mostrarPantallaGanador(getGanadorFinal());
@@ -136,6 +140,7 @@ public class Partida extends JPanel implements Runnable,KeyListener {
 	 * Método que devuelve el ganador de la ronda.
 	 * @return un string con el ganador.
 	 */
+	@Override
 	public String getGanador() {
 	    // Determina quién ganó más rondas
 	    if (jugador.getSaludActual() > 0) {
@@ -187,6 +192,7 @@ public class Partida extends JPanel implements Runnable,KeyListener {
 	 * Método update que actualiza toda la lógica de los jugadores, las interracciones entre ellos
 	 * y ver si los jugadores han perdido toda su vida para terminar partida.
 	 */
+	@Override
 	public void update() {
 		jugador.update();
 		jugador2.update();
@@ -201,6 +207,7 @@ public class Partida extends JPanel implements Runnable,KeyListener {
 	/**
 	 *Método paintComponent encargado de pintar los elementos gráficos del juego, como el fondo y los jugadores.
 	 */
+	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g); // coge de la clase JPanel
 		Graphics2D g1 = (Graphics2D) g;
@@ -221,6 +228,7 @@ public class Partida extends JPanel implements Runnable,KeyListener {
      * 
      * @return La altura del panel.
      */
+	@Override
 	public int getPanelHeight() {
 		return this.getHeight();
 	}
@@ -229,6 +237,7 @@ public class Partida extends JPanel implements Runnable,KeyListener {
      * 
      * @return El ancho del panel.
      */
+	@Override
 	public int getPanelWidth() {
 		return this.getWidth();
 	}
@@ -237,7 +246,7 @@ public class Partida extends JPanel implements Runnable,KeyListener {
 	 * Devuelve la instancia de una partida.
 	 * @return instancia de la partida.
 	 */
-	protected static Partida getPartida() {
+	protected static IPartida getPartida() {
 		return getPartida();
 	}
 	  /**
@@ -245,6 +254,7 @@ public class Partida extends JPanel implements Runnable,KeyListener {
      * 
      * @return true si la partida ha terminado, false en caso contrario.
      */
+	@Override
 	public boolean esPartidaTerminada() {
 		return !isRunning;
 	}

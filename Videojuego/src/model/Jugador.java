@@ -1,4 +1,4 @@
-package entidad;
+package model;
 
 /**
  * Clase base de los Jugador que tiene elementos que son comunes en ambas
@@ -7,7 +7,7 @@ package entidad;
  * superclase pero dejaria a sus subclases Jugador1 y Jugador2 sobreescribir
  * funciones.
  */
-public abstract class Jugador {
+public abstract class Jugador implements IJugadorBase {
 	protected int saludActual;
 	protected int saludMax;
 	protected boolean defendiendo;
@@ -24,6 +24,7 @@ public abstract class Jugador {
 	 * @param cantidadDanio es la cantidad de daño que va a recibir un jugador
 	 *                      dependiendo del tipo que sea.
 	 */
+	@Override
 	public void recibirDanio(int cantidadDanio) {
 		if (defendiendo) {
 			cantidadDanio = 0; // Si est defendiendo no se provoCA daño
@@ -31,7 +32,7 @@ public abstract class Jugador {
 		saludActual -= cantidadDanio;
 		if (saludActual < 0)
 			saludActual = 0;
-		System.out.println(getClass().getSimpleName() + " ha recibido daño, vida restante: " + getSaludActual());
+		//System.out.println(getClass().getSimpleName() + " ha recibido daño, vida restante: " + getSaludActual());
 	}
 
 	/**
@@ -39,6 +40,7 @@ public abstract class Jugador {
 	 * 
 	 * @return ataque es la cantidad de daño que provoca el jugador
 	 */
+	@Override
 	public int getAtaque() {
 		return ataque;
 	}
@@ -48,7 +50,8 @@ public abstract class Jugador {
 	 * 
 	 * @param enemigo para implementar su método recibir daño
 	 */
-	public void atacar(Jugador enemigo) {
+	@Override
+	public void atacar(IJugadorBase enemigo) {
 		enemigo.recibirDanio(this.ataque);
 	}
 
@@ -57,6 +60,7 @@ public abstract class Jugador {
 	 * 
 	 * @return cantidad de vida que tiene el jugador.
 	 */
+	@Override
 	public int getSaludActual() {
 		return saludActual;
 	}
@@ -66,6 +70,7 @@ public abstract class Jugador {
 	 * 
 	 * @return posición en el eje X
 	 */
+	@Override
 	public int getX() {
 		return x;
 	}
@@ -75,6 +80,7 @@ public abstract class Jugador {
 	 * 
 	 * @return posición en el eje Y
 	 */
+	@Override
 	public int getY() {
 		return y;
 	}
@@ -84,6 +90,7 @@ public abstract class Jugador {
 	 * 
 	 * @param saludMax es la salud máxima
 	 */
+	@Override
 	public void setSaludMaxima(int saludMax) {
 		this.saludMax = saludMax;
 	}
@@ -93,6 +100,7 @@ public abstract class Jugador {
 	 * 
 	 * @return alturaJugador
 	 */
+	@Override
 	public int getAlturaJugador() {
 		return alturaJugador;
 	}
@@ -102,6 +110,7 @@ public abstract class Jugador {
 	 * 
 	 * @param alturaJugador
 	 */
+	@Override
 	public void setAlturaJugador(int alturaJugador) {
 		this.alturaJugador = alturaJugador;
 	}
@@ -111,6 +120,7 @@ public abstract class Jugador {
 	 * 
 	 * @return ancho de jugador.
 	 */
+	@Override
 	public int getAnchuraJugador() {
 		return anchuraJugador;
 	}
@@ -120,6 +130,7 @@ public abstract class Jugador {
 	 * 
 	 * @param anchuraJugador
 	 */
+	@Override
 	public void setAnchuraJugador(int anchuraJugador) {
 		this.anchuraJugador = anchuraJugador;
 	}
@@ -129,6 +140,7 @@ public abstract class Jugador {
 	 * 
 	 * @return salud máxima del jugador.
 	 */
+	@Override
 	public int getSaludMaxima() {
 		return saludMax;
 	}
@@ -139,6 +151,7 @@ public abstract class Jugador {
 	 * @param defendiendo es boolean que sera true si el jugador se defiende y false
 	 *                    si deja de hacerlo.
 	 */
+	@Override
 	public void setDefendiendo(boolean defendiendo) {
 		this.defendiendo = defendiendo;
 	}

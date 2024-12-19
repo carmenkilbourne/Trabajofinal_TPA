@@ -1,4 +1,4 @@
-package entidad;
+package model;
 
 /**
  * Clase ParametrosJugadoresFactory que implemeta el patron de Factory Method+

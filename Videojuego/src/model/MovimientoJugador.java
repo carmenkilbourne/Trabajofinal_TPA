@@ -1,9 +1,11 @@
-package entidad;
+package model;
+
+import controlador.InputsJugadores;
 
 /**
  * Clase MovimientoJugador para gestionar el movimiento de Jugador.
  */
-public class MovimientoJugador {
+public class MovimientoJugador implements IMovimientoJugador {
 
 	private InputsJugadores inputs;
 	private int x;
@@ -42,6 +44,7 @@ public class MovimientoJugador {
 	 * @param esJugador1  es un booleano para saber si estoy tratando con el
 	 *                    jugador1(true) o 2(false)
 	 */
+	@Override
 	public void update(int panelWidth, int panelHeight, boolean esJugador1) {
 		// Movimientos basados en entradas del jugador dependiendo de si se trata del
 		// jugador 1 o 2
@@ -134,6 +137,7 @@ public class MovimientoJugador {
 	 * 
 	 * @return posicion del jugador en el ejeX.
 	 */
+	@Override
 	public int getX() {
 		return x;
 	}
@@ -143,6 +147,7 @@ public class MovimientoJugador {
 	 * 
 	 * @return posicion del jugador en el eje Y.
 	 */
+	@Override
 	public int getY() {
 		return y;
 	}
@@ -152,6 +157,7 @@ public class MovimientoJugador {
 	 * 
 	 * @return dirección del jugador .
 	 */
+	@Override
 	public String getDireccion() {
 		return direccion;
 	}
@@ -159,6 +165,7 @@ public class MovimientoJugador {
 	/**
 	 * @return si su ultima posicion ha sido derecha incluso antes de saltar
 	 */
+	@Override
 	public boolean esDerecha() {
 		return esDerecha;
 	}
@@ -168,6 +175,7 @@ public class MovimientoJugador {
 	 * 
 	 * @param x
 	 */
+	@Override
 	public void setX(int x) {
 		this.x = x;
 	}
@@ -177,6 +185,7 @@ public class MovimientoJugador {
 	 * 
 	 * @param y
 	 */
+	@Override
 	public void setY(int y) {
 		this.y = y;
 	}
@@ -186,6 +195,7 @@ public class MovimientoJugador {
 	 * 
 	 * @return cantidad que se desplaza cada jugador.
 	 */
+	@Override
 	public int getDesplazamiento() {
 		return desplazamiento;
 	}
@@ -195,6 +205,7 @@ public class MovimientoJugador {
 	 * 
 	 * @param desplazamiento
 	 */
+	@Override
 	public void setDesplazamiento(int desplazamiento) {
 		this.desplazamiento = desplazamiento;
 	}

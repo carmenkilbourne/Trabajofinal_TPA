@@ -1,4 +1,4 @@
-package pantallas;
+package view;
 
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;

@@ -1,11 +1,11 @@
-package entidad;
+package model;
 
 /**
  * Clase para devolver los parametros de cada jugador dependiendo del personaje
  * elegido.
  * 
  */
-class ParametrosJugadores {
+public class ParametrosJugadores {
 	int saludMax;
 	int ataque;
 	int alturaJugador;

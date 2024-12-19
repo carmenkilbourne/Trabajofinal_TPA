@@ -1,7 +1,9 @@
-package pantallas;
+package view;
 
 import java.awt.Graphics;
 import javax.swing.JPanel;
+
+import controlador.MouseInput;
 
 public class CustomPanel extends JPanel {
     /**

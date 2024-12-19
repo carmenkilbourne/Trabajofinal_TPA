@@ -1,4 +1,4 @@
-package entidad;
+package controlador;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

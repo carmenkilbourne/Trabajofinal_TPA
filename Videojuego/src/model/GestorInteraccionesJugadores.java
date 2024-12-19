@@ -1,10 +1,13 @@
-package entidad;
+package model;
+
+import controlador.InputsJugadores;
+import controlador.InputsJugadores.Accion;
 
 /**
  * Clase GestorInteraccionesJugadores que va ha gestionar las interacciones
  * entre ambos jugadores.
  */
-public class GestorInteraccionesJugadores {
+public class GestorInteraccionesJugadores implements IGestorInteraccionesJugadores {
 	private Jugador1 jugador1;
 	private Jugador2 jugador2;
 	private InputsJugadores inputsJugadores;

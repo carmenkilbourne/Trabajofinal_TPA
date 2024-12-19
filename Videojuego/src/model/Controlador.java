@@ -1,4 +1,4 @@
-package pantallas;
+package model;
 
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -8,6 +8,13 @@ import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import controlador.MouseInput;
+import view.CustomPanel;
+import view.FondoPantalla;
+import view.PantallaGanador;
+import view.PantallaInicio;
+import view.Partida;
 
 public class Controlador implements KeyListener, IControlador {
     private static Controlador instance;
@@ -86,7 +93,7 @@ public class Controlador implements KeyListener, IControlador {
 
     // Método para cambiar entre pantallas
     public void cambiarPantalla(String nombrePantalla) {
-        System.out.println("Changing screen to: " + nombrePantalla);
+        //System.out.println("Changing screen to: " + nombrePantalla);
         cardLayout.show(mainPanel, nombrePantalla);
         actualizarFondo(nombrePantalla);
     }
@@ -160,13 +167,13 @@ public class Controlador implements KeyListener, IControlador {
         int keyCode = e.getKeyCode();
         // Lógica para manejar eventos de teclado
         if (keyCode == KeyEvent.VK_ENTER) {
-            System.out.println("Enter key pressed");
+            //System.out.println("Enter key pressed");
             state = STATE.CHARSEL1;
             cambiarPantalla("SeleccionCaracteres");
-            System.out.println("State changed to: " + state);
+            //System.out.println("State changed to: " + state);
         }
         if (keyCode == KeyEvent.VK_ESCAPE) {
-            System.out.println("Escape key pressed");
+           // System.out.println("Escape key pressed");
             cambiarPantalla("PantallaInicio");
         }
     }

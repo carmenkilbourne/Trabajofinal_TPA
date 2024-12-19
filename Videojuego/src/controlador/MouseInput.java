@@ -1,4 +1,4 @@
-package pantallas;
+package controlador;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -6,6 +6,8 @@ import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JFrame;
+
+import model.Controlador;
 
 public class MouseInput implements MouseListener {
     private JFrame frame;
@@ -26,12 +28,12 @@ public class MouseInput implements MouseListener {
     public void mousePressed(MouseEvent e) {
         int mx = e.getX();
         int my = e.getY();
-        System.out.println("Mouse pressed at: (" + mx + ", " + my + ")");
+        //System.out.println("Mouse pressed at: (" + mx + ", " + my + ")");
 
             if (Controlador.state == Controlador.STATE.CHARSEL1) {
-            System.out.println("Current state: CHARSEL1");
+            //System.out.println("Current state: CHARSEL1");
             if (mx < frame.getWidth() / 2) {
-                System.out.println("Left side clicked: Gigante selected");
+                //System.out.println("Left side clicked: Gigante selected");
                 Controlador.choiceP1 = Controlador.CHOICEP1.GIGANTE;
             } else {
                 System.out.println("Right side clicked: Hada selected");
@@ -42,17 +44,17 @@ public class MouseInput implements MouseListener {
             Controlador controlador = Controlador.getInstance();
             if (controlador != null) {
                 controlador.cambiarPantalla("SeleccionCaracteres");
-                System.out.println("State changed to: CHARSEL2");
+                //System.out.println("State changed to: CHARSEL2");
             } else {
-                System.out.println("Controlador instance is null");
+               // System.out.println("Controlador instance is null");
             }
         } else if (Controlador.state == Controlador.STATE.CHARSEL2) {
-            System.out.println("Current state: CHARSEL2");
+            //System.out.println("Current state: CHARSEL2");
             if (mx < frame.getWidth() / 2) {
-                System.out.println("Left side clicked: Gigante selected");
+                //System.out.println("Left side clicked: Gigante selected");
                 Controlador.choiceP2 = Controlador.CHOICEP2.GIGANTE;
             } else {
-                System.out.println("Right side clicked: Hada selected");
+                //System.out.println("Right side clicked: Hada selected");
                 Controlador.choiceP2 = Controlador.CHOICEP2.HADA;
             }
             // Cambiar a la selección de mapa
@@ -60,25 +62,25 @@ public class MouseInput implements MouseListener {
             Controlador controlador = Controlador.getInstance();
             if (controlador != null) {
                 controlador.cambiarPantalla("SeleccionMapa");
-                System.out.println("State changed to: CHOOSE");
+                //System.out.println("State changed to: CHOOSE");
             } else {
-                System.out.println("Controlador instance is null");
+                //System.out.println("Controlador instance is null");
             }
         } else if (Controlador.state == Controlador.STATE.CHOOSE) {
-            System.out.println("Current state: CHOOSE");
+            //System.out.println("Current state: CHOOSE");
             int width = frame.getWidth();
             int height = frame.getHeight();
             if (mx < width / 2 && my < height / 2) {
-                System.out.println("Top-left quadrant clicked: Map 1 selected");
+                //System.out.println("Top-left quadrant clicked: Map 1 selected");
                 Controlador.mapa = 1;
             } else if (mx >= width / 2 && my < height / 2) {
-                System.out.println("Top-right quadrant clicked: Map 2 selected");
+               // System.out.println("Top-right quadrant clicked: Map 2 selected");
                 Controlador.mapa = 2;
             } else if (mx < width / 2 && my >= height / 2) {
-                System.out.println("Bottom-left quadrant clicked: Map 3 selected");
+               // System.out.println("Bottom-left quadrant clicked: Map 3 selected");
                 Controlador.mapa = 3;
             } else if (mx >= width / 2 && my >= height / 2) {
-                System.out.println("Bottom-right quadrant clicked: Map 4 selected");
+                //System.out.println("Bottom-right quadrant clicked: Map 4 selected");
                 Controlador.mapa = 4;
             }
             // Cambiar al estado del juego
@@ -86,9 +88,9 @@ public class MouseInput implements MouseListener {
             Controlador controlador = Controlador.getInstance();
             if (controlador != null) {
                 controlador.cambiarPantalla("Game");
-                System.out.println("State changed to: GAME");
+               // System.out.println("State changed to: GAME");
             } else {
-                System.out.println("Controlador instance is null");
+               // System.out.println("Controlador instance is null");
             }
         }
     }

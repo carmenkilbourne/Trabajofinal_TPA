@@ -1,4 +1,4 @@
-package entidad;
+package view;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -8,7 +8,7 @@ import java.awt.Graphics2D;
  * indicando la cantidad de vida actual de un jugador.
  * 
  */
-public class BarraSalud {
+public class BarraSalud implements IBarraSalud {
 	private int x, y;
 	private int saludMax;
 
