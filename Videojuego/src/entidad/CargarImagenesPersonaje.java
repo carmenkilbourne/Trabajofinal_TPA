@@ -5,21 +5,25 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /*
- * Clase CargarImagenesPersonajeFactory que carga todas las imagenes de los jugadores y luego devuelve la imagen 
- * correspondiente a la direccion seleccionada */
+ * Clase CargarImagenesPersonajeFactory que carga todas las imagenes del personaje elegido por los Personajes y 
+ * luego devuelve la imagen correspondiente a la direccion seleccionada. 
+ * Implementa el patrón de diseño de Factory method.
+ */
 public class CargarImagenesPersonaje {
 	/**
-	 * Parametro esperando a ser cargado con imagenes en cada direccion
-	 * 
+	 * Imagenes de cada direccion que puede tomar un personaje.
 	 */
 	private BufferedImage salto, derecha, izquierda, abajo1, ataque1, ataque12, patada1, patada2, patada1i, patada2i,
 			ataque1i, ataque2i;
 
 	/**
-	 * Constructor que carga las imagenes correspondientes a el personaje elegido
+	 * Constructor que carga las imagenes correspondientes a el personaje elegido.
 	 * 
-	 * @param tipoPersonaje
+	 * @param tipoPersonaje es el tipo de personaje que el jugador a elegido
+	 * @throws IllegalArgumentException si el tipo de personaje es distinto a los
+	 *                                  permitidos
 	 */
+
 	public CargarImagenesPersonaje(String tipoPersonaje) {
 		switch (tipoPersonaje.toLowerCase()) {
 		case "gigante":
@@ -34,11 +38,12 @@ public class CargarImagenesPersonaje {
 	}
 
 	/**
-	 * Metodo que devuelve una imagen correspondiente a la direccion dada
+	 * Metodo que devuelve una imagen correspondiente a la direccion solicitada.
 	 * 
-	 * @param direccion
-	 * @return imagen de la direccion pedida
+	 * @param direccion es la direccion en la que se mueve el personaje
+	 * @return la imagen asociada a la direccion pedida
 	 */
+
 	public BufferedImage getImagen(String direccion) {
 		switch (direccion.toLowerCase()) {
 		case "salto":
@@ -71,7 +76,7 @@ public class CargarImagenesPersonaje {
 	}
 
 	/**
-	 * Metodo que carga las imagenes del gigante
+	 * Metodo que carga las imagenes del personaje tipo gigante.
 	 */
 	public void CargarImagenesGigante() {
 		try {
@@ -94,14 +99,14 @@ public class CargarImagenesPersonaje {
 	}
 
 	/**
-	 * Metodo que carga las imagenes de un hada
+	 * Metodo que carga las imagenes del personaje tipo hada.
 	 */
 	public void CargarImagenesHada() {
 		try {
 			salto = ImageIO.read(getClass().getResourceAsStream("/Imagenes/Hada/frente.png"));
 			derecha = ImageIO.read(getClass().getResourceAsStream("/Imagenes/Hada/derecha.png"));
 			izquierda = ImageIO.read(getClass().getResourceAsStream("/Imagenes/Hada/izquierda.png"));
-			abajo1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/abajo.png"));
+			abajo1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/Hada/abajo.png"));
 			ataque1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/Hada/punetazoDrcha.png"));
 			ataque12 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/Hada/punetazoDrchaPow.png"));
 			patada1 = ImageIO.read(getClass().getResourceAsStream("/Imagenes/Hada/patadaDrcha.png"));

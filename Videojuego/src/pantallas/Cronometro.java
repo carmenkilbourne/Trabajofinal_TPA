@@ -3,6 +3,9 @@ package pantallas;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+/**
+ * Clase Cronometro
+ */
 public class Cronometro {
     private int tiempoRestante =1;
     private int tiempoInicial;
@@ -22,12 +25,11 @@ public class Cronometro {
     	tiempo ++;
     }
 
-    public void dibujar(Graphics2D g1) {
+    public void dibujar(Graphics2D g1, int panelWidth) {
         g1.setColor(Color.BLACK);
         g1.setFont(new Font("Arial", Font.BOLD, 30));
         tiempoRestante = tiempoInicial-tiempo;
-        int posX = (1280 - 50) / 2; // Coordenada X centrada
-        int posY = (720 + 30) / 2;  // Coordenada Y centrada 
+        int posX = (panelWidth - 50) / 2; // Coordenada X centrada
         g1.drawString(tiempoRestante + "s",posX,50);
     }
 
@@ -41,4 +43,10 @@ public class Cronometro {
     void pararContador() {
     	isRunning = false;
     }
+
+	public void reiniciar() {
+		 this.tiempoRestante = this.tiempoInicial;  // Reinicia el tiempo al valor inicial
+	     this.tiempo = 0;  // Reinicia el contador de tiempo transcurrido	
+	     this.isRunning = true;  // Reactiva el cronómetro
+	}
 }

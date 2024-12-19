@@ -4,19 +4,24 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 /**
- * Clase diseñada con el solo proposito de dibujar barras de salud en pantalla mostrando 
- * la cantidad de vida restante del jugador
+ * Clase diseñada para representar y dibujar una barra de salud en la pantalla,
+ * indicando la cantidad de vida actual de un jugador.
+ * 
  */
 public class BarraSalud {
-	private int x, y, ancho, alto;
+	private int x, y;
 	private int saludMax;
 
-	/**Constructor de la clase BarraSalud usada para instanciar la clase con los parametros necesarios 
-	 * para dibujar la barra de salud en pantalla
-	 * @param saludMax
-	 * @param x
-	 * @param y
+	/**
+	 * Constructor de la clase BarraSalud. Instanciar la clase con los parametros
+	 * necesarios para dibujar la barra de salud
+	 * en pantalla.
+	 * 
+	 * @param saludMax es la cantidad máxima de salud que representa la barra
+	 * @param x        es la posición horizontal en la que se dibuja la barra
+	 * @param y        es la posición vertical en la que se dibuja la barra
 	 */
+
 	public BarraSalud(int saludMax, int x, int y) {
 		this.x = x;
 		this.y = y;
@@ -24,11 +29,13 @@ public class BarraSalud {
 	}
 
 	/**
-	 * Metodo usado para dibujar la barra de salud pero con la salud actual para cuando el 
-	 * Jugador recibe daño y necesita verse reflejado
-	 * @param g
-	 * @param saludActual
+	 * Metodo usado para dibujar la barra de salud pero con la salud actual para
+	 * cuando el Jugador recibe daño y necesita verse reflejado.
+	 * 
+	 * @param g           es un Graphics2D(objeto) para dibujar en pantalla
+	 * @param saludActual es la salud (cantidad de vida) que tiene el jugador
 	 */
+
 	public void dibujar(Graphics2D g, int saludActual) {
 		int barraSalud = (int) ((double) saludActual / saludMax * 500);
 

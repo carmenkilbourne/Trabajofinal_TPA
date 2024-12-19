@@ -9,7 +9,10 @@ import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+
 import entidad.GestorInteraccionesJugadores;
 import entidad.InputsJugadores;
 import entidad.Jugador1;
@@ -18,7 +21,15 @@ import pantallas.Controlador.CHOICEP1;
 import pantallas.Controlador.CHOICEP2;
 import pantallas.Controlador.STATE;
 
-//cambiar nombre a bucle de particula
+/**
+ *  Clase Partida que representa el juego principal, tiene toda la lógica de movimiento, 
+ *  gestión entre jugadores,cronometro.
+ *  Implementa un patrón de comportamiento Observer ya que tiene un KeyListener.
+ *  Implementa un patrón Composite ya que permite componer objetos en estructuras de árbol 
+ *  y trabaja con estructuras como si fueran objetos individuales.
+ *  
+ *  
+ */
 public class Partida extends JPanel implements Runnable,KeyListener {
 	private static final long serialVersionUID = 1L;
 	InputsJugadores movimientojugador = new InputsJugadores();
@@ -27,7 +38,6 @@ public class Partida extends JPanel implements Runnable,KeyListener {
 	Jugador1 jugador;
 	Jugador2 jugador2;
 	private int contador = 0;
-	public boolean acabada = false;
 	public GestorInteraccionesJugadores gestorJugador;
 	int FPS = 60; // 60 FRAMES PER SECOND
 	public long tiempo = 0;
@@ -36,15 +46,16 @@ public class Partida extends JPanel implements Runnable,KeyListener {
 	private Cronometro cronometro;
 	  @Override
 	    public void keyPressed(KeyEvent e) {
-	        int keyCode = e.getKeyCode();
-	        if (keyCode == KeyEvent.VK_ESCAPE) {
-	            System.out.println("Escape key pressed");
-	            Controlador controlador = new Controlador();
-	    		controlador.cambiarPantalla("PantallaInicio");
-	        }
+	      
 	    }
-	public Partida(String path, CHOICEP1 choiceP1, CHOICEP2 choiceP2) { // PARA QUE PONGA DISTINTOS FONDOS SOLO HACE
-																		// FALTA HACER public Partida(string
+	/**
+	 * Constructor de la clase Partida para instanciar la clase con los parametros
+	 * necesarios para jugar una partida.
+	 * @param path ruta del fondo de pantalla
+	 * @param choiceP1 elección del personaje del Jugador1
+	 * @param choiceP2 elección del personaje del Jugador1
+	 */
+	public Partida(String path, CHOICEP1 choiceP1, CHOICEP2 choiceP2) { 
 		this.setPreferredSize(new Dimension(1280, 720));
 		this.setBackground(Color.white);
 		this.addKeyListener(movimientojugador); // escuchador de movimiento del jugador 1
@@ -58,25 +69,85 @@ public class Partida extends JPanel implements Runnable,KeyListener {
 		isRunning = true;
 	}
 
+	/**
+	 * Método para empezar partida.
+	 */
 	public void empezarPartida() {
 		hiloPartida = new Thread(this);
 		hiloPartida.start();
 		gestorJugador = new GestorInteraccionesJugadores(jugador, jugador2, movimientojugador);
 		isRunning = true;
 	}
-	public void pausarPartida() {
-		//parar el contador 
-		//
-	}
+
+	/**
+	 * Método para terminar partida y si es la ultima ronda se declara el ganador y pasa a la  pantalla del ganador.
+	 */
 	public void terminarPartida() {
-		hiloPartida = null;
-		isRunning = false;
-		// Hay que tener en el controlador una clase que a parte de cambiar pantalla
-		// haga algo como dibujarla de nuevo??'
-		Controlador controlador = new Controlador();
-		controlador.cambiarPantalla("PantallaInicio");
+	    isRunning = false;
+
+	    // Determinar el ganador de la ronda actual
+	    if (jugador.getSaludActual() > 0) {
+	        System.out.println("Ganador de la ronda: Jugador 1");
+	        Controlador.incrementarVictoriasJugador1();  // Incrementar victorias del jugador 1
+	    } else {
+	        System.out.println("Ganador de la ronda: Jugador 2");
+	        Controlador.incrementarVictoriasJugador2();  // Incrementar victorias del jugador 2
+	    }
+
+	   
+	    Controlador.rondaActual++; // Actualizar el estado de las rondas
+
+	    if (Controlador.rondaActual < Controlador.MAX_RONDAS) {
+	        
+	        reiniciarPartida();// Si no es la tercera ronda, reiniciar la partida para la siguiente ronda
+	    } else if (Controlador.rondaActual == Controlador.MAX_RONDAS) {
+		    JFrame mainFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+		    if (mainFrame != null) {
+		        mainFrame.dispose();  // Cierra el JFrame completamente
+		    }
+	        // Si es la tercera ronda, mostrar el ganador final
+	        System.out.println("Juego terminado. Ganador final: " + getGanadorFinal());
+	        Controlador stateControlador = Controlador.getInstance();
+	        if (stateControlador != null) {
+	            stateControlador.mostrarPantallaGanador(getGanadorFinal());
+	        }
+	    }
 	}
 
+
+	/**
+	 * Metodo para reiniciar la partida donde se reinicia todos los parametros para volver a empezar ronda.
+	 */
+	private void reiniciarPartida() {
+	    // Reiniciar salud de los jugadores
+	    jugador.resetSalud();
+	    jugador2.resetSalud();
+	    // Reiniciar el cronómetro
+	    cronometro.reiniciar();
+	    // Resetear las posiciones de los jugadores
+	    jugador.reiniciarPosicion();
+	    jugador2.reiniciarPosicion();
+	    // Volver a activar la ejecución del loop
+	    isRunning = true;
+	    empezarPartida();
+	}
+
+	/**
+	 * Método que devuelve el ganador de la ronda.
+	 * @return un string con el ganador.
+	 */
+	public String getGanador() {
+	    // Determina quién ganó más rondas
+	    if (jugador.getSaludActual() > 0) {
+	        return "Jugador 1";
+	    } else {
+	        return "Jugador 2";
+	    }
+	}
+	/**
+	 *Método run que implementa el bucle del juego, actualiza parametros de los jugadores, cronometro y 
+	 *pintar la pantalla.
+	 */
 	@Override
 	public void run() {// Aqui va ha ir nuestro bucle de juego, actualizar parametros del personaje con
 						// input de usuario
@@ -112,6 +183,10 @@ public class Partida extends JPanel implements Runnable,KeyListener {
 
 	}
 
+	/**
+	 * Método update que actualiza toda la lógica de los jugadores, las interracciones entre ellos
+	 * y ver si los jugadores han perdido toda su vida para terminar partida.
+	 */
 	public void update() {
 		jugador.update();
 		jugador2.update();
@@ -119,10 +194,13 @@ public class Partida extends JPanel implements Runnable,KeyListener {
 		if (jugador.getSaludActual() == 0 || jugador2.getSaludActual() == 0) {
 			isRunning = false;
 			terminarPartida();
-
 		}
+		
 	}
 
+	/**
+	 *Método paintComponent encargado de pintar los elementos gráficos del juego, como el fondo y los jugadores.
+	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g); // coge de la clase JPanel
 		Graphics2D g1 = (Graphics2D) g;
@@ -134,35 +212,71 @@ public class Partida extends JPanel implements Runnable,KeyListener {
 		}
 		jugador.draw(g1);
 		jugador2.draw(g1);
-		cronometro.dibujar(g1);
+		cronometro.dibujar(g1,getPanelWidth());
 		g1.dispose();
 
 	}
-
+	/**
+     * Devuelve la altura del panel de la partida.
+     * 
+     * @return La altura del panel.
+     */
 	public int getPanelHeight() {
 		return this.getHeight();
 	}
-
+	/**
+     * Devuelve el ancho del panel de la partida.
+     * 
+     * @return El ancho del panel.
+     */
 	public int getPanelWidth() {
 		return this.getWidth();
 	}
 
+	/**
+	 * Devuelve la instancia de una partida.
+	 * @return instancia de la partida.
+	 */
 	protected static Partida getPartida() {
 		return getPartida();
 	}
-
-	public boolean esPartidaTerminada() {// si tengo en el controlador algo que escucha hasta que este parametro sea
-											// false
+	  /**
+     * Verifica si la partida ha terminado.
+     * 
+     * @return true si la partida ha terminado, false en caso contrario.
+     */
+	public boolean esPartidaTerminada() {
 		return !isRunning;
 	}
+	/**
+	 *No uso keyTyped ya que estamos implementando la interfaz del Key Listener.
+	 */
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
+	/**
+	 *No uso keyReleased ya que estamos implementando la interfaz del Key Listener.
+	 */
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
+	/**
+	 * Devuelve el jugador que ha ganado la ronda.
+	 * @return ganador de la ronda.
+	 */
+	private String getGanadorFinal() {
+        if (Controlador.victoriasJugador1 > Controlador.victoriasJugador2) {
+            return "Jugador 1";
+        } else if (Controlador.victoriasJugador2 > Controlador.victoriasJugador1) {
+            return "Jugador 2";
+        } else {
+            return "¡Es un empate!";
+        }
+    }
+
 }
+
