@@ -34,7 +34,7 @@ public class Controlador implements KeyListener, IControlador {
 	/**
 	 * Contador de rondas, inicia en 1
 	 */
-	public static int rondaActual = 1;
+	public static int rondaActual = 0;
 	/**
 	 * numero de victorias que ha ganado el jugador 1
 	 */
@@ -75,23 +75,39 @@ public class Controlador implements KeyListener, IControlador {
 	 * Estados del juego
 	 */
 	public static enum STATE {
-		MENU/**Estado menu */, CHARSEL1/**Estado seleccion caracter 1*/, 
-		CHARSEL2/**Estado seleccion caracter 2*/, CHOOSE/**Estado seleccion mapa */, 
-		GAME/**Estado de jugando partida*/, GANADOR /**Estado de mostrar ganador */
+		MENU
+		/** Estado menu */
+		, CHARSEL1
+		/** Estado seleccion caracter 1 */
+		, CHARSEL2
+		/** Estado seleccion caracter 2 */
+		, CHOOSE
+		/** Estado seleccion mapa */
+		, GAME
+		/** Estado de jugando partida */
+		, GANADOR /** Estado de mostrar ganador */
 	}
 
 	/**
 	 * Selección de personaje para jugador 1.
 	 */
 	public static enum CHOICEP1 {
-		GIGANTE/**personaje gigante*/, HADA/**personaje hada*/, NOTHING /**personaje no escogido*/
+		GIGANTE
+		/** personaje gigante */
+		, HADA
+		/** personaje hada */
+		, NOTHING /** personaje no escogido */
 	}
 
 	/**
 	 * Selección de personaje para jugador 1.
 	 */
 	public static enum CHOICEP2 {
-		GIGANTE/**personaje gigante*/, HADA/**personaje hada*/, NOTHING2 /**personaje no escogido*/
+		GIGANTE
+		/** personaje gigante */
+		, HADA
+		/** personaje hada */
+		,NOTHING2 /** personaje no escogido */
 	}
 
 	/**
@@ -139,13 +155,14 @@ public class Controlador implements KeyListener, IControlador {
 	}
 
 	/**
-	 * Cambia la pantalla mostrada en el JFrame.
+	 * Carga las pantallas.
 	 *
 	 * @param nombrePantalla Nombre de la pantalla a mostrar.
 	 */
 	private void cargarPantallas() {
 		PantallaInicio pantallaInicio = new PantallaInicio();
 		mainPanel.add(pantallaInicio.getPanel(), "PantallaInicio");
+
 	}
 
 	/**
@@ -154,7 +171,6 @@ public class Controlador implements KeyListener, IControlador {
 	 * @param nombrePantalla nombre de la pantalla que se va cambiar
 	 */
 	public void cambiarPantalla(String nombrePantalla) {
-		// System.out.println("Changing screen to: " + nombrePantalla);
 		cardLayout.show(mainPanel, nombrePantalla);
 		actualizarFondo(nombrePantalla);
 	}
@@ -233,7 +249,7 @@ public class Controlador implements KeyListener, IControlador {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int keyCode = e.getKeyCode();
-		// Lógica para manejar eventos de teclado
+		/*Esc para pasar  de pantalla inicial a Seleccion de caracteres*/
 		if (keyCode == KeyEvent.VK_ENTER) {
 			// System.out.println("Enter key pressed");
 			state = STATE.CHARSEL1;
@@ -296,7 +312,7 @@ public class Controlador implements KeyListener, IControlador {
 	 * 
 	 * @param ganador es el nombre del jugador ganador, Jugador1 o Jugador2
 	 */
-	public void mostrarPantallaGanador(String ganador) {
+	public void mostrarPantallaGanador() {
 		JFrame pantallaGanador = new JFrame("¡Ganador!");
 
 		pantallaGanador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -312,7 +328,7 @@ public class Controlador implements KeyListener, IControlador {
 		// Crear un panel para mostrar el texto del ganador
 		JPanel winnerPanel = new JPanel();
 		JLabel winnerLabel = new JLabel(getGanadorFinal());
-		winnerLabel.setFont(new Font("Arial", Font.BOLD, 100));
+		winnerLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 100));
 		winnerLabel.setForeground(Color.BLACK);
 		winnerPanel.setOpaque(false); // Hacer transparente el panel para que se vea el fondo
 		winnerPanel.add(winnerLabel);

@@ -101,7 +101,7 @@ public class Partida extends JPanel implements Runnable,KeyListener, IPartida {
 	        //System.out.println("Ganador de la ronda: Jugador 1");
 	        Controlador.incrementarVictoriasJugador1();  // Incrementar victorias del jugador 1
 	    } else {
-	       // System.out.println("Ganador de la ronda: Jugador 2");
+	        //System.out.println("Ganador de la ronda: Jugador 2");
 	        Controlador.incrementarVictoriasJugador2();  // Incrementar victorias del jugador 2
 	    }
 
@@ -112,15 +112,16 @@ public class Partida extends JPanel implements Runnable,KeyListener, IPartida {
 	        
 	        reiniciarPartida();// Si no es la tercera ronda, reiniciar la partida para la siguiente ronda
 	    } else if (Controlador.rondaActual == Controlador.MAX_RONDAS) {
+	    	hiloPartida = null;
 		    JFrame mainFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
 		    if (mainFrame != null) {
 		        mainFrame.dispose();  // Cierra el JFrame completamente
 		    }
 	        // Si es la tercera ronda, mostrar el ganador final
 	        //System.out.println("Juego terminado. Ganador final: " + getGanadorFinal());
-	        Controlador stateControlador = Controlador.getInstance();
-	        if (stateControlador != null) {
-	            stateControlador.mostrarPantallaGanador(getGanadorFinal());
+	        Controlador controladorInstance = Controlador.getInstance();
+	        if (controladorInstance != null) {
+	            controladorInstance.mostrarPantallaGanador();
 	        }
 	    }
 	}
@@ -281,21 +282,5 @@ public class Partida extends JPanel implements Runnable,KeyListener, IPartida {
 		// TODO Auto-generated method stub
 		
 	}
-	/**
-	 * Devuelve el jugador que ha ganado la ronda.
-	 * @return ganador de la ronda.
-	 */
-	private String getGanadorFinal() {
-        if (Controlador.victoriasJugador1 > Controlador.victoriasJugador2) {
-        	Controlador.incrementarVictoriasJugador1(); 
-            return "Jugador 1";
-        } else if (Controlador.victoriasJugador2 > Controlador.victoriasJugador1) {
-        	Controlador.incrementarVictoriasJugador2(); 
-            return "Jugador 2";
-        } else {
-            return "¡Es un empate!";
-        }
-    }
-
 }
 

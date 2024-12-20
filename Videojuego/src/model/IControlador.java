@@ -44,6 +44,6 @@ public interface IControlador {
 	 * 
 	 * @param ganador es el nombre del jugador ganador, Jugador1 o Jugador2
 	 */
-	void mostrarPantallaGanador(String ganador);
+	void mostrarPantallaGanador();
 
 }
