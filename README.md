@@ -20,7 +20,7 @@ https://johann.loefflmann.net/en/software/jarfix/index.html
 ```
 https://www.oracle.com/java/technologies/downloads/#jdk23-windows
 ```
-## Descarga del juego
+## Modos de descargar el juego
 1. Pinchar el .jar y deberia funcionar.
 2. Ir a plataforma preferenciarmente Eclipse que es la usada y empezar a ejecutar desde main.
 3. Desde una terminal viaja mediante comandos cd a tu carpeta de descarga del .jar y ejecuta la siguiente orden:
@@ -39,9 +39,6 @@ Enter para pasar a la siguiente pantalla
 </p>
 
 Pinchar 2 veces una por cada jugador para elegir personaje
-<p align="center">
-  <img src="image-2.png" alt="Alt text" style="margin: 20px;" />
-</p>
 
 ![alt text](image-2.png)
 
