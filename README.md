@@ -34,9 +34,14 @@ java -jar MagicDuelQuest.jar
 ## Pantallas del juego
 Enter para pasar a la siguiente pantalla
 
-![alt text](image-1.png)
+<p align="center">
+  <img src="image-1.png" alt="Alt text" style="margin: 20px;" />
+</p>
 
 Pinchar 2 veces una por cada jugador para elegir personaje
+<p align="center">
+  <img src="image-2.png" alt="Alt text" style="margin: 20px;" />
+</p>
 
 ![alt text](image-2.png)
 
@@ -53,7 +58,7 @@ Pantalla de anuncio del Ganador
 ![alt text](image-5.png)
 
 ## Diagrama UML
-Diagrama UML del programa principal.
+Diagrama UML del programa principal
 
 ![alt text](uml2.png)
 
